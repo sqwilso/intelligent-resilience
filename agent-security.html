@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Security Services | Stuart Wilson — Intelligent Resilience</title>
+    <meta name="description" content="Agent Security Assessment & Incident Response Services. Help enterprises audit, govern, and respond to AI agents in production.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: #e0e7ff;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.5rem 0;
+            color: #2563eb;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #4a4a4a;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: #4a4a4a;
+        }
+
+        /* Service Tiers */
+        .tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tier {
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .tier:hover {
+            border-color: #2563eb;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
+        }
+
+        .tier h3 {
+            color: #2563eb;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .tier-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin: 1rem 0;
+        }
+
+        .tier-price-sub {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .tier ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .tier li {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        /* Why Choose Section */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .benefit {
+            background: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .benefit h4 {
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Process */
+        .process {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .step {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            text-align: center;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .step h4 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .cta h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: #e0e7ff;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2563eb;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f0f0;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #e5e5e5;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Intelligent <span>Resilience</span></div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Agent Security Services</h1>
+            <p class="tagline">Audit, govern, and respond to AI agents in production. Help enterprises secure their autonomous agents before they cause problems.</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2>The Challenge</h2>
+        <p>Organizations are rapidly deploying AI agents in critical business functions—financial decisions, healthcare recommendations, HR hiring, supply chain operations. But enterprise security hasn't kept pace.</p>
+        <p>Traditional cybersecurity tools (EDR, SIEM, firewalls) detect external attackers. They cannot detect or respond to <strong>agent misbehavior</strong>—the new class of risk where agents exhibit emergent, unpredictable behavior that isn't malicious attack, but causes real business harm.</p>
+        <p>Without proper assessment and governance, enterprises face: compliance violations, unfair decisions, boundary violations, unpredictable behavior in production.</p>
+    </section>
+
+    <section class="container">
+        <h2>Our Service</h2>
+        <p>We provide <strong>Agent Security Advisory Services</strong> to enterprises deploying AI agents in critical business functions. Our engagement includes:</p>
+
+        <ul>
+            <li><strong>Agent Security Assessment:</strong> Audit your agents in production, establish baseline behavior patterns, identify security and compliance risks, and design incident response procedures.</li>
+            <li><strong>Governance Framework Design:</strong> Help you develop policies for agent deployment, approval procedures, escalation matrices, and compliance validation.</li>
+            <li><strong>Regulatory Alignment:</strong> Ensure your agents comply with applicable regulations (GDPR, FCRA, Equal Opportunity, SOX, HIPAA).</li>
+            <li><strong>Incident Response Support:</strong> Expert guidance when agents misbehave or produce unexpected results.</li>
+            <li><strong>Bias & Fairness Review:</strong> Statistical analysis of agent decisions to identify and mitigate bias.</li>
+        </ul>
+
+        <p style="margin-top: 2rem;"><strong>How We Work:</strong> Every engagement is custom-scoped based on your specific agents, compliance requirements, and risk tolerance. We work with your team to understand what you're trying to achieve, what risks you're concerned about, and what governance structure makes sense for your organization.</p>
+
+        <p>We integrate with your existing monitoring platform (Zenity, Astrix, Microsoft Agent 365, or custom solutions) and provide the expertise layer on top of your tool stack.</p>
+    </section>
+
+    <section class="container">
+        <h2>How We Work With Your Monitoring Platform</h2>
+        <p>We integrate with your existing agent monitoring platform—whether it's <strong>Zenity</strong>, <strong>Astrix</strong>, <strong>Microsoft Agent 365</strong>, or custom solutions. You own the monitoring tool; we provide the expertise to interpret it and respond to incidents.</p>
+        <p>Your infrastructure provides <strong>visibility</strong> into agent behavior. We provide <strong>expertise</strong> and <strong>governance</strong> to make sense of that visibility and respond when agents misbehave.</p>
+    </section>
+
+    <section class="container">
+        <h2>Why Choose Intelligent Resilience?</h2>
+        <div class="benefits">
+            <div class="benefit">
+                <h4>Domain Expertise</h4>
+                <p>20+ years of cybersecurity, risk, and incident response experience. We speak enterprise security language.</p>
+            </div>
+            <div class="benefit">
+                <h4>Specialized Knowledge</h4>
+                <p>Agent security is our focus, not a sideline. We understand emergent behavior, bias, fairness, and AI-specific risks.</p>
+            </div>
+            <div class="benefit">
+                <h4>Governance Framework</h4>
+                <p>We provide governance you can't get from a tool vendor: incident response procedures, policy rules, compliance mapping.</p>
+            </div>
+            <div class="benefit">
+                <h4>Regulatory Alignment</h4>
+                <p>We understand GDPR, FCRA, Equal Opportunity, SOX, HIPAA, and how they apply to agent decisions.</p>
+            </div>
+            <div class="benefit">
+                <h4>Rapid Response</h4>
+                <p>24/7 incident response, faster diagnosis, expert remediation guidance—all more affordable than hiring full-time staff.</p>
+            </div>
+            <div class="benefit">
+                <h4>Partner Agnostic</h4>
+                <p>We work with any monitoring platform. You're not locked into our technology.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2>The Process</h2>
+        <div class="process">
+            <p>Getting started is simple:</p>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Discovery Call</h4>
+                    <p>Let's discuss your agent deployment, monitoring setup, and compliance requirements. No cost.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Proposal</h4>
+                    <p>We'll recommend the right tier and scope for your situation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Engagement</h4>
+                    <p>Start with Tier 1 Assessment or Tier 2 Retainer, depending on your timeline.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Ongoing Partnership</h4>
+                    <p>Scale from assessment to retainers as your agent deployments grow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta container" style="margin-left: 2rem; margin-right: 2rem;">
+        <h2>Ready to Secure Your Agents?</h2>
+        <p>Let's start with a discovery conversation to understand your agent deployment and governance needs.</p>
+        <a href="mailto:stuartqwilson@gmail.com?subject=Agent%20Security%20Services%20-%20Discovery%20Call" class="btn">Schedule a Discovery Call</a>
+    </section>
+
+    <section class="container">
+        <h2>FAQ</h2>
+        <h3>Do I need monitoring in place first?</h3>
+        <p>Not necessarily. If you have agents in production but no monitoring, we'll help you evaluate and deploy appropriate monitoring solutions. If you already have monitoring in place, we integrate with your existing platform.</p>
+
+        <h3>What does engagement look like?</h3>
+        <p>Every engagement is custom-scoped based on your specific situation. We start with a discovery conversation to understand your agents, compliance requirements, and risk concerns. From there, we recommend the right advisory approach for your organization.</p>
+
+        <h3>What compliance regulations do you cover?</h3>
+        <p>GDPR, FCRA (credit decisions), Equal Opportunity (hiring), SOX (financial), HIPAA (healthcare), and others depending on your industry. We assess your agents against applicable regulatory requirements and help you establish controls and evidence for audit.</p>
+
+        <h3>Who on my team should be involved?</h3>
+        <p>Ideally: Chief Risk Officer or CISO, the team that deployed or manages the agents, compliance officer, and executive sponsor. We'll work with whoever is available and help you identify the right stakeholders.</p>
+
+        <h3>Is this the same as a security audit?</h3>
+        <p>It's similar in approach but specialized for AI agents. We're not conducting a traditional security audit; we're helping you understand how to govern autonomous agents specifically, which is a different discipline than traditional cybersecurity.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Stuart Wilson | Intelligent Resilience</p>
+        <p><a href="/">Back to home</a></p>
+    </footer>
+</body>
+</html>
