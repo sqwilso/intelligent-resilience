@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stuart Wilson — Intelligent Resilience | Digital Resilience & Autonomous Security Consultancy</title>
-    <meta name="description" content="Digital resilience and autonomous security consultancy. Enterprise-grade cyber strategy, AI-driven defence, and governance frameworks for organisations transitioning to intelligent security operations.">
+    <title>Stuart Wilson — Intelligent Resilience | Cyber Security & AI Governance Consultancy</title>
+    <meta name="description" content="Intelligent Resilience helps organisations stay secure at every layer — building cyber defences against the threats outside, and governing the AI systems operating within.">
 
     <style>
         * {
@@ -84,7 +84,7 @@
         .hero h1 {
             font-size: 3rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             letter-spacing: -1px;
             line-height: 1.2;
         }
@@ -92,10 +92,21 @@
         .hero .tagline {
             font-size: 1.25rem;
             color: #e0e7ff;
-            margin-bottom: 2rem;
-            max-width: 700px;
+            margin-bottom: 1.25rem;
+            max-width: 750px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .hero .sub-tagline {
+            font-size: 1rem;
+            color: #a5b4fc;
+            margin-bottom: 2.5rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
         }
 
         .cta-button {
@@ -137,84 +148,138 @@
             padding: 0 2rem;
         }
 
-        /* Services Section */
-        .services {
+        /* Pillars Section */
+        .pillars {
             padding: 5rem 2rem;
             background: #f9fafb;
         }
 
-        .services h2 {
+        .pillars h2 {
             text-align: center;
             font-size: 2rem;
             margin-bottom: 0.5rem;
             color: #1a1a1a;
         }
 
-        .services-subtitle {
+        .pillars-subtitle {
             text-align: center;
             color: #6b7280;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             font-size: 1.1rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .services-grid {
+        .pillars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .service-card {
+        .pillar {
             background: white;
-            padding: 2rem;
-            border-radius: 0.75rem;
+            border-radius: 1rem;
             border: 1px solid #e5e5e5;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        .service-card:hover {
-            border-color: #2563eb;
-            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.1);
+        .pillar:hover {
+            box-shadow: 0 16px 40px rgba(37, 99, 235, 0.1);
             transform: translateY(-4px);
         }
 
-        .service-icon {
+        .pillar-header {
+            padding: 2rem 2rem 1.5rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .pillar-header.cyber {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        }
+
+        .pillar-header.ai {
+            background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);
+        }
+
+        .pillar-icon {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
             margin-bottom: 0.75rem;
-            color: #1a1a1a;
         }
 
-        .service-card p {
-            color: #6b7280;
+        .pillar-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .pillar-header p {
+            color: #c7d2fe;
             font-size: 0.95rem;
             line-height: 1.6;
         }
 
-        .service-features {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #f3f4f6;
+        .pillar-services {
+            padding: 1.5rem 2rem 2rem;
         }
 
-        .service-features li {
-            list-style: none;
-            color: #4b5563;
-            font-size: 0.9rem;
-            margin: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .service-features li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #2563eb;
+        .pillar-services h4 {
+            font-size: 0.8rem;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .service-item-icon {
+            font-size: 1.25rem;
+            margin-top: 0.1rem;
+            flex-shrink: 0;
+        }
+
+        .service-item-text h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.2rem;
+        }
+
+        .service-item-text p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .service-item-text a {
+            font-size: 0.85rem;
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .service-item-text a:hover {
+            text-decoration: underline;
         }
 
         /* Expertise Section */
@@ -260,12 +325,22 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: start;
         }
 
         .about h2 {
             font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about .philosophy {
+            font-size: 1.05rem;
+            color: #374151;
+            line-height: 1.8;
             margin-bottom: 1.5rem;
+            font-style: italic;
+            border-left: 4px solid #2563eb;
+            padding-left: 1.25rem;
         }
 
         .about p {
@@ -411,12 +486,6 @@
             display: block;
         }
 
-        .form-message.error {
-            background: #fee2e2;
-            color: #991b1b;
-            display: block;
-        }
-
         /* Footer */
         footer {
             background: #1a1a1a;
@@ -451,6 +520,16 @@
         }
 
         /* Responsive */
+        @media (max-width: 900px) {
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -468,10 +547,6 @@
 
             nav ul {
                 gap: 1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
             }
 
             .form-row {
@@ -498,71 +573,89 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Intelligent Resilience</h1>
-            <p class="tagline">Enterprise cyber strategy and autonomous security consultancy for organisations transitioning to AI-driven defence.</p>
+            <p class="tagline">Helping organisations stay secure at every layer — building cyber defences against the threats outside, and governing the AI systems operating within.</p>
+            <p class="sub-tagline">Cyber security was built for a world where threats came from outside. AI has changed that. The tools your teams use every day have created a new class of risk that traditional defences don't see.</p>
             <a href="#contact" class="cta-button">Get in Touch</a>
-            <a href="#services" class="cta-button cta-button-secondary">Learn More</a>
+            <a href="#services" class="cta-button cta-button-secondary">Our Services</a>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
+    <!-- Services / Two Pillars Section -->
+    <section class="pillars" id="services">
         <div class="container">
-            <h2>Services</h2>
-            <p class="services-subtitle">Expert guidance in cyber resilience and autonomous security operations</p>
+            <h2>Two Pillars. One Practice.</h2>
+            <p class="pillars-subtitle">Resilience means the ability to absorb disruption and keep going — whatever its source. We work at the intersection of cyber security and AI governance to help organisations master both.</p>
 
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card">
-                    <div class="service-icon">🛡️</div>
-                    <h3>Cyber Resilience Strategy</h3>
-                    <p>Enterprise-grade cyber security roadmaps aligned with NIST, CIS Controls, and organisational risk appetite. From fragmented reactive postures to managed, continuously monitored security models.</p>
-                    <ul class="service-features">
-                        <li>Strategic planning (3–5 year roadmaps)</li>
-                        <li>NIST CSF & CIS Controls alignment</li>
-                        <li>Risk and governance frameworks</li>
-                        <li>Board-level assurance reporting</li>
-                    </ul>
+            <div class="pillars-grid">
+
+                <!-- Pillar 1: Cyber Resilience -->
+                <div class="pillar">
+                    <div class="pillar-header cyber">
+                        <div class="pillar-icon">🛡️</div>
+                        <h3>Cyber Resilience</h3>
+                        <p>Enterprise cyber strategy and autonomous security operations. Moving organisations from reactive, fragmented defences to managed, intelligent security programmes.</p>
+                    </div>
+                    <div class="pillar-services">
+                        <h4>Services</h4>
+                        <div class="service-item">
+                            <div class="service-item-icon">🗺️</div>
+                            <div class="service-item-text">
+                                <h5>Cyber Resilience Strategy</h5>
+                                <p>Enterprise-grade security roadmaps aligned with NIST, CIS Controls, and your risk appetite. From fragmented postures to continuously monitored security models.</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-item-icon">🤖</div>
+                            <div class="service-item-text">
+                                <h5>Autonomous Security Operations</h5>
+                                <p>Design and governance of AI-driven detection, investigation, and response. Reduce dependency on 24/7 human monitoring while maintaining accountability.</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-item-icon">📊</div>
+                            <div class="service-item-text">
+                                <h5>Digital Resilience Assessment</h5>
+                                <p>Evaluate your current cyber posture against recognised frameworks. Identify gaps, prioritise investments, and plan a practical transition to intelligent security operations.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <div class="service-icon">🤖</div>
-                    <h3>Autonomous Security Operations</h3>
-                    <p>Design and governance of AI-driven detection, investigation, and response. Reduce dependency on 24/7 human monitoring while maintaining accountability and incident response capability.</p>
-                    <ul class="service-features">
-                        <li>Autonomous detection & response design</li>
-                        <li>AI platform evaluation (Darktrace, etc.)</li>
-                        <li>Operating model transformation</li>
-                        <li>Governance and escalation frameworks</li>
-                    </ul>
+                <!-- Pillar 2: AI Governance & Security -->
+                <div class="pillar">
+                    <div class="pillar-header ai">
+                        <div class="pillar-icon">⚡</div>
+                        <h3>AI Governance &amp; Security</h3>
+                        <p>Governing the AI your organisation has already deployed. Securing copilots, agents, and low-code tools from the inside out — before they become a liability.</p>
+                    </div>
+                    <div class="pillar-services">
+                        <h4>Services</h4>
+                        <div class="service-item">
+                            <div class="service-item-icon">🔍</div>
+                            <div class="service-item-text">
+                                <h5>Copilot &amp; Low-Code Security</h5>
+                                <p>Audit and govern the AI tools your teams have built. Microsoft 365 Copilot, Copilot Studio, Power Platform and beyond — assessed against OWASP's Low-Code/No-Code Top 10.</p>
+                                <a href="agent-security.html">Learn more →</a>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-item-icon">🔒</div>
+                            <div class="service-item-text">
+                                <h5>Agent Security &amp; Governance</h5>
+                                <p>Assess, govern, and respond to AI agents in production. Incident response, bias and fairness review, and compliance validation for autonomous systems making real decisions.</p>
+                                <a href="agent-security.html">Learn more →</a>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-item-icon">📋</div>
+                            <div class="service-item-text">
+                                <h5>AI Regulatory Alignment</h5>
+                                <p>Ensure AI deployments comply with applicable regulations — GDPR, EU AI Act, SOX, HIPAA — and that your governance framework will stand up to scrutiny.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>Digital Resilience Assessment</h3>
-                    <p>Evaluate current cyber posture against recognised frameworks. Identify gaps, prioritise investments, and plan a practical transition to intelligent security operations.</p>
-                    <ul class="service-features">
-                        <li>Cyber maturity assessment</li>
-                        <li>Gap analysis against standards</li>
-                        <li>Investment prioritisation</li>
-                        <li>Implementation roadmap</li>
-                    </ul>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="service-card">
-                    <div class="service-icon">🤖🔒</div>
-                    <h3><a href="agent-security.html" style="color: inherit; text-decoration: none;">Agent Security Services</a></h3>
-                    <p>Audit, govern, and respond to AI agents in production. Help enterprises secure autonomous agents before they cause problems with real-time monitoring, incident response, and compliance validation.</p>
-                    <ul class="service-features">
-                        <li>Agent security assessment & auditing</li>
-                        <li>24/7 incident response retainers</li>
-                        <li>Bias & fairness testing</li>
-                        <li>Compliance readiness (GDPR, FCRA, SOX, HIPAA)</li>
-                    </ul>
-                    <p style="margin-top: 1rem;"><a href="agent-security.html" style="color: #2563eb; font-weight: 600; text-decoration: none;">Learn more →</a></p>
-                </div>
             </div>
         </div>
     </section>
@@ -574,28 +667,28 @@
 
             <div class="expertise-grid">
                 <div class="expertise-item">
-                    <h3>Frameworks & Standards</h3>
-                    <p>NIST Cybersecurity Framework, CIS Controls, Cyber Essentials, ISO 27001, COBIT</p>
+                    <h3>Frameworks &amp; Standards</h3>
+                    <p>NIST Cybersecurity Framework, CIS Controls, OWASP LLM Top 10, OWASP Low-Code/No-Code Top 10, ISO 27001, EU AI Act</p>
                 </div>
                 <div class="expertise-item">
                     <h3>Autonomous Security</h3>
-                    <p>AI-driven threat detection, autonomous investigation, Cyber AI Analyst, bounded automation</p>
+                    <p>AI-driven threat detection, autonomous investigation, Cyber AI Analyst, bounded automation, agent behaviour governance</p>
                 </div>
                 <div class="expertise-item">
-                    <h3>Governance & Risk</h3>
-                    <p>Board assurance, risk register integration, compliance reporting, incident response planning</p>
+                    <h3>Governance &amp; Risk</h3>
+                    <p>Board assurance, risk register integration, compliance reporting, incident response planning, AI policy frameworks</p>
                 </div>
                 <div class="expertise-item">
                     <h3>Technology Platforms</h3>
-                    <p>Microsoft Defender (endpoint, email, cloud apps), Sentinel, Entra ID, Darktrace, MDR evaluation</p>
+                    <p>Microsoft 365 Copilot, Copilot Studio, Power Platform, Defender, Sentinel, Entra ID, Darktrace, MDR evaluation</p>
                 </div>
                 <div class="expertise-item">
                     <h3>Operating Models</h3>
-                    <p>SOC alternatives, managed detection & response (MDR), internal security capability maturity</p>
+                    <p>SOC alternatives, managed detection &amp; response (MDR), internal security capability maturity, AI governance structures</p>
                 </div>
                 <div class="expertise-item">
                     <h3>Sector Experience</h3>
-                    <p>Large-scale organisations, critical infrastructure, complex distributed environments</p>
+                    <p>Large-scale organisations, critical infrastructure, international NGOs, financial services, complex distributed environments</p>
                 </div>
             </div>
         </div>
@@ -607,20 +700,16 @@
             <div class="about-content">
                 <div>
                     <h2>About This Practice</h2>
-                    <p>I help organisations move from reactive, fragmented cyber security to intelligent, resilient operations.</p>
-                    
-                    <h3 style="color: #2563eb; margin-top: 1.5rem; margin-bottom: 0.75rem;">What I Do</h3>
-                    <p>Over 20+ years leading senior technology and digital transformation engagements across corporate and international NGO environments, I've developed strategic frameworks and operating models that enable organisations to:</p>
-                    <ul style="margin-left: 1.5rem; color: #6b7280;">
-                        <li style="margin: 0.5rem 0;">Replace continuous human monitoring with AI-driven autonomous detection</li>
-                        <li style="margin: 0.5rem 0;">Maintain accountability while reducing operational overhead</li>
-                        <li style="margin: 0.5rem 0;">Align cyber resilience with business risk appetite and governance</li>
-                        <li style="margin: 0.5rem 0;">Plan proportionate, evidence-led transitions (not abrupt transformations)</li>
-                    </ul>
+
+                    <p class="philosophy">"Resilience means the ability to absorb disruption and keep going — whatever its source. Intelligent Resilience works at the intersection of cyber security and AI governance, helping organisations master both the threats coming in and the complexity they are building inside."</p>
+
+                    <p>Over 20+ years leading senior technology and digital transformation engagements, I have built strategic frameworks and operating models that help organisations move from reactive, fragmented cyber security to intelligent, resilient operations.</p>
+
+                    <p>The emergence of AI copilots and autonomous agents has added a new dimension to that work. Traditional security tools were built to detect threats from outside. They cannot see what AI systems are doing inside your organisation — the apps your teams are building, the data those systems are touching, or the ways they can be turned against you. That is the gap this practice was built to address.</p>
 
                     <h3 style="color: #2563eb; margin-top: 1.5rem; margin-bottom: 0.75rem;">Track Record</h3>
                     <ul style="margin-left: 1.5rem; color: #6b7280;">
-                        <li style="margin: 0.5rem 0;"><strong>Dementia UK</strong> — Deputy Director of Technology: Reset underperforming IT function, established cyber monitoring and incident response</li>
+                        <li style="margin: 0.5rem 0;"><strong>Dementia UK</strong> — Deputy Director of Technology: Reset underperforming IT function, established cyber monitoring and incident response capability</li>
                         <li style="margin: 0.5rem 0;"><strong>WaterAid</strong> — Global IT Director: Stabilised fragmented global IT estate, strengthened cyber governance across international operations</li>
                         <li style="margin: 0.5rem 0;"><strong>American Express</strong> — VP Technology: Large-scale, risk-critical environments with board-level cyber and resilience accountability</li>
                         <li style="margin: 0.5rem 0;"><strong>Board roles</strong> — Trustee, College of Sexual and Reproductive Healthcare: Governance and clinical risk oversight</li>
@@ -632,10 +721,14 @@
                 </div>
 
                 <div class="roadmap">
-                    <h3>Current Focus & Timeline</h3>
+                    <h3>Current Focus &amp; Timeline</h3>
                     <div class="roadmap-item">
                         <div class="roadmap-date">Now</div>
-                        <div class="roadmap-desc">Cyber resilience and autonomous security consultancy. Available for projects and advisory work.</div>
+                        <div class="roadmap-desc">Cyber resilience and AI governance consultancy. Available for advisory work, assessments, and retained engagements.</div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-date">2026</div>
+                        <div class="roadmap-desc">Deepening AI Governance &amp; Security practice as enterprise Copilot and agent deployments accelerate. EU AI Act compliance advisory.</div>
                     </div>
                     <div class="roadmap-item">
                         <div class="roadmap-date">Apr 2027</div>
@@ -643,7 +736,7 @@
                     </div>
                     <div class="roadmap-item">
                         <div class="roadmap-date">2028+</div>
-                        <div class="roadmap-desc">Integrated practice: digital and ecological resilience. Potential for personal development education (numerology, etc.).</div>
+                        <div class="roadmap-desc">Integrated practice: digital and ecological resilience. Potential for personal development education.</div>
                     </div>
                 </div>
             </div>
@@ -654,7 +747,7 @@
     <section class="contact" id="contact">
         <div class="container">
             <h2>Get in Touch</h2>
-            <p class="contact-subtitle">Interested in discussing your cyber resilience strategy or autonomous security approach? I'd like to hear from you.</p>
+            <p class="contact-subtitle">Interested in discussing your cyber resilience strategy, AI governance needs, or an upcoming assessment? I would like to hear from you.</p>
 
             <div class="contact-form-container">
                 <form id="contactForm" method="POST" action="https://formspree.io/f/xykbgvbz">
@@ -681,6 +774,9 @@
                             <option value="cyber-strategy">Cyber Resilience Strategy</option>
                             <option value="autonomous-security">Autonomous Security Operations</option>
                             <option value="assessment">Digital Resilience Assessment</option>
+                            <option value="copilot-security">Copilot &amp; Low-Code Security</option>
+                            <option value="agent-security">Agent Security &amp; Governance</option>
+                            <option value="ai-regulatory">AI Regulatory Alignment</option>
                             <option value="general">General Inquiry</option>
                             <option value="permaculture">Permaculture (2027)</option>
                         </select>
@@ -702,7 +798,7 @@
     <footer>
         <div class="footer-content">
             <p><strong>Stuart Wilson — Intelligent Resilience</strong></p>
-            <p>Cyber resilience and autonomous security consultancy</p>
+            <p>Cyber Security &amp; AI Governance Consultancy</p>
             <div class="footer-links">
                 <a href="mailto:stuartqwilson@gmail.com">Email</a>
                 <a href="https://www.linkedin.com/in/stuartkwilson/" target="_blank">LinkedIn</a>
@@ -712,26 +808,17 @@
     </footer>
 
     <script>
-        // Form handling with Formspree
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            const formData = new FormData(this);
             const messageDiv = document.getElementById('formMessage');
-
-            // For now, show a simple success message
-            // Later: replace formspree URL with your actual Formspree endpoint
-            messageDiv.textContent = 'Thank you for your message. I'll be in touch soon.';
+            messageDiv.textContent = 'Thank you for your message. I\'ll be in touch soon.';
             messageDiv.classList.add('success');
-
-            // Reset form
             setTimeout(() => {
                 this.reset();
                 messageDiv.classList.remove('success');
             }, 3000);
         });
 
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
