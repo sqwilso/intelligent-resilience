@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Security Brief — Edition 1 · Intelligent Resilience</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    max-width: 680px;
+    margin: 48px auto;
+    padding: 0 24px;
+    color: #1a1a1a;
+    line-height: 1.7;
+    background: #ffffff;
+  }
+
+  .masthead {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    border-radius: 0.75rem;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    color: #ffffff;
+  }
+  .masthead h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.5px;
+  }
+  .masthead .byline {
+    font-size: 13px;
+    color: #e0e7ff;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+  }
+  .masthead .edition {
+    font-size: 12px;
+    color: #93c5fd;
+  }
+  .masthead .edition a { color: #93c5fd; text-decoration: none; }
+  .masthead .edition a:hover { text-decoration: underline; }
+
+  .intro-box {
+    background: #f9fafb;
+    border-left: 4px solid #2563eb;
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 14px 18px;
+    margin-bottom: 32px;
+    font-size: 15px;
+    color: #374151;
+    font-style: italic;
+  }
+
+  h3 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+    margin-top: 36px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    line-height: 1.35;
+  }
+
+  h2.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 36px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  p { margin: 0 0 14px 0; font-size: 15px; color: #1a1a1a; }
+
+  .callout {
+    background: #f9fafb;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.75rem;
+    padding: 14px 18px;
+    margin: 14px 0 18px 0;
+    font-size: 14.5px;
+    color: #374151;
+    transition: all 0.3s ease;
+  }
+  .callout:hover {
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+  }
+  .callout strong { color: #0f172a; }
+
+  .source-line {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: -6px;
+    margin-bottom: 20px;
+  }
+  .source-line a { color: #2563eb; text-decoration: none; }
+  .source-line a:hover { text-decoration: underline; }
+
+  .attack-chain {
+    background: #f9fafb;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.75rem;
+    padding: 16px 20px;
+    margin: 14px 0 18px 0;
+    font-size: 13px;
+  }
+  .chain-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #6b7280;
+    margin-bottom: 10px;
+  }
+  .chain-steps {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chain-step {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 0.375rem;
+    padding: 5px 11px;
+    color: #1e3a8a;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .chain-step.red {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #7f1d1d;
+  }
+  .chain-arrow { color: #2563eb; font-size: 15px; font-weight: 700; }
+
+  .bottom-line {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    border-radius: 0.75rem;
+    padding: 20px 24px;
+    margin: 36px 0 24px 0;
+  }
+  .bottom-line h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #93c5fd;
+    margin: 0 0 8px 0;
+  }
+  .bottom-line p {
+    font-size: 15px;
+    color: #e0e7ff;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  ul { padding-left: 20px; margin: 0 0 14px 0; }
+  ul li { margin-bottom: 10px; font-size: 15px; color: #1a1a1a; }
+
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e5e5;
+    font-size: 12px;
+    color: #6b7280;
+    font-style: italic;
+    line-height: 1.8;
+  }
+  .footer a { color: #2563eb; }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 32px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <h1>The AI Security Brief</h1>
+  <div class="byline">by Intelligent Resilience</div>
+  <div class="edition">Edition 1 &nbsp;·&nbsp; 3 April 2026 &nbsp;·&nbsp; <a href="https://intelligent-resilience.com">intelligent-resilience.com</a></div>
+</div>
+
+<div class="intro-box">
+  Bi-weekly intelligence for CISOs, governance leads, and AI practitioners who need to stay ahead of the threat — not just aware of it.
+</div>
+
+<h2 class="section-title">This fortnight in AI security</h2>
+
+<p>The conversation has moved. Evidence emerging from the RSA Conference period suggests we are no longer in theoretical territory — early cases indicate AI systems are being actively targeted in production environments, and the attack surface is expanding faster than most security teams have modelled. This edition covers four developments that matter: a cluster of agentic AI vulnerabilities disclosed before RSA, a critical enforcement deadline now four months away, a new OWASP framework that should be on every practitioner's desk, and a statistic that will sharpen any board conversation you need to have.</p>
+
+<p style="font-size:14px; color:#374151; font-style:italic; border-left: 3px solid #2563eb; padding-left:12px; margin-bottom:0;">This edition's framing: <strong style="color:#0f172a;">Security teams are still defending interfaces. Attackers are now targeting decision-making loops.</strong> The shift from prompt risk to agentic execution risk is the defining change in this threat landscape.</p>
+
+<hr class="section-divider">
+
+<h3>Story 1</h3>
+<h2>Early evidence of agentic AI exploitation in the wild — and an attack surface larger than most teams have modelled</h2>
+
+<p>The RSA Conference period produced a cluster of serious vulnerability disclosures that, taken together, suggest a step-change in adversarial AI sophistication is underway.</p>
+
+<p>Five signals from the past fortnight — grouped by attack category — form a coherent and concerning picture.</p>
+
+<p><strong>Framework vulnerabilities:</strong> Testing of OpenClaw across 47 adversarial scenarios (reported by Adversa AI) found sandbox escapes at a rate exposing a default defence effectiveness of just 17%. Four CVEs in CrewAI — a widely used open-source multi-agent framework — were found to allow attackers to chain prompt injection into remote code execution, server-side request forgery, and file read.</p>
+
+<p><strong>Platform vulnerabilities:</strong> A command injection flaw in OpenAI Codex (reported by BeyondTrust) enables GitHub OAuth token theft via unsanitised branch name parameters. Unit 42 identified CVE-2026-0628, a high-severity vulnerability in Chrome's Gemini Live panel allowing malicious extensions to hijack the AI assistant and access camera and microphone.</p>
+
+<p><strong>In-the-wild activity:</strong> Early reports — still being independently verified — describe autonomous agent activity exploiting GitHub Actions workflows to achieve remote code execution using poisoned Go init() functions.</p>
+
+<div class="attack-chain">
+  <div class="chain-title">Typical agentic exploit path · Observed in recent CrewAI vulnerabilities</div>
+  <div class="chain-steps">
+    <span class="chain-step">Prompt Injection</span>
+    <span class="chain-arrow">→</span>
+    <span class="chain-step">Agent Hijack</span>
+    <span class="chain-arrow">→</span>
+    <span class="chain-step">SSRF / File Read</span>
+    <span class="chain-arrow">→</span>
+    <span class="chain-step red">Remote Code Execution</span>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>What this means in practice:</strong> If your clients are running agentic AI — and increasingly they are — their security architecture almost certainly hasn't caught up. The threat model for an autonomous agent that can browse the web, execute code, and call external APIs is categorically different from a chatbot. Standard application security controls are insufficient. Any AI security engagement should now include an agentic AI threat assessment as a default scope item.
+</div>
+
+<div class="source-line">Sources: <a href="https://adversa.ai/blog/top-agentic-ai-security-resources-april-2026/">Adversa AI Blog</a> &nbsp;·&nbsp; <a href="https://www.sentinelone.com/cybersecurity-101/data-and-ai/ai-security-risks/">SentinelOne AI Security Risks 2026</a> &nbsp;·&nbsp; Reported by BeyondTrust, Unit 42 (CVE-2026-0628)</div>
+
+<hr class="section-divider">
+
+<h3>Story 2</h3>
+<h2>97% of enterprises expect a major AI agent security incident within the year</h2>
+
+<p>A vendor-backed survey (primary source not disclosed; reported by Security Boulevard, April 2026) found that 97% of enterprise leaders expect a material AI-agent-driven security or fraud incident within the next 12 months. Nearly half expect one within six months. Separately, data from Reco's 2025 breach review identifies malware hidden in public model and code repositories as the most commonly cited source of AI-related breaches — a supply chain risk category for which most organisations currently have no specific controls.</p>
+
+<div class="callout">
+  <strong>What this means in practice:</strong> This statistic is a useful anchor for any board or CISO conversation. The framing shifts from "should we invest in AI security?" to "what do we have in place when this happens?" It also signals where to start: AI supply chain risk — the models, libraries, and repositories your systems depend on — is an underexamined exposure for most organisations.
+</div>
+
+<div class="source-line">Source: <a href="https://securityboulevard.com/2026/04/97-of-enterprises-expect-a-major-ai-agent-security-incident-within-the-year/">Security Boulevard, April 2026</a> &nbsp;·&nbsp; <a href="https://www.reco.ai/blog/ai-and-cloud-security-breaches-2025">Reco: AI & Cloud Security Breaches 2025</a></div>
+
+<hr class="section-divider">
+
+<h3>Story 3</h3>
+<h2>OWASP publishes the Top 10 for Agentic Applications — the framework your clients will start asking about</h2>
+
+<p>OWASP has released the Top 10 for Agentic Applications 2026, developed with over 100 industry experts. It maps the critical security risks specific to autonomous AI systems — a materially different set of threats from the LLM Top 10. The Cloud Security Alliance simultaneously launched an initiative focused on "Securing the Agentic Control Plane."</p>
+
+<p>This matters because OWASP provides the shared vocabulary that procurement teams, auditors, and CISOs use when scoping security requirements. The LLM Top 10 is already appearing in RFPs and security questionnaires. The Agentic Top 10 will follow within 12 months.</p>
+
+<div class="callout">
+  <strong>What this means in practice:</strong> Read the Agentic Top 10 now, before your clients ask about it. Map it to any AI red-team methodology you're developing. The organisations that can speak fluently to both the LLM and Agentic OWASP frameworks will be significantly ahead of the advisory market.
+</div>
+
+<div class="source-line">Sources: <a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP Agentic Top 10 2026</a> &nbsp;·&nbsp; <a href="https://cloudsecurityalliance.org/star/ai">CSA Agentic Security Initiative</a></div>
+
+<hr class="section-divider">
+
+<h3>The Governance Corner</h3>
+<h2>August 2026 — the EU AI Act deadline that organisations are underestimating</h2>
+
+<p>The August 2, 2026 enforcement date is now four months away, and the gap between awareness and readiness remains wide.</p>
+
+<p>What becomes enforceable on that date: High-Risk AI system requirements become fully applicable. The European Commission begins formal enforcement. Every EU Member State must have designated its national competent authorities. Transparency obligations — including labelling of AI-generated content — kick in. The GPAI Code of Practice on Transparency of AI-Generated Content is expected to be finalised in May–June 2026, meaning the practical implementation guidance will arrive with very little runway before it becomes mandatory.</p>
+
+<div class="callout">
+  <strong>The compliance gap to flag to clients:</strong> Most organisations know the deadline exists. Fewer have actually assessed whether their AI systems fall into the High-Risk category under Annex III of the Act, and even fewer have started the conformity assessment process. For any client operating AI systems in hiring, credit, education, critical infrastructure, or biometric identification, the August date carries real liability.<br><br>
+  A practical entry point: an AI Act scoping exercise that determines risk classification, identifies applicable obligations, and maps those to an ISO 42001 gap analysis. The two exercises share 80% of their evidence base.
+</div>
+
+<div class="source-line">Sources: <a href="https://artificialintelligenceact.eu/implementation-timeline/">EU AI Act Implementation Timeline</a> &nbsp;·&nbsp; <a href="https://www.kennedyslaw.com/en/thought-leadership/article/2026/the-eu-ai-act-implementation-timeline-understanding-the-next-deadline-for-compliance/">Kennedys Law</a> &nbsp;·&nbsp; <a href="https://bigid.com/blog/eu-ai-act-enforcement-guide/">BigID Enforcement Guide</a></div>
+
+<hr class="section-divider">
+
+<h2 class="section-title">Worth reading this fortnight</h2>
+
+<ul>
+  <li><a href="https://adversa.ai/blog/top-agentic-ai-security-resources-april-2026/"><strong>Top Agentic AI Security Resources — April 2026</strong></a> · Adversa AI — The most comprehensive single-page round-up of the agentic AI security landscape right now. Bookmark it.</li>
+  <li><a href="https://genai.owasp.org/resource/ai-security-solutions-landscape-for-agentic-ai-q2-2026/"><strong>OWASP AI Security Solutions Landscape Q2 2026</strong></a> · OWASP — Maps the vendor and tooling landscape against the agentic AI threat framework.</li>
+  <li><a href="https://www.uipath.com/blog/product-and-updates/iso-iec-42001-2023-certification-trusted-agentic-automation"><strong>ISO 42001 and Agentic Automation</strong></a> · UiPath — A practitioner account of going through ISO 42001 certification. Good reference for client certification conversations.</li>
+  <li><a href="https://bigid.com/blog/eu-ai-act-enforcement-guide/"><strong>EU AI Act 2026 Enforcement Guide</strong></a> · BigID — Plain-English breakdown of what enforcement looks like from August. Useful for client briefings.</li>
+  <li><a href="https://www.reco.ai/blog/ai-and-cloud-security-breaches-2025"><strong>AI & Cloud Security Breaches: 2025 Year in Review</strong></a> · Reco — Essential context for the current threat landscape, with incident-level detail that sharpens risk conversations.</li>
+</ul>
+
+<div class="bottom-line">
+  <h4>Priority action for CISOs this fortnight</h4>
+  <p>Map your clients' AI systems against the EU AI Act's Annex III High-Risk categories. Most organisations haven't done this yet. August 2026 is four months away — and the conformity assessment process takes longer than people expect. Start with a scoping exercise. Everything else follows from that.</p>
+</div>
+
+<div class="footer">
+  <em>The AI Security Brief</em> is published by <a href="https://intelligent-resilience.com">Intelligent Resilience</a> — we work with organisations navigating AI security and governance, from adversarial risk assessments to regulatory readiness.<br><br>
+  If this was useful, forward it to a colleague who needs to be having these conversations.
+</div>
+
+</body>
+</html>
