@@ -579,23 +579,68 @@
         }
 
         /* Responsive */
+        /* Prevent any element causing horizontal overflow */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
         @media (max-width: 768px) {
+            /* Nav: stack logo above links, wrap links */
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 0.5rem 1rem;
+            }
+
+            nav ul li a {
+                font-size: 0.85rem;
+            }
+
+            /* Hero */
+            .hero {
+                padding: 4rem 1.25rem;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
 
             .hero .tagline {
-                font-size: 1.1rem;
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                display: inline-block;
+                font-size: 0.9rem;
+                padding: 0.75rem 1.5rem;
             }
 
             .cta-button-secondary {
                 margin-left: 0;
-                margin-top: 1rem;
-                display: block;
+                margin-top: 0.75rem;
+                display: inline-block;
             }
 
-            nav ul {
-                gap: 1rem;
+            /* Sections */
+            .services,
+            .expertise,
+            .newsletter-section,
+            .about,
+            .contact {
+                padding: 3rem 1.25rem;
+            }
+
+            /* Grids: single column */
+            .services-grid,
+            .expertise-grid,
+            .newsletter-grid {
+                grid-template-columns: 1fr;
             }
 
             .about-content {
@@ -604,6 +649,30 @@
 
             .form-row {
                 grid-template-columns: 1fr;
+            }
+
+            /* Newsletter subscribe CTA */
+            .newsletter-subscribe-cta {
+                padding: 1.5rem 1.25rem;
+            }
+
+            /* Roadmap */
+            .roadmap {
+                margin-top: 1.5rem;
+            }
+
+            /* Container padding */
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2rem 1.25rem;
+            }
+
+            .footer-links a {
+                margin: 0 0.5rem;
             }
         }
     </style>
