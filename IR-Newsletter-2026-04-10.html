@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intelligent Resilience — Edition 8 | 10 April 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f1f5f9;
+    color: #0F172A;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #ffffff;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    padding: 48px 40px 40px;
+    text-align: center;
+    color: #ffffff;
+  }
+  .masthead .pub-name {
+    font-size: 13px;
+    font-variant: small-caps;
+    letter-spacing: 0.22em;
+    color: #93c5fd;
+    text-transform: lowercase;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .masthead .edition {
+    font-size: 12px;
+    color: #94a3b8;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .masthead .tagline {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #f8fafc;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  /* ── CONTENT SHELL ── */
+  .content {
+    padding: 0 40px 48px;
+  }
+
+  /* ── SECTION LABELS ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #2563EB;
+    margin-top: 44px;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  /* ── LEAD SIGNAL ── */
+  .lead-headline {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.3;
+    margin-top: 14px;
+    margin-bottom: 16px;
+  }
+  .lead-body p {
+    margin-bottom: 16px;
+    color: #1e293b;
+    font-size: 15.5px;
+  }
+
+  /* ── SIGNAL CARDS ── */
+  .signal-cards {
+    display: block;
+    margin-top: 16px;
+  }
+  .signal-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    background: #f8fafc;
+  }
+  .signal-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .signal-card p {
+    font-size: 14.5px;
+    color: #334155;
+    margin-bottom: 8px;
+  }
+  .so-what {
+    font-size: 14px;
+    background: #eff6ff;
+    border-left: 3px solid #2563EB;
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    color: #1e40af;
+    font-style: italic;
+  }
+  .so-what strong {
+    font-style: normal;
+  }
+
+  /* ── SECTOR SPOTLIGHT ── */
+  .spotlight-box {
+    background: #f0f4ff;
+    border-radius: 10px;
+    padding: 24px 26px;
+    margin-top: 14px;
+    border: 1px solid #c7d7fd;
+  }
+  .spotlight-box .spotlight-sector {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #2563EB;
+    margin-bottom: 8px;
+  }
+  .spotlight-box h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 12px;
+    line-height: 1.35;
+  }
+  .spotlight-box p {
+    font-size: 14.5px;
+    color: #1e293b;
+    margin-bottom: 12px;
+  }
+
+  /* ── GOVERNANCE UPDATE ── */
+  .gov-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-top: 14px;
+  }
+  .gov-box h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 10px;
+  }
+  .gov-box p {
+    font-size: 14.5px;
+    color: #334155;
+    margin-bottom: 10px;
+  }
+
+  /* ── PRIORITY ACTION BOXES ── */
+  .action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 14px;
+  }
+  @media (max-width: 580px) {
+    .action-grid { grid-template-columns: 1fr; }
+    .content { padding: 0 20px 40px; }
+    .masthead { padding: 36px 20px 32px; }
+  }
+  .action-box {
+    border-left: 4px solid #2563EB;
+    background: #eff6ff;
+    border-radius: 0 10px 10px 0;
+    padding: 18px 18px 18px 20px;
+  }
+  .action-box .action-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #2563EB;
+    margin-bottom: 8px;
+  }
+  .action-box p {
+    font-size: 14px;
+    color: #1e293b;
+    line-height: 1.6;
+  }
+
+  /* ── CLOSING INSIGHT ── */
+  .closing-box {
+    border-left: 4px solid #1e3a8a;
+    background: #f0f4ff;
+    border-radius: 0 10px 10px 0;
+    padding: 20px 20px 20px 22px;
+    margin-top: 14px;
+  }
+  .closing-box p {
+    font-size: 15px;
+    color: #0F172A;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #0F172A;
+    color: #64748b;
+    text-align: center;
+    padding: 28px 40px;
+    font-size: 12.5px;
+    line-height: 1.8;
+  }
+  .footer a {
+    color: #93c5fd;
+    text-decoration: none;
+  }
+  .footer .footer-brand {
+    font-variant: small-caps;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: #e2e8f0;
+    margin-bottom: 6px;
+  }
+
+  /* ── DIVIDER ── */
+  hr.divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 40px 0 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="pub-name">Intelligent Resilience</div>
+    <div class="edition">Edition 8 &nbsp;·&nbsp; 10 April 2026</div>
+    <div class="tagline">The default settings on your AI agents are now an attack surface. Someone is already inside.</div>
+  </div>
+
+  <div class="content">
+
+    <!-- LEAD SIGNAL -->
+    <div class="section-label">Lead Signal</div>
+    <div class="lead-headline">Microsoft Copilot Studio's "Connected Agents" Feature Is Being Exploited — and Your Audit Logs Won't Show It</div>
+    <div class="lead-body">
+      <p>Zenity Labs has published research confirming that threat actors are actively exploiting a feature called Connected Agents in Microsoft Copilot Studio — a capability introduced at Build 2025 that allows AI agents to communicate with, and invoke, other agents within the same environment. The vulnerability is not a flaw in the conventional sense: the feature works exactly as designed. The problem is that it is enabled by default on every new agent, with no administrator approval required for connections, and invocations of connected agents generate zero audit records in the invoked agent's activity log. Security teams have no native visibility into whether a rogue agent is piggy-backing on a trusted one.</p>
+      <p>The attack scenario is straightforward and high-impact. An attacker with basic tenant access — a compromised employee credential, an OAuth token harvested via a phishing campaign, or a third-party integration with excessive permissions — deploys a malicious agent. That agent connects silently to a legitimate, published agent such as a customer service bot or internal HR assistant. From there, it can impersonate the organisation, exfiltrate knowledge base content, conduct phishing campaigns that appear to originate from trusted internal systems, or establish a persistent foothold invisible to conventional monitoring. Zenity's broader research context makes the scale clear: the average enterprise now runs 79,602 low-code and agentic applications, 84% of Copilot Studio copilots contain security vulnerabilities, and 63% are overshared — meaning they are accessible far beyond their intended audience.</p>
+      <p>Microsoft's current recommendation is for administrators to manually disable the Connected Agents feature on any agent that uses unauthenticated tools or accesses sensitive knowledge sources. This is technically sound advice but practically optimistic. In most organisations — particularly those served by an MSP that built and published agents without a formal security review — there is no inventory of which agents exist, what features are enabled, or which knowledge sources they can reach. The attack surface is invisible because the tooling to see it was never put in place.</p>
+      <p>The business exposure is significant. A compromised support agent with CRM access represents immediate customer data liability under UK GDPR and, for organisations in scope, DORA. The absence of audit logs means a breach may not be detectable within the 72-hour notification window. Directors who hold IT responsibility should ask a specific question of their MSP or IT team this fortnight: can you show me an inventory of every published Copilot Studio agent in our environment, confirm which features are enabled, and confirm that Connected Agents has been reviewed? If the answer is uncertain, that uncertainty is itself a material risk.</p>
+    </div>
+
+    <!-- THREE SIGNALS WORTH WATCHING -->
+    <div class="section-label">Three Signals Worth Watching</div>
+    <div class="signal-cards">
+
+      <div class="signal-card">
+        <h3>MCP Server Prompt Injection: From Research to Active Exploitation</h3>
+        <p>Model Context Protocol (MCP) servers — the connective tissue between AI agents and the tools they use — are now a confirmed attack vector. CVE-2025-68143, CVE-2025-68144, and CVE-2025-68145 documented three chained vulnerabilities in the official Anthropic Git MCP server (path validation bypass, unrestricted git_init, and argument injection in git_diff). Separately, the MCPTox benchmark found that o1-mini, one of OpenAI's more capable reasoning models, achieved a 72.8% attack success rate against MCP-targeted prompt injection. MITRE ATLAS v5.4.0 (February 2026) added "Publish Poisoned AI Agent Tool" as a formal technique, acknowledging the industrialisation of this attack class.</p>
+        <p>The attack logic is elegant and dangerous: because LLMs follow tool descriptions to decide which tools to call, embedding malicious instructions in those descriptions allows an attacker to redirect agent behaviour without ever touching application code. Developers building on MCP who haven't reviewed tool description content against an injection model are exposed.</p>
+        <div class="so-what"><strong>So what:</strong> Any organisation running AI agents connected to internal tools or data — SharePoint, CRM, HR systems — should treat MCP tool descriptions as a trust boundary requiring the same scrutiny as code input validation.</div>
+      </div>
+
+      <div class="signal-card">
+        <h3>UNC6395 Confirms: OAuth Tokens Are the New Perimeter</h3>
+        <p>Astrix Security's analysis of the UNC6395 campaign — initially disclosed by Google's Threat Intelligence Group — reveals that what began as a Salesforce breach via compromised Salesloft Drift OAuth tokens escalated into a multi-cloud campaign spanning Google Workspace, AWS, and Snowflake. The threat actor operated exclusively through Tor exit nodes across 180 IP addresses, harvesting AWS keys and Snowflake tokens once inside. This is non-human identity (NHI) exploitation at enterprise scale: the initial foothold was not a user credential but a service application's OAuth token — the kind of integration that is created by a developer, forgotten by IT, and never reviewed by security.</p>
+        <p>Astrix's broader research documents 13 NHI attacks across a 16-month window, and the pattern is consistent: third-party integrations accumulate excessive permissions, tokens are never rotated, and when they are compromised, the blast radius extends across every connected platform.</p>
+        <div class="so-what"><strong>So what:</strong> A single forgotten OAuth integration — the kind created during a software trial or by a contractor — can provide a threat actor with authenticated access to multiple cloud platforms simultaneously. If your organisation doesn't have continuous NHI discovery in place, it cannot know what it has authorised.</div>
+      </div>
+
+      <div class="signal-card">
+        <h3>Halcyon's "Ransomware Gap" Survey: The Numbers Haven't Moved — They've Worsened</h3>
+        <p>Halcyon's March 2026 report, <em>The Ransomware Gap in the AI Era</em>, finds that 78% of security leaders now say AI has made ransomware attacks more effective, while only 6% believe AI has meaningfully improved their own defences — a 13-to-1 asymmetry. Seventy-four percent say their organisation is more exposed to ransomware as a result of AI advancements. The EDR paradox persists and deepens: 98% of organisations rely on EDR as their primary ransomware defence, but only 25% of security leaders actually trust it to defend against today's attacks. The detection failure rate is telling — 49% of ransomware victims say they detected their last attack too late to prevent significant damage, despite almost all having detection tooling in place.</p>
+        <div class="so-what"><strong>So what:</strong> Having EDR deployed is not the same as having ransomware resilience. The survey data suggests that for the majority of organisations, their primary defence tool is not fit for the threat they face — a gap that MSPs managing security on a standard retainer are unlikely to be proactively addressing with clients.</div>
+      </div>
+
+    </div>
+
+    <!-- SECTOR SPOTLIGHT -->
+    <div class="section-label">Sector Spotlight</div>
+    <div class="spotlight-box">
+      <div class="spotlight-sector">Enterprise AI — Microsoft 365 &amp; Copilot Attack Surface</div>
+      <h3>When the Agent Is the Vulnerability: The Copilot Studio Security Audit That Most Organisations Haven't Done</h3>
+      <p>The Connected Agents vulnerability (see Lead Signal) is the sharpest current example of a structural problem across the Microsoft Copilot ecosystem. Microsoft's own security team published guidance in February 2026 — "Copilot Studio Agent Security: Top 10 Risks, Detect &amp; Prevent" — acknowledging ten categories of misconfiguration and abuse across agent deployments. They include agents published without authentication, agents with access to SharePoint sites well beyond their functional scope, agents using sensitive knowledge connectors with no DLP controls, and agents with guest access enabled.</p>
+      <p>Zenity's research is the most current and specific signal: 84% of Copilot Studio agents in enterprise deployments contain exploitable security vulnerabilities. This is not a statistic about theoretical risk — it reflects what is running in production environments today. The organisations most exposed are those that adopted Copilot through an MSP-led M365 deployment, where agents were built quickly to demonstrate value, published to broad audiences for ease of use, and never reviewed against a security baseline.</p>
+      <p>The practical intervention is a Copilot Studio security audit: enumerate all published agents, review connected knowledge sources and data connectors, disable Connected Agents on agents accessing sensitive data, enable DLP policies for generative AI inputs and outputs, and confirm whether any agents are accessible without authentication. Microsoft Purview provides the audit capability — but only if it has been licensed and configured, which in many mid-market M365 deployments it has not been.</p>
+      <p>For finance directors and operations leaders: if your organisation uses Microsoft 365 with Copilot or Power Platform, and you have not had a specific conversation with your IT provider about agent security configuration this quarter, the probability that you have unreviewed agents with uncontrolled data access is high. That is not conjecture — the research says 84%.</p>
+    </div>
+
+    <!-- GOVERNANCE UPDATE -->
+    <div class="section-label">Governance Update</div>
+    <div class="gov-box">
+      <h3>EU AI Act: The August 2026 Deadline Is No Longer Distant — and NIST Just Signalled Critical Infrastructure Is Next</h3>
+      <p>With the EU AI Act's full application date of 2 August 2026 now less than four months away, the compliance window for high-risk AI system operators has effectively closed. The February 2026 deadline required the European Commission to publish Article 6 classification guidelines — the mechanism by which organisations determine whether their AI systems qualify as "high-risk" and therefore subject to conformity assessments, documentation requirements, and ongoing monitoring obligations. Fines for serious violations can reach 7% of global annual turnover.</p>
+      <p>Simultaneously, on 7 April 2026, NIST released a concept note for an AI RMF Profile specifically targeting Trustworthy AI in Critical Infrastructure — a signal that the US governance apparatus is moving to extend AI risk management requirements into sectors including energy, transport, water, and healthcare. The profile will provide sector-specific guidance on risk practices for AI-enabled capabilities, and is expected to align with ISO 42001, the international standard for AI management systems.</p>
+      <p>The practical picture by maturity level: organisations with no AI governance in place have months, not years, to establish baseline documentation. Those with informal AI policies need to formalise risk categorisation and incident response. Those with ISO 27001 are well-positioned to extend their management system to cover ISO 42001 — the frameworks are deliberately aligned. For NHS and public sector bodies, the DSP Toolkit 2025-26 submission deadline is 30 June 2026; the version 8 requirements have been updated to align with ICO and NCSC guidance, including new obligations around AI-related data governance.</p>
+    </div>
+
+    <!-- PRIORITY ACTIONS -->
+    <div class="section-label">Priority Actions</div>
+    <div class="action-grid">
+      <div class="action-box">
+        <div class="action-label">For Security Leaders This Fortnight</div>
+        <p>Enumerate every published Copilot Studio agent in your tenant. For each agent: confirm whether Connected Agents is enabled (Settings → Security → Connected Agents), audit the knowledge sources and data connectors attached, verify that authentication is required for externally accessible agents, and check whether Microsoft Purview DLP policies cover generative AI input and output channels. Where Connected Agents is on and the agent accesses CRM, HR, or financial data, disable it now and log the action as a risk mitigation decision. Use the February 2026 Microsoft Security Blog guidance ("Copilot Studio Agent Security: Top 10 Risks") as your audit checklist.</p>
+      </div>
+      <div class="action-box">
+        <div class="action-label">If Your MSP Handles Your Cyber</div>
+        <p>Ask your provider: <em>"Can you give us a list of every Copilot or AI agent that has been published in our Microsoft environment, what data it can access, and whether the Connected Agents feature has been reviewed on each one?"</em> A well-governed MSP should be able to answer this within a working day. If the response is uncertain, or if you are told this hasn't been reviewed, that is a signal about the depth of security governance in your account. The absence of an audit is not a neutral position — it means unknown agents may be running with uncontrolled access to your business data right now.</p>
+      </div>
+    </div>
+
+    <!-- CLOSING INSIGHT -->
+    <div class="section-label">Closing Insight</div>
+    <div class="closing-box">
+      <p>The most dangerous security gap this fortnight is not a zero-day vulnerability or a novel malware strain. It is the gap between what organisations believe their AI agents are doing and what those agents can actually be made to do by someone else. The Connected Agents research, the MCP injection findings, and the NHI sprawl data all point to the same structural problem: agentic systems inherit trust from the environments they operate in, and most organisations have not audited whether that trust is warranted. The antifragile response is not to slow down AI adoption — it is to make visibility and control of AI agents a first-class security discipline, so that each new agent deployed carries a known, bounded risk rather than an unknown one. Organisations that build that discipline now will be ahead of the regulation, ahead of the attackers, and ahead of their competitors when the next wave of agentic capability arrives.</p>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">Intelligent Resilience</div>
+    <p><a href="https://intelligentresilience.com">intelligentresilience.com</a></p>
+    <p style="margin-top:10px; font-size:11.5px; color:#475569;">
+      Edition 8 &nbsp;·&nbsp; 10 April 2026<br>
+      Sources: Zenity Labs, MITRE ATLAS v5.4.0, Astrix Security, Halcyon, OWASP Agentic Top 10 2026,<br>
+      EU AI Office, NIST AI RMF, NHS DSP Toolkit 2025-26, ITU U4SSC WG5.
+    </p>
+  </div>
+
+</div><!-- /wrapper -->
+</body>
+</html>
