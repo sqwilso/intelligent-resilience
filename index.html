@@ -452,12 +452,16 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 1.25rem;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
 
             .hero .tagline {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
             .cta-button-secondary {
@@ -466,8 +470,20 @@
                 display: block;
             }
 
-            nav ul {
+            /* Nav: stack vertically on mobile */
+            nav {
+                flex-direction: column;
                 gap: 1rem;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                font-size: 0.9rem;
             }
 
             .about-content {
@@ -476,6 +492,28 @@
 
             .form-row {
                 grid-template-columns: 1fr;
+            }
+
+            .services-grid,
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Newsletter grid single column on mobile */
+            .newsletter-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Footer links wrap cleanly */
+            .footer-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.75rem;
+            }
+
+            .footer-links a {
+                margin: 0;
             }
         }
     </style>
@@ -489,6 +527,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#expertise">Expertise</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -498,7 +537,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Intelligent Resilience</h1>
-            <p class="tagline">Enterprise cyber strategy and autonomous security consultancy for organisations transitioning to AI-driven defence.</p>
+            <p class="tagline">AI security and cyber resilience consultancy. Specialist experience in NGOs, arms-length public bodies, and health-adjacent charities — the organisations most exposed and least protected.</p>
             <a href="#contact" class="cta-button">Get in Touch</a>
             <a href="#services" class="cta-button cta-button-secondary">Learn More</a>
         </div>
@@ -622,8 +661,17 @@
                     <ul style="margin-left: 1.5rem; color: #6b7280;">
                         <li style="margin: 0.5rem 0;"><strong>Dementia UK</strong> — Deputy Director of Technology: Reset underperforming IT function, established cyber monitoring and incident response</li>
                         <li style="margin: 0.5rem 0;"><strong>WaterAid</strong> — Global IT Director: Stabilised fragmented global IT estate, strengthened cyber governance across international operations</li>
+                        <li style="margin: 0.5rem 0;"><strong>Victoria &amp; Albert Museum</strong> — Arms-length public body: cyber governance and digital resilience for a major cultural institution with complex public-facing digital estate and government framework obligations (Cyber Essentials, PSN compliance)</li>
                         <li style="margin: 0.5rem 0;"><strong>American Express</strong> — VP Technology: Large-scale, risk-critical environments with board-level cyber and resilience accountability</li>
                         <li style="margin: 0.5rem 0;"><strong>Board roles</strong> — Trustee, College of Sexual and Reproductive Healthcare: Governance and clinical risk oversight</li>
+                    </ul>
+
+                    <h3 style="color: #2563eb; margin-top: 1.5rem; margin-bottom: 0.75rem;">Sector Expertise</h3>
+                    <p style="color: #6b7280; margin-bottom: 0.5rem;">Deep operational experience across three underserved sectors:</p>
+                    <ul style="margin-left: 1.5rem; color: #6b7280;">
+                        <li style="margin: 0.5rem 0;"><strong>NGOs &amp; international development</strong> — Distributed operations, cross-border data governance, limited central IT visibility, MSP-dependent field offices. (WaterAid — 26 countries)</li>
+                        <li style="margin: 0.5rem 0;"><strong>Arms-length public bodies &amp; cultural institutions</strong> — Government security frameworks, donor and visitor data, commercial partnerships, public-facing digital infrastructure. (Victoria &amp; Albert Museum)</li>
+                        <li style="margin: 0.5rem 0;"><strong>Health-adjacent charities &amp; third sector</strong> — NHS data-sharing requirements, DCB standards, patient-identifiable data obligations, NHS supply chain security. (Dementia UK)</li>
                     </ul>
 
                     <div class="about-highlight">
@@ -698,13 +746,60 @@
         </div>
     </section>
 
+    <!-- Newsletter Section -->
+    <section class="newsletter-section" id="newsletter" style="padding: 5rem 2rem; background: #0f172a;">
+        <div class="container">
+            <h2 style="text-align: center; color: #ffffff; font-size: 2rem; margin-bottom: 0.5rem;">Intelligent Resilience Newsletter</h2>
+            <p style="text-align: center; color: #94a3b8; margin-bottom: 0.75rem; font-size: 1.1rem;">Fortnightly AI security and governance intelligence. For CISOs, Finance Directors, and MSP-dependent organisations.</p>
+            <p style="text-align: center; margin-bottom: 3rem;"><a href="https://substack.com/@intelligentresilience" target="_blank" style="background: #2563eb; color: white; padding: 0.75rem 1.75rem; border-radius: 0.5rem; font-weight: 600; text-decoration: none; display: inline-block;">Subscribe on Substack →</a></p>
+
+            <div class="newsletter-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+
+                <!-- Edition 8 -->
+                <div class="newsletter-card" style="background: #1e293b; border-radius: 0.75rem; padding: 1.5rem; border: 1px solid #334155; transition: border-color 0.3s ease;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                        <span style="background: #2563eb; color: white; font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px;">Edition 8</span>
+                        <span style="color: #64748b; font-size: 0.85rem;">10 Apr 2026</span>
+                    </div>
+                    <h3 style="color: #ffffff; font-size: 1.1rem; margin-bottom: 0.5rem;">Project Glasswing & the Patch Gap Crisis</h3>
+                    <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">Anthropic's Claude Mythos autonomously discovers thousands of zero-days. Why the vulnerability management problem just became structural — and what organisations need to do differently.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">
+                        <span style="background: #0f172a; color: #64748b; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">AI Security</span>
+                        <span style="background: #0f172a; color: #64748b; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">Threat Intelligence</span>
+                        <span style="background: #0f172a; color: #64748b; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">Governance</span>
+                    </div>
+                    <a href="IR-Newsletter-2026-04-10.html" style="color: #2563eb; font-weight: 600; text-decoration: none; font-size: 0.9rem;">Read → </a>
+                </div>
+
+                <!-- Edition 7 -->
+                <div class="newsletter-card" style="background: #1e293b; border-radius: 0.75rem; padding: 1.5rem; border: 1px solid #334155; transition: border-color 0.3s ease;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                        <span style="background: #2563eb; color: white; font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px;">Edition 7</span>
+                        <span style="color: #64748b; font-size: 0.85rem;">3 Apr 2026</span>
+                    </div>
+                    <h3 style="color: #ffffff; font-size: 1.1rem; margin-bottom: 0.5rem;">Agentic AI in the Wild — and the EU AI Act Deadline</h3>
+                    <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">Early evidence of agentic AI exploitation in production environments, OWASP's Top 10 for Agentic Applications, and the August 2026 EU AI Act deadline most organisations are underestimating.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">
+                        <span style="background: #0f172a; color: #64748b; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">Agentic AI</span>
+                        <span style="background: #0f172a; color: #64748b; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">OWASP</span>
+                        <span style="background: #0f172a; color: #64748b; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 0.25rem;">Regulation</span>
+                    </div>
+                    <a href="IR-Newsletter-2026-04-03.html" style="color: #2563eb; font-weight: 600; text-decoration: none; font-size: 0.9rem;">Read →</a>
+                </div>
+
+                <!-- Future editions added here -->
+
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <p><strong>Stuart Wilson — Intelligent Resilience</strong></p>
             <p>Cyber resilience and autonomous security consultancy</p>
             <div class="footer-links">
-                <a href="mailto:stuartqwilson@gmail.com">Email</a>
+                <a href="mailto:stuart@intelligent-resilience.com">Email</a>
                 <a href="https://www.linkedin.com/in/stuartkwilson/" target="_blank">LinkedIn</a>
                 <a href="https://substack.com/@intelligentresilience" target="_blank">Newsletter</a>
             </div>
@@ -713,6 +808,12 @@
     </footer>
 
     <script>
+        // Newsletter card hover effect
+        document.querySelectorAll('.newsletter-card').forEach(card => {
+            card.addEventListener('mouseenter', () => card.style.borderColor = '#2563eb');
+            card.addEventListener('mouseleave', () => card.style.borderColor = '#334155');
+        });
+
         // Form handling with Formspree
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -735,12 +836,12 @@
                     messageDiv.className = 'form-message success';
                     this.reset();
                 } else {
-                    messageDiv.textContent = 'Something went wrong. Please email stuartqwilson@gmail.com directly.';
+                    messageDiv.textContent = 'Something went wrong. Please email stuart@intelligent-resilience.com directly.';
                     messageDiv.className = 'form-message error';
                 }
             })
             .catch(() => {
-                messageDiv.textContent = 'Something went wrong. Please email stuartqwilson@gmail.com directly.';
+                messageDiv.textContent = 'Something went wrong. Please email stuart@intelligent-resilience.com directly.';
                 messageDiv.className = 'form-message error';
             })
             .finally(() => {
