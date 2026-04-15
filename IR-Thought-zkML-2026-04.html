@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proving the Machine Didn't Lie | Intelligent Resilience</title>
+    <meta name="description" content="Zero-knowledge proofs were built to solve a problem in cryptography. It turns out the same question is now central to AI governance.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        header {
+            background: #0F172A;
+            padding: 1.25rem 2rem;
+        }
+
+        header a {
+            color: #e0e7ff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        header a span {
+            color: #2563EB;
+        }
+
+        header a:hover {
+            color: #ffffff;
+        }
+
+        .article-hero {
+            background: linear-gradient(135deg, #0F172A 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 4rem 2rem 3rem;
+        }
+
+        .article-hero-inner {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #93c5fd;
+            margin-bottom: 1rem;
+        }
+
+        .article-hero h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .article-hero .standfirst {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            max-width: 640px;
+        }
+
+        .article-meta {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #64748B;
+        }
+
+        .article-body {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: #374151;
+            line-height: 1.8;
+        }
+
+        .article-body h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0F172A;
+            margin: 2.5rem 0 1rem;
+            letter-spacing: -0.25px;
+        }
+
+        .article-body h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2563EB;
+            margin: 2rem 0 0.75rem;
+        }
+
+        .pullquote {
+            border-left: 4px solid #2563EB;
+            background: #eff6ff;
+            padding: 1.5rem 1.75rem;
+            margin: 2rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .pullquote p {
+            font-size: 1.1rem !important;
+            font-style: italic;
+            color: #1e3a8a !important;
+            margin-bottom: 0 !important;
+        }
+
+        .watchbox {
+            background: #f9fafb;
+            border: 1px solid #e5e5e5;
+            border-radius: 0.75rem;
+            padding: 1.75rem;
+            margin: 2.5rem 0;
+        }
+
+        .watchbox h3 {
+            color: #0F172A;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-style: normal;
+        }
+
+        .watchbox ul {
+            margin-left: 1.25rem;
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        .watchbox ul li {
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+
+        .watchbox ul li strong {
+            color: #0F172A;
+        }
+
+        .article-footer {
+            background: #0F172A;
+            color: #e2e8f0;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .article-footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .article-footer a {
+            color: #2563EB;
+            text-decoration: none;
+        }
+
+        .article-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .article-hero h1 { font-size: 1.75rem; }
+            .article-hero { padding: 3rem 1.25rem 2rem; }
+            .article-body { padding: 2rem 1.25rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><span>Intelligent Resilience</span> &nbsp;← Back to home</a>
+</header>
+
+<section class="article-hero">
+    <div class="article-hero-inner">
+        <div class="article-tag">Cryptographic AI Security · Thought Piece</div>
+        <h1>Proving the Machine Didn't Lie: Zero-Knowledge Proofs and the Future of AI Audit Trails</h1>
+        <p class="standfirst">Zero-knowledge proofs were built to solve a problem in cryptography — how do you prove you know something without revealing it? It turns out the same question is now central to AI governance.</p>
+        <div class="article-meta">Intelligent Resilience · April 2026 · 8 min read</div>
+    </div>
+</section>
+
+<div class="article-body">
+
+    <p>In 2015, if you were working with decentralised financial protocols, you spent a lot of time thinking about a deceptively simple problem: how do you trust a system where you can't trust any of the participants? The answer the cryptography community had been developing since the 1980s was zero-knowledge proofs — mathematical constructions that let one party prove to another that a statement is true without revealing anything else about it. At the time, it felt like an elegant theoretical solution to a very specific problem in distributed ledger design.</p>
+
+    <p>A decade later, the same problem has arrived in enterprise AI governance, dressed in different clothes. The question regulators, boards, and procurement teams are now asking is: how do you trust an AI system's output when you can't see inside it? How do you prove to an auditor that the model that made a decision last Tuesday is the same model that's running today, and that nobody tampered with the prompt in between? And how do you do all of that without exposing your model weights, your training data, or your competitive advantage?</p>
+
+    <p>The cryptographers got there first. The security community is only now catching up.</p>
+
+    <h2>The Audit Trail Problem</h2>
+
+    <p>Most organisations deploying AI systems have a vague sense that they'll need audit trails. The EU AI Act makes this explicit for high-risk systems — Article 12 requires logging sufficient to enable post-market monitoring and incident investigation. NHS Digital's guidance on AI in clinical settings points in the same direction. The ICO's framework for AI and data protection adds another layer. Everyone is asking for records.</p>
+
+    <p>The problem is that conventional logging doesn't solve the problem regulators actually care about. You can log every prompt and every response. You can store them immutably in a database. But you still can't prove that the log is complete, that the model that generated response 47,291 is the one you think it is, or that nobody with database access altered entry 23,847 after the fact. A log is evidence. It is not proof.</p>
+
+    <div class="pullquote">
+        <p>"A log is evidence. It is not proof. Zero-knowledge proofs change that distinction from philosophical to technical."</p>
+    </div>
+
+    <p>This is exactly the distinction that zero-knowledge proofs are designed to close. A ZK proof doesn't just record what happened — it produces a cryptographic certificate that a specific computation was performed correctly, by a specific model, on specific inputs, producing a specific output. The certificate can be verified by anyone, including a regulator or auditor, without them needing access to the underlying model, the prompt content, or the organisation's infrastructure. The proof is self-contained and mathematically unforgeable.</p>
+
+    <h2>What the DeFi World Learned</h2>
+
+    <p>Decentralised finance had to solve this problem before most enterprise technology teams had heard of it. When you're running autonomous financial protocols — stablecoin mechanisms, yield strategies, automated market makers — the question of whether a model or algorithm ran correctly isn't academic. It's the difference between a protocol that's functioning as designed and one that's been silently exploited. And because DeFi operates without a central authority who can simply be trusted, cryptographic proof is the only viable answer.</p>
+
+    <p>Giza Technology is already doing this in production. Their verifiable ML infrastructure, built on the Starknet blockchain, allows organisations to prove that a specific machine learning model produced a specific output from a specific input — and publish that proof on-chain so it's permanently verifiable. Yearn Finance, one of the larger DeFi yield protocols, uses this to verify that its AI-driven strategy decisions were made by the algorithm they claim, with the inputs they claim, producing the outputs they claim. Any deviation from this would be immediately detectable.</p>
+
+    <p>The same mechanism translates directly to a charity processing donor data with an AI model, a health-adjacent organisation using AI to triage clinical enquiries, or a public body using AI-assisted decision-making in benefits administration. The regulatory question is identical: did the right model, run with the right inputs, under the right conditions, produce this output? Cryptographic proof answers it. Conventional logging only gestures at it.</p>
+
+    <h2>The State of the Technology</h2>
+
+    <p>It would be misleading to suggest this is ready for broad enterprise deployment today. The honest picture is more nuanced.</p>
+
+    <p>EZKL is the most accessible entry point — a framework that converts standard machine learning models (in ONNX format, which most major training frameworks export to) into zero-knowledge proof circuits without requiring the developer to understand the underlying cryptography. For smaller models used in classification, anomaly detection, or document analysis, EZKL is viable now. The proof generation time for these scales is seconds to minutes, which is acceptable for audit and compliance purposes even if it's not suitable for real-time inference.</p>
+
+    <p>For large language models the picture is different. The landmark zkLLM paper, published in April 2024, demonstrated for the first time that ZK proofs for a 13-billion parameter LLM are mathematically feasible. The proof generation time was approximately 15 minutes. That rules out real-time verification, but it doesn't rule out post-hoc audit — generating a proof that a specific decision was made correctly, after the fact, for regulatory or legal purposes. That use case is available now for organisations willing to invest in the compute.</p>
+
+    <p>The cost curve is moving. Modulus Labs, a Stanford-backed research firm that published the most rigorous economic analysis of ZKP costs for AI, has tracked steady improvements in proof generation efficiency over the past two years. The trajectory suggests that LLM-scale real-time verification is a 2–3 year horizon for most organisations, not a 10-year one.</p>
+
+    <h2>What This Means in Practice</h2>
+
+    <p>For organisations in the sectors IR works with — NGOs, arms-length public bodies, health-adjacent charities — the near-term opportunity isn't deploying ZK proof infrastructure directly. It's understanding enough about where this is going to make sensible decisions about AI system architecture today.</p>
+
+    <p>Specifically: organisations that are currently designing AI-assisted decision-making systems should be asking their technology suppliers whether their inference infrastructure is capable of producing verifiable audit trails, not just conventional logs. The answer will almost certainly be no today. But it's worth asking — partly because it signals to suppliers that this is coming, and partly because it shapes the contract terms around audit rights and evidence production.</p>
+
+    <p>For any organisation operating in a regulated environment where AI decisions will face legal or regulatory scrutiny — clinical AI, financial AI, AI in public administration — the question of cryptographic verifiability is worth raising now, even if the implementation is 18 months away. The EU AI Act's audit and transparency requirements are already in force for high-risk systems. The gap between what those requirements demand and what conventional logging provides is real, and it will narrow as ZK infrastructure matures.</p>
+
+    <div class="watchbox">
+        <h3>Projects to Watch</h3>
+        <ul>
+            <li><strong>EZKL</strong> — The most accessible framework for converting ML models to ZK proof circuits. Track improvements in proof generation speed and model compatibility.</li>
+            <li><strong>Giza Technology</strong> — Verifiable ML inference in production on Starknet. Watch for expansion beyond DeFi into regulated industry use cases.</li>
+            <li><strong>Modulus Labs</strong> — Published the definitive economic analysis of ZKP costs for AI. Track their cost curve updates as a bellwether for when enterprise adoption becomes viable.</li>
+            <li><strong>Worldcoin / World ID AgentKit</strong> — ZKP-based proof that a verified human identity is behind an AI agent interaction. The most mature real-world deployment, with 5M+ verified users. Watch for enterprise adoption outside crypto.</li>
+            <li><strong>GPU Trusted Execution Environments</strong> — Intel SGX, AMD SEV, and Phala's GPU-TEE offering. Watch for mainstream cloud providers (Azure, GCP) hardening LLM inference environments. This is confidential computing rather than ZKP, but addresses the same audit trail problem through a different cryptographic route.</li>
+        </ul>
+    </div>
+
+    <p>The deeper point is this: the AI governance conversation has spent most of the past two years focused on policy, frameworks, and process controls. Those are necessary. But the organisations that will be best positioned when regulators begin asking hard questions about AI decision integrity are the ones that understood early that governance is ultimately a technical problem — and that cryptography, not compliance documentation, is what provides proof rather than evidence.</p>
+
+    <p>The DeFi world built this intuition out of necessity, in conditions where a wrong answer cost real money immediately. Enterprise AI governance is arriving at the same place more slowly, guided by regulation rather than market discipline. The technology is converging from the other direction. The question is whether organisations are paying close enough attention to notice when the two meet.</p>
+
+    <p style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e5e5; font-size: 0.95rem; color: #6b7280;">If this piece was useful, forward it to a colleague who should be paying attention. For advisory enquiries, contact <a href="mailto:stuart@intelligent-resilience.com" style="color: #2563EB;">stuart@intelligent-resilience.com</a></p>
+
+</div>
+
+<footer class="article-footer">
+    <div>
+        <p><strong>Intelligent Resilience</strong></p>
+        <p>AI security and cyber resilience consultancy</p>
+        <p style="margin-top: 0.75rem;">
+            <a href="mailto:stuart@intelligent-resilience.com">stuart@intelligent-resilience.com</a> &nbsp;·&nbsp;
+            <a href="https://substack.com/@intelligentresilience" target="_blank">Substack</a> &nbsp;·&nbsp;
+            <a href="https://www.linkedin.com/in/stuartkwilson/" target="_blank">LinkedIn</a>
+        </p>
+        <a href="index.html" class="back-link">← Back to Intelligent Resilience</a>
+    </div>
+</footer>
+
+</body>
+</html>

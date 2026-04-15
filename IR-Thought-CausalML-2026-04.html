@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root Cause or Red Herring? | Intelligent Resilience</title>
+    <meta name="description" content="Security teams have spent a decade training AI to spot patterns. The smarter question is whether we've been asking it to do the wrong thing.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        header {
+            background: #0F172A;
+            padding: 1.25rem 2rem;
+        }
+
+        header a {
+            color: #e0e7ff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        header a span {
+            color: #2563EB;
+        }
+
+        header a:hover {
+            color: #ffffff;
+        }
+
+        .article-hero {
+            background: linear-gradient(135deg, #0F172A 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 4rem 2rem 3rem;
+        }
+
+        .article-hero-inner {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #93c5fd;
+            margin-bottom: 1rem;
+        }
+
+        .article-hero h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .article-hero .standfirst {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            max-width: 640px;
+        }
+
+        .article-meta {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #64748B;
+        }
+
+        .article-body {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: #374151;
+            line-height: 1.8;
+        }
+
+        .article-body h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0F172A;
+            margin: 2.5rem 0 1rem;
+            letter-spacing: -0.25px;
+        }
+
+        .article-body h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2563EB;
+            margin: 2rem 0 0.75rem;
+        }
+
+        .pullquote {
+            border-left: 4px solid #2563EB;
+            background: #eff6ff;
+            padding: 1.5rem 1.75rem;
+            margin: 2rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .pullquote p {
+            font-size: 1.1rem !important;
+            font-style: italic;
+            color: #1e3a8a !important;
+            margin-bottom: 0 !important;
+        }
+
+        .watchbox {
+            background: #f9fafb;
+            border: 1px solid #e5e5e5;
+            border-radius: 0.75rem;
+            padding: 1.75rem;
+            margin: 2.5rem 0;
+        }
+
+        .watchbox h3 {
+            color: #0F172A;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-style: normal;
+        }
+
+        .watchbox ul {
+            margin-left: 1.25rem;
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        .watchbox ul li {
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+
+        .watchbox ul li strong {
+            color: #0F172A;
+        }
+
+        .example-box {
+            background: #0F172A;
+            color: #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1.75rem;
+            margin: 2rem 0;
+        }
+
+        .example-box h3 {
+            color: #93c5fd;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+            font-style: normal;
+        }
+
+        .example-box p {
+            color: #cbd5e1 !important;
+            font-size: 0.95rem !important;
+            margin-bottom: 0.75rem !important;
+        }
+
+        .example-box p:last-child {
+            margin-bottom: 0 !important;
+        }
+
+        .article-footer {
+            background: #0F172A;
+            color: #e2e8f0;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .article-footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .article-footer a {
+            color: #2563EB;
+            text-decoration: none;
+        }
+
+        .article-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .article-hero h1 { font-size: 1.75rem; }
+            .article-hero { padding: 3rem 1.25rem 2rem; }
+            .article-body { padding: 2rem 1.25rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><span>Intelligent Resilience</span> &nbsp;← Back to home</a>
+</header>
+
+<section class="article-hero">
+    <div class="article-hero-inner">
+        <div class="article-tag">Causal Security Analytics · Thought Piece</div>
+        <h1>Root Cause or Red Herring? Why Security AI Needs to Stop Correlating and Start Reasoning</h1>
+        <p class="standfirst">Security teams have spent a decade training AI to spot patterns. The smarter question is whether we've been asking it to do the wrong thing.</p>
+        <div class="article-meta">Intelligent Resilience · April 2026 · 9 min read</div>
+    </div>
+</section>
+
+<div class="article-body">
+
+    <p>There is a question that comes up, reliably, in the aftermath of every significant security incident: what actually happened? Not what the SIEM flagged, not which alerts fired, not what the automated playbook did in response — but what caused this, in what sequence, and what single intervention would have broken the chain? The honest answer, in most organisations, is that nobody knows with any precision. The logs exist. The timeline can be reconstructed. But causation — the actual mechanism — tends to get buried in correlation.</p>
+
+    <p>This isn't a data problem. Most mature security operations teams have more data than they can meaningfully process. It is, more precisely, a reasoning problem. The AI tools deployed across the security stack — anomaly detection, UEBA, threat intelligence platforms, SIEM correlation rules — are overwhelmingly built on the same statistical foundation: find patterns that preceded bad outcomes in the past, and flag when you see those patterns again. That is useful. It is also, in a specific and consequential way, the wrong question.</p>
+
+    <h2>Correlation Is Not Enough</h2>
+
+    <p>The distinction matters most in three situations: when you're trying to stop something in progress, when you're investigating something after the fact, and when you need to explain to a regulator or a board exactly what happened and why. In all three cases, correlation gives you a probability. Causation gives you an answer.</p>
+
+    <p>Consider a common scenario in a health-adjacent charity running AI-assisted case management. An anomaly detection system flags unusual data access patterns from an account that normally processes donor records. The pattern matches historical indicators associated with credential compromise. An alert fires. The account gets suspended. That is the system working as designed.</p>
+
+    <p>But the investigation that follows is where the correlation-based model runs out of road. Was the account genuinely compromised, or did a legitimate user change their workflow? If it was compromise, at what point did the attacker gain access, and through which vector? What data did they access, in what order, and what does that sequence tell us about their intent? Which of the fifteen correlated indicators was causally necessary for the breach, and which were coincidental signals that happened to co-occur? Correlation-based AI can tell you that these things happened together. It cannot tell you which ones caused the others.</p>
+
+    <div class="pullquote">
+        <p>"Correlation-based AI can tell you that these things happened together. It cannot tell you which ones caused the others. For a regulator asking what happened, that distinction is the whole answer."</p>
+    </div>
+
+    <p>For a regulator asking what happened under the UK GDPR's 72-hour breach notification requirement, or an ICO investigating whether appropriate technical measures were in place, that distinction is not academic. It is the whole answer.</p>
+
+    <h2>What Causal Inference Actually Does</h2>
+
+    <p>Causal inference is a statistical discipline with a long history in economics, epidemiology, and social science — fields where you frequently need to understand causation but cannot run controlled experiments. The central question it asks is not "do these things co-occur?" but "if we had intervened here, what would have changed?" This is Judea Pearl's do-calculus framework, and it provides a rigorous mathematical language for reasoning about cause and effect rather than correlation.</p>
+
+    <p>Applied to security, it produces several capabilities that correlation-based approaches cannot replicate.</p>
+
+    <p>The first is genuine root cause analysis. Rather than identifying the alert that fired earliest or the indicator with the highest confidence score, causal inference constructs a directed acyclic graph — a causal map — of the events in an incident. It can identify which event was the necessary precursor to the sequence that followed, and which events were downstream effects or coincidental noise. IBM's Instana platform is already doing a version of this for infrastructure incidents, claiming 80% faster root cause identification compared to conventional approaches. The same methodology applied to security incidents is a natural extension.</p>
+
+    <p>The second is counterfactual reasoning — the ability to ask "what if?" in a mathematically grounded way. If we had blocked this user's access to the external API at 14:32, would the data exfiltration at 16:07 have occurred? Counterfactual analysis lets you answer that question with a probability rather than a guess. For incident response planning, this is transformative: instead of writing generic playbooks, you can build response strategies around the specific causal interventions that actually matter for your environment.</p>
+
+    <p>The third capability is feature noise reduction. Conventional ML models for threat detection are trained on whatever indicators were available in the training data. Many of those indicators correlate with attacks but don't cause them — they're confounders, proxies, or artefacts of how the training data was collected. Causal feature selection identifies which indicators are causally upstream of attacks rather than merely correlated with them. The result is detection models that are more robust when attackers change their tactics, because they're anchored to causal mechanisms rather than surface patterns.</p>
+
+    <h2>The Agentic AI Problem Makes This Urgent</h2>
+
+    <p>There is a specific reason why causal security analytics matters more now than it did three years ago: agentic AI systems.</p>
+
+    <p>When an autonomous AI agent makes a sequence of decisions — browsing the web, writing code, sending emails, interacting with APIs — it produces a chain of actions that can be individually innocuous but collectively consequential. A compromised or misbehaving agent might exfiltrate data across fifty small API calls that no single call would trigger an alert for. It might manipulate a workflow through a sequence of interactions that each look legitimate in isolation. Detecting this with correlation-based methods requires knowing in advance what the pattern looks like. With causal methods, you can reason about whether the sequence of actions could plausibly have been produced by the stated intent of the agent — and flag divergences that suggest something else is driving the behaviour.</p>
+
+    <div class="example-box">
+        <h3>Example: Agentic AI Forensics</h3>
+        <p>An AI agent is tasked with summarising research documents and filing them to a shared drive. Over three days, it makes 847 API calls — all individually within expected parameters. A causal analysis of the call sequence reveals that the agent's file access pattern is inconsistent with summarisation: it is systematically accessing documents that contain personal data fields, in a sequence that has no plausible explanation under the stated task. The downstream file writes are also subtly different from expected outputs.</p>
+        <p>A correlation-based system, trained on known malware signatures and credential compromise patterns, sees nothing unusual. A causal model, reasoning about whether the agent's behaviour is consistent with its stated goal, flags the divergence on day two.</p>
+    </div>
+
+    <p>This is not a hypothetical capability — it is the logical extension of causal discovery methods that are already published and available. The CAGE-2 research programme, funded by DARPA, applies exactly this kind of reasoning to APT defence scenarios. A 2025 paper on multi-agent security with causal inference demonstrated the approach for identifying compromised agents in multi-agent systems. The Alan Turing Institute's dedicated causal cyber defence project, led by Neil Dhir, is building the simulation environments needed to validate these methods at scale.</p>
+
+    <h2>Where This Sits for Most Organisations</h2>
+
+    <p>It would be misleading to suggest that causal security analytics is a product you can go and buy today. The commercial landscape is thin. IBM's Instana is the most concrete enterprise deployment, and it is focused on AIOps and reliability engineering rather than security specifically. The academic output is rich and accelerating — over a dozen significant papers in the past 18 months — but the translation into vendored security tooling hasn't happened yet.</p>
+
+    <p>That gap is actually interesting from a positioning perspective. The security vendors who are winning enterprise contracts today are almost universally selling correlation-based AI: behavioural analytics, anomaly detection, pattern matching at scale. They are good at what they do. But none of them have a credible answer to the question of why an attack succeeded, in the causal sense, or what single intervention would have prevented it. That is a gap that a sophisticated CISO, dealing with a regulator or a board after an incident, will feel acutely.</p>
+
+    <p>For organisations in regulated sectors — and the NGO, public sector, and health-adjacent organisations that IR works with are all operating under frameworks that demand explainability — the practical implications are twofold. First, when evaluating AI security tools, it is worth asking vendors explicitly whether their detection logic is based on causal or correlational reasoning, and what evidence they can provide for root cause identification rather than pattern matching. The answer will be instructive. Second, when designing AI systems that will face regulatory scrutiny, build in the assumption that you will eventually need to produce a causal account of any decision that is challenged — and that conventional logging will not be sufficient to support one.</p>
+
+    <div class="watchbox">
+        <h3>Research and Projects to Watch</h3>
+        <ul>
+            <li><strong>Alan Turing Institute — Causal Cyber Defence</strong> (PI: Neil Dhir): The most advanced UK academic effort in this space. Public GitHub repo, Yawning Titan simulation environment. Worth engaging with directly — this is publicly funded UK research and the researchers are accessible.</li>
+            <li><strong>IBM Instana</strong>: Causal AI for infrastructure root cause analysis. Track for expansion into security-specific use cases and watch whether the methodology migrates into IBM's security product line.</li>
+            <li><strong>DARPA CAGE-2</strong>: Causal modelling for APT defence. Government-funded research that typically feeds into commercial products within 3–5 years.</li>
+            <li><strong>Judea Pearl's do-calculus and causal discovery libraries</strong> (DoWhy, CausalML from Uber): The underlying methodology is open source and increasingly accessible to security engineering teams. Watch for security-specific implementations built on top of these frameworks.</li>
+            <li><strong>Multi-agent causal security (arXiv 2025)</strong>: The first paper specifically addressing causal discovery for compromised agent identification. A signal of where the research community is heading for agentic AI security.</li>
+        </ul>
+    </div>
+
+    <p>The deeper point — and it is worth sitting with — is that the entire architecture of AI-driven security has been built on the assumption that finding patterns that correlate with bad outcomes is equivalent to understanding security. It isn't. Correlation is a proxy for causation, useful when causation is too expensive to determine directly. In a world where regulators demand explainability, where agentic AI creates novel attack surfaces that don't match historical patterns, and where boards are asking harder questions about what their security stack actually understands rather than merely detects, that proxy is becoming insufficient.</p>
+
+    <p>The shift from correlational to causal reasoning in security AI is not a product launch. It is a change in how the field thinks about what AI is supposed to be doing. That kind of change tends to happen slowly, then suddenly. The organisations that have been paying attention to the research — and building the internal literacy to ask the right questions of their vendors — will be better positioned when it does.</p>
+
+    <p style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e5e5; font-size: 0.95rem; color: #6b7280;">If this piece was useful, forward it to a colleague who should be paying attention. For advisory enquiries, contact <a href="mailto:stuart@intelligent-resilience.com" style="color: #2563EB;">stuart@intelligent-resilience.com</a></p>
+
+</div>
+
+<footer class="article-footer">
+    <div>
+        <p><strong>Intelligent Resilience</strong></p>
+        <p>AI security and cyber resilience consultancy</p>
+        <p style="margin-top: 0.75rem;">
+            <a href="mailto:stuart@intelligent-resilience.com">stuart@intelligent-resilience.com</a> &nbsp;·&nbsp;
+            <a href="https://substack.com/@intelligentresilience" target="_blank">Substack</a> &nbsp;·&nbsp;
+            <a href="https://www.linkedin.com/in/stuartkwilson/" target="_blank">LinkedIn</a>
+        </p>
+        <a href="index.html" class="back-link">← Back to Intelligent Resilience</a>
+    </div>
+</footer>
+
+</body>
+</html>

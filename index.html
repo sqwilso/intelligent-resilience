@@ -313,7 +313,7 @@
 
         .expertise-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
@@ -813,7 +813,7 @@
                 margin-left: auto;
                 margin-right: auto;
                 margin-top: 0.75rem;
-                max-width: 220px;
+                max-width: min(220px, 100%);
                 text-align: center;
             }
 
@@ -845,8 +845,14 @@
             .sector-grid,
             .expertise-grid,
             .newsletter-grid,
+            .newsletter-archive,
             .thought-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .newsletter-load-more button {
+                width: 100%;
+                max-width: 100%;
             }
 
             .services,
