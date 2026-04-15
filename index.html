@@ -40,13 +40,28 @@
         }
 
         .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #0F172A;
-            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            flex-shrink: 0;
         }
 
-        .logo span {
+        .logo svg {
+            height: 1.25rem;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1;
+            color: #0F172A;
+        }
+
+        .logo-text span {
             color: #2563EB;
         }
 
@@ -79,6 +94,18 @@
         .hero-content {
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        .hero-mark {
+            margin: 0 auto 2rem;
+            width: 120px;
+            height: 120px;
+        }
+
+        .hero-mark svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 8px 24px rgba(37, 99, 235, 0.4));
         }
 
         .hero h1 {
@@ -376,6 +403,96 @@
             font-size: 0.95rem;
         }
 
+        /* Thought Pieces Section */
+        .thought-pieces {
+            padding: 5rem 2rem;
+            background: #f9fafb;
+        }
+
+        .thought-pieces h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .thought-pieces-subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .thought-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .thought-card {
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .thought-card:hover {
+            border-color: #2563EB;
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .thought-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #2563EB;
+            background: #eff6ff;
+            padding: 0.25rem 0.6rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .thought-card h3 {
+            font-size: 1.1rem;
+            color: #0F172A;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .thought-card p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+
+        .thought-card a.read-link {
+            color: #2563EB;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .thought-card a.read-link:hover {
+            text-decoration: underline;
+        }
+
+        .thought-card-meta {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-bottom: 0.5rem;
+        }
+
         /* Newsletter Section */
         .newsletter-section {
             padding: 5rem 2rem;
@@ -476,7 +593,7 @@
         /* Contact Section */
         .contact {
             padding: 5rem 2rem;
-            background: #f9fafb;
+            background: #ffffff;
         }
 
         .contact h2 {
@@ -594,6 +711,31 @@
             margin: 0 auto;
         }
 
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-logo svg {
+            height: 1.25rem;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .footer-logo-text {
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1;
+        }
+
+        .footer-logo-text span {
+            color: #2563EB;
+        }
+
         .footer-links {
             margin-top: 1.5rem;
             display: flex;
@@ -614,6 +756,11 @@
 
         /* Responsive — tablet */
         @media (max-width: 768px) {
+            .hero-mark {
+                width: 96px;
+                height: 96px;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -626,7 +773,6 @@
                 padding: 0 0.5rem;
             }
 
-            /* Stack both hero buttons on mobile */
             .cta-button,
             .cta-button-secondary {
                 display: block;
@@ -637,16 +783,19 @@
                 text-align: center;
             }
 
-            /* Nav: wrap items so they don't overflow */
+            header {
+                padding: 1rem 1.25rem;
+            }
+
             nav {
                 flex-direction: column;
-                gap: 0.75rem;
+                gap: 0.6rem;
                 align-items: flex-start;
             }
 
             nav ul {
                 flex-wrap: wrap;
-                gap: 0.5rem 1rem;
+                gap: 0.4rem 1rem;
                 font-size: 0.85rem;
             }
 
@@ -658,19 +807,19 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Force single column — override any minmax that would cause overflow */
             .services-grid,
             .sector-grid,
             .expertise-grid,
-            .newsletter-grid {
+            .newsletter-grid,
+            .thought-grid {
                 grid-template-columns: 1fr;
             }
 
-            /* Reduce section padding on mobile */
             .services,
             .sector-expertise,
             .expertise,
             .about,
+            .thought-pieces,
             .newsletter-section,
             .contact {
                 padding: 3rem 1.25rem;
@@ -697,8 +846,9 @@
                 padding: 4rem 1.25rem;
             }
 
-            .logo {
-                font-size: 1.05rem;
+            .hero-mark {
+                width: 80px;
+                height: 80px;
             }
 
             .roadmap-item {
@@ -717,11 +867,24 @@
     <!-- Navigation -->
     <header>
         <nav>
-            <div class="logo"><span>Intelligent Resilience</span></div>
+            <a href="#" class="logo" aria-label="Intelligent Resilience">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="15 45 470 410" role="img" aria-hidden="true">
+                  <polygon points="40,68 460,68 250,431.73" fill="#2563EB"/>
+                  <polygon points="79.26,90.67 420.74,90.67 250,386.40" fill="white"/>
+                  <polygon points="40,68 460,68 418,140.75 82,140.75" fill="#0F172A"/>
+                  <polygon points="40,68 79.26,90.67 79.26,68" fill="#0F172A"/>
+                  <polygon points="460,68 420.74,90.67 420.74,68" fill="#0F172A"/>
+                  <rect x="233" y="140.75" width="34" height="163.68" fill="#0F172A"/>
+                  <polygon points="202.67,304.43 297.33,304.43 287.51,321.43 212.49,321.43" fill="#0F172A"/>
+                  <polygon points="212.49,321.43 287.51,321.43 250,386.40" fill="#D4A017"/>
+                </svg>
+                <span class="logo-text">Intelligent <span>Resilience</span></span>
+            </a>
             <ul>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#sectors">Sectors</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#thinking">Thinking</a></li>
                 <li><a href="#newsletter">Insights</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -731,6 +894,25 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
+            <div class="hero-mark">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-hidden="true">
+                  <!-- Blue triangle body -->
+                  <polygon points="40,68 460,68 250,431.73" fill="#2563EB"/>
+                  <!-- Inner cutout — dark to match hero background -->
+                  <polygon points="79.26,90.67 420.74,90.67 250,386.40" fill="#0F172A"/>
+                  <!-- Navy trapezoid top cap -->
+                  <polygon points="40,68 460,68 418,140.75 82,140.75" fill="#1e3a8a"/>
+                  <!-- Corner fills -->
+                  <polygon points="40,68 79.26,90.67 79.26,68" fill="#1e3a8a"/>
+                  <polygon points="460,68 420.74,90.67 420.74,68" fill="#1e3a8a"/>
+                  <!-- Vertical bar — white on dark -->
+                  <rect x="233" y="140.75" width="34" height="163.68" fill="#ffffff"/>
+                  <!-- Terminal trapezoid — white -->
+                  <polygon points="202.67,304.43 297.33,304.43 287.51,321.43 212.49,321.43" fill="#ffffff"/>
+                  <!-- Gold triangle accent -->
+                  <polygon points="212.49,321.43 287.51,321.43 250,386.40" fill="#D4A017"/>
+                </svg>
+            </div>
             <h1>Intelligent Resilience</h1>
             <p class="tagline">AI security and cyber resilience consultancy. Specialist experience in NGOs, arms-length public bodies, and health-adjacent charities — the organisations most exposed and least protected.</p>
             <a href="#contact" class="cta-button">Get in Touch</a>
@@ -745,23 +927,21 @@
             <p class="services-subtitle">Practical expertise in cyber resilience, AI security, and governance for mission-driven organisations</p>
 
             <div class="services-grid">
-                <!-- Service 1 -->
                 <div class="service-card">
                     <div class="service-icon">🛡️</div>
                     <h3>Cyber Resilience Strategy</h3>
                     <p>Cyber security roadmaps aligned with NIST, CIS Controls, and Cyber Essentials — built around your risk appetite and board-level obligations, not generic best practice.</p>
                     <ul class="service-features">
                         <li>Strategic planning (3–5 year roadmaps)</li>
-                        <li>NIST CSF & CIS Controls alignment</li>
+                        <li>NIST CSF &amp; CIS Controls alignment</li>
                         <li>Risk and governance frameworks</li>
                         <li>Board-level assurance reporting</li>
                     </ul>
                 </div>
 
-                <!-- Service 2 -->
                 <div class="service-card">
                     <div class="service-icon">🤖</div>
-                    <h3>AI Security & Agentic Risk</h3>
+                    <h3>AI Security &amp; Agentic Risk</h3>
                     <p>Governance and oversight for AI systems in production — including agentic AI, autonomous decision-making, and the emerging risks that most organisations haven't yet planned for.</p>
                     <ul class="service-features">
                         <li>Agentic AI security assessment</li>
@@ -771,7 +951,6 @@
                     </ul>
                 </div>
 
-                <!-- Service 3 -->
                 <div class="service-card">
                     <div class="service-icon">📊</div>
                     <h3>Digital Resilience Assessment</h3>
@@ -784,13 +963,12 @@
                     </ul>
                 </div>
 
-                <!-- Service 4 -->
                 <div class="service-card">
                     <div class="service-icon">🔒</div>
                     <h3><a href="agent-security.html" style="color: inherit; text-decoration: none;">Autonomous Security Operations</a></h3>
                     <p>Design and governance of AI-driven detection, investigation, and response. Reduce dependency on round-the-clock human monitoring while maintaining accountability and audit capability.</p>
                     <ul class="service-features">
-                        <li>Autonomous detection & response design</li>
+                        <li>Autonomous detection &amp; response design</li>
                         <li>AI platform evaluation (Darktrace etc.)</li>
                         <li>Operating model transformation</li>
                         <li>Governance and escalation frameworks</li>
@@ -809,7 +987,7 @@
 
             <div class="sector-grid">
                 <div class="sector-card">
-                    <h3>International NGOs & Charities</h3>
+                    <h3>International NGOs &amp; Charities</h3>
                     <p>Complex, multi-country IT environments. Donor reporting obligations. High exposure to targeted attacks on humanitarian data and beneficiary records — with limited in-house security resource.</p>
                     <div class="sector-examples">WaterAid · Dementia UK · sector-adjacent organisations</div>
                 </div>
@@ -836,15 +1014,15 @@
 
             <div class="expertise-grid">
                 <div class="expertise-item">
-                    <h3>Frameworks & Standards</h3>
+                    <h3>Frameworks &amp; Standards</h3>
                     <p>NIST Cybersecurity Framework, CIS Controls, Cyber Essentials, ISO 27001, PSN, DCB standards</p>
                 </div>
                 <div class="expertise-item">
-                    <h3>AI & Autonomous Security</h3>
+                    <h3>AI &amp; Autonomous Security</h3>
                     <p>Agentic AI risk, autonomous detection and response, OWASP Agentic Top 10, AI governance</p>
                 </div>
                 <div class="expertise-item">
-                    <h3>Governance & Risk</h3>
+                    <h3>Governance &amp; Risk</h3>
                     <p>Board assurance, risk register integration, compliance reporting, incident response planning</p>
                 </div>
                 <div class="expertise-item">
@@ -880,6 +1058,7 @@
                         <li style="margin: 0.5rem 0;"><strong>WaterAid</strong> — Stabilised a fragmented global IT estate and strengthened cyber governance across 26-country international operations</li>
                         <li style="margin: 0.5rem 0;"><strong>Victoria and Albert Museum</strong> — Cyber Essentials and PSN compliance programme for a major public cultural institution</li>
                         <li style="margin: 0.5rem 0;"><strong>American Express</strong> — Large-scale, risk-critical technology environments with board-level cyber and resilience accountability</li>
+                        <li style="margin: 0.5rem 0;"><strong>DeFi and stablecoin systems, 2015–present</strong> — Applied cryptographic governance and autonomous protocol risk in live financial systems</li>
                     </ul>
 
                     <div class="about-highlight">
@@ -906,25 +1085,67 @@
         </div>
     </section>
 
+    <!-- Thought Pieces Section -->
+    <section class="thought-pieces" id="thinking">
+        <div class="container">
+            <h2>Thinking</h2>
+            <p class="thought-pieces-subtitle">Longer-form exploration of ideas that don't fit a fortnightly briefing. Questions without settled answers, connections worth making, and positions we're prepared to defend.</p>
+
+            <div class="thought-grid">
+                <div class="thought-card">
+                    <div class="thought-tag">Cryptographic AI Security</div>
+                    <div class="thought-card-meta">April 2026</div>
+                    <h3>Proving the Machine Didn't Lie: Zero-Knowledge Proofs and the Future of AI Audit Trails</h3>
+                    <p>Zero-knowledge proofs were built to solve a problem in cryptography — how do you prove you know something without revealing it? It turns out the same question is now central to AI governance. What tamper-proof AI verification actually means in practice, and why the DeFi world solved this problem first.</p>
+                    <a href="IR-Thought-zkML-2026-04.html" class="read-link">Read the piece →</a>
+                </div>
+
+                <div class="thought-card">
+                    <div class="thought-tag">Coming Soon</div>
+                    <div class="thought-card-meta">May 2026</div>
+                    <h3>Antifragile by Design: What Taleb Gets Right About AI Governance</h3>
+                    <p>Resilience is not the same as robustness. An organisation that survives a cyber incident unchanged hasn't built resilience — it's got lucky. Nassim Taleb's antifragility principle applied to agentic AI: why the goal isn't to prevent failure but to build systems that improve because of it.</p>
+                    <a href="#newsletter" class="read-link" style="color: #9ca3af; font-weight: 400;">Subscribe to be notified →</a>
+                </div>
+
+                <div class="thought-card">
+                    <div class="thought-tag">Causal Security Analytics</div>
+                    <div class="thought-card-meta">April 2026</div>
+                    <h3>Root Cause or Red Herring? Why Security AI Needs to Stop Correlating and Start Reasoning</h3>
+                    <p>Security teams have spent a decade training AI to spot patterns. The smarter question is whether we've been asking it to do the wrong thing — and why causal inference changes what "root cause analysis" actually means.</p>
+                    <a href="IR-Thought-CausalML-2026-04.html" class="read-link">Read the piece →</a>
+                </div>
+
+                <div class="thought-card">
+                    <div class="thought-tag">Coming Soon</div>
+                    <div class="thought-card-meta">May 2026</div>
+                    <h3>What Does "Auditable" Mean When the Decision-Maker Is an Agent?</h3>
+                    <p>Regulators and boards are asking for audit trails. But the audit trail concept was built for human decisions — discrete, attributable, reversible. When an autonomous agent makes ten thousand micro-decisions in the course of a single task, what does accountability actually look like?</p>
+                    <a href="#newsletter" class="read-link" style="color: #9ca3af; font-weight: 400;">Subscribe to be notified →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Newsletter / Insights Section -->
     <section class="newsletter-section" id="newsletter">
         <div class="container">
             <h2>Insights</h2>
-            <p class="newsletter-subtitle">Fortnightly intelligence on AI security, agentic risk, and cyber resilience — written for practitioners and the leaders who work with them.</p>
+            <p class="newsletter-subtitle">Fortnightly intelligence on AI security, agentic risk, non-human identity threats, and cyber resilience — written for practitioners and the leaders who work with them.</p>
 
             <div class="newsletter-grid">
                 <div class="newsletter-card">
-                    <div class="newsletter-card-date">10 April 2026 · Edition 8</div>
-                    <h3>Project Glasswing & the Patch Gap Crisis</h3>
-                    <p>Anthropic's autonomous zero-day research, what it means for organisations running legacy infrastructure, and why the patch gap is becoming a structural risk.</p>
-                    <a href="IR-Newsletter-2026-04-10.html" class="read-link">Read edition →</a>
+                    <div class="newsletter-card-date">15 April 2026 · Edition 9</div>
+                    <h3>The Identity Perimeter Has Already Moved</h3>
+                    <p>Non-Human Identities now outnumber human users 100:1. Astrix's RSAC 2026 announcements, the OpenClaw supply chain crisis, the EU AI Act's 2 August deadline, and where zkML stands in 2026.</p>
+                    <a href="IR-Newsletter-2026-04-15.html" class="read-link">Read edition →</a>
                 </div>
 
                 <div class="newsletter-card">
-                    <div class="newsletter-card-date">3 April 2026 · Edition 7</div>
-                    <h3>Agentic AI in the Wild — and the EU AI Act Deadline</h3>
-                    <p>OWASP's Agentic Top 10 lands, real-world agentic incidents begin to surface, and the EU AI Act compliance clock is running. What organisations need to know now.</p>
-                    <a href="IR-Newsletter-2026-04-03.html" class="read-link">Read edition →</a>
+                    <div class="newsletter-card-date">10 April 2026 · Edition 8</div>
+                    <h3>Project Glasswing &amp; the Patch Gap Crisis</h3>
+                    <p>Anthropic's autonomous zero-day research, what it means for organisations running legacy infrastructure, and why the patch gap is becoming a structural risk.</p>
+                    <a href="IR-Newsletter-2026-04-10.html" class="read-link">Read edition →</a>
                 </div>
             </div>
 
@@ -985,7 +1206,19 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p><strong>Intelligent Resilience</strong></p>
+            <div class="footer-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="15 45 470 410" role="img" aria-hidden="true">
+                  <polygon points="40,68 460,68 250,431.73" fill="#2563EB"/>
+                  <polygon points="79.26,90.67 420.74,90.67 250,386.40" fill="#0F172A"/>
+                  <polygon points="40,68 460,68 418,140.75 82,140.75" fill="#1e3a8a"/>
+                  <polygon points="40,68 79.26,90.67 79.26,68" fill="#1e3a8a"/>
+                  <polygon points="460,68 420.74,90.67 420.74,68" fill="#1e3a8a"/>
+                  <rect x="233" y="140.75" width="34" height="163.68" fill="#ffffff"/>
+                  <polygon points="202.67,304.43 297.33,304.43 287.51,321.43 212.49,321.43" fill="#ffffff"/>
+                  <polygon points="212.49,321.43 287.51,321.43 250,386.40" fill="#D4A017"/>
+                </svg>
+                <span class="footer-logo-text" aria-label="Intelligent Resilience">Intelligent <span>Resilience</span></span>
+            </div>
             <p style="color: #94a3b8; font-size: 0.95rem;">AI security and cyber resilience consultancy</p>
             <div class="footer-links">
                 <a href="mailto:stuart@intelligent-resilience.com">stuart@intelligent-resilience.com</a>
@@ -997,7 +1230,6 @@
     </footer>
 
     <script>
-        // Form handling with Formspree
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -1007,7 +1239,7 @@
             const formData = new FormData(form);
 
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending…';
+            submitBtn.textContent = 'Sending\u2026';
             messageDiv.style.display = 'none';
             messageDiv.className = 'form-message';
 
@@ -1039,7 +1271,6 @@
             });
         });
 
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();

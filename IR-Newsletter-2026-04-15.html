@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The IR Digest — Edition 9 · Intelligent Resilience</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    max-width: 680px;
+    margin: 48px auto;
+    padding: 0 24px;
+    color: #1a1a1a;
+    line-height: 1.7;
+    background: #ffffff;
+  }
+
+  .masthead {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    border-radius: 0.75rem;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .masthead-mark svg {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+  }
+  .masthead-text h1 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 3px 0;
+    letter-spacing: -0.5px;
+  }
+  .masthead-text .byline {
+    font-size: 13px;
+    color: #e0e7ff;
+    font-weight: 500;
+    margin: 0 0 6px 0;
+  }
+  .masthead-text .edition {
+    font-size: 12px;
+    color: #93c5fd;
+  }
+  .masthead-text .edition a { color: #93c5fd; text-decoration: none; }
+  .masthead-text .edition a:hover { text-decoration: underline; }
+
+  .intro-box {
+    background: #f9fafb;
+    border-left: 4px solid #2563eb;
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 14px 18px;
+    margin-bottom: 32px;
+    font-size: 15px;
+    color: #374151;
+    font-style: italic;
+  }
+
+  h3 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+    margin-top: 36px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    line-height: 1.35;
+  }
+
+  p { margin: 0 0 14px 0; font-size: 15px; color: #1a1a1a; }
+
+  .callout {
+    background: #f9fafb;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.75rem;
+    padding: 14px 18px;
+    margin: 14px 0 18px 0;
+    font-size: 14.5px;
+    color: #374151;
+  }
+  .callout strong { color: #0f172a; }
+
+  .callout.red {
+    background: #fff5f5;
+    border-color: #fecaca;
+  }
+  .callout.gold {
+    background: #fffbeb;
+    border-color: #fde68a;
+  }
+
+  .source-line {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: -6px;
+    margin-bottom: 20px;
+  }
+  .source-line a { color: #2563eb; text-decoration: none; }
+  .source-line a:hover { text-decoration: underline; }
+
+  .stat-row {
+    display: flex;
+    gap: 12px;
+    margin: 14px 0 20px 0;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: 140px;
+    background: #0f172a;
+    border-radius: 0.5rem;
+    padding: 14px 16px;
+    color: #ffffff;
+    text-align: center;
+  }
+  .stat-box .number {
+    font-size: 26px;
+    font-weight: 800;
+    color: #60a5fa;
+    line-height: 1.1;
+  }
+  .stat-box .label {
+    font-size: 12px;
+    color: #cbd5e1;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 32px 0;
+  }
+
+  .action-box {
+    border-radius: 0.75rem;
+    padding: 18px 20px;
+    margin: 16px 0;
+  }
+  .action-box.technical {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+  }
+  .action-box.executive {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+  }
+  .action-box .action-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .action-box.technical .action-label { color: #1d4ed8; }
+  .action-box.executive .action-label { color: #15803d; }
+  .action-box p { font-size: 14px; margin: 0; }
+
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e5e5;
+    font-size: 13px;
+    color: #6b7280;
+    text-align: center;
+  }
+  .footer a { color: #2563eb; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .footer .footer-links { margin: 10px 0; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-mark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="15 45 470 410">
+      <polygon points="40,68 460,68 250,431.73" fill="#2563EB"/>
+      <polygon points="79.26,90.67 420.74,90.67 250,386.40" fill="#0F172A"/>
+      <polygon points="40,68 460,68 418,140.75 82,140.75" fill="#1e3a8a"/>
+      <polygon points="40,68 79.26,90.67 79.26,68" fill="#1e3a8a"/>
+      <polygon points="460,68 420.74,90.67 420.74,68" fill="#1e3a8a"/>
+      <rect x="233" y="140.75" width="34" height="163.68" fill="#ffffff"/>
+      <polygon points="202.67,304.43 297.33,304.43 287.51,321.43 212.49,321.43" fill="#ffffff"/>
+      <polygon points="212.49,321.43 287.51,321.43 250,386.40" fill="#D4A017"/>
+    </svg>
+  </div>
+  <div class="masthead-text">
+    <h1>The IR Digest</h1>
+    <p class="byline">Intelligent Resilience &mdash; AI Security &amp; Cyber Resilience</p>
+    <p class="edition">Edition 9 &middot; 15 April 2026 &middot; <a href="https://substack.com/@intelligentresilience">Subscribe on Substack</a></p>
+  </div>
+</div>
+
+<div class="intro-box">
+  This edition focuses on one of the most significant structural shifts in enterprise security right now: the rise of Non-Human Identities as the primary attack surface for AI-enabled organisations. We also cover Astrix's RSAC 2026 announcements, the approaching EU AI Act deadline, and where zkML sits in 2026.
+</div>
+
+<!-- SECTION 1 -->
+<h3>NHI Security</h3>
+<h2>The Identity Perimeter Has Already Moved -- and Most Organisations Have Not Noticed</h2>
+
+<p>At RSA Conference 2026 this month, Astrix Security made a set of announcements that should be required reading for any security leader deploying AI. Their headline statistic frames the problem precisely: non-human identities now outnumber human users by 100 to 1 in the average enterprise environment. Every AI agent, every automation, every SaaS integration authenticates through a web of OAuth tokens, service accounts, API keys, PATs, and MCP server connections. Collectively, these are Non-Human Identities -- and they are invisible to the PAM and IGA solutions that most organisations have invested in for the past decade.</p>
+
+<p>Astrix's new four-method discovery architecture attempts to address this at scale. Their platform now ingests data from AI platform integrations directly (covering Copilot, Bedrock, Vertex, OpenAI, Agentforce), supplements this with NHI fingerprinting across cloud, SaaS, DevOps, and identity provider layers, adds sensor telemetry from EDR tools including CrowdStrike and SentinelOne, and provides a BYOS extension for proprietary systems. The result is comprehensive inventory -- sanctioned agents, shadow agents, and MCP servers alike -- mapped to the human owner responsible for each one and the permissions it carries.</p>
+
+<div class="stat-row">
+  <div class="stat-box">
+    <div class="number">100:1</div>
+    <div class="label">NHIs to human users in the average enterprise</div>
+  </div>
+  <div class="stat-box">
+    <div class="number">97%</div>
+    <div class="label">of AI-related breaches via supply chain -- apps, APIs, plugins</div>
+  </div>
+  <div class="stat-box">
+    <div class="number">5x</div>
+    <div class="label">shadow AI adoption rate vs formally procured AI</div>
+  </div>
+</div>
+<p class="source-line">Source: <a href="https://astrix.security/learn/blog/what-were-announcing-at-rsac-2026-discovery-across-every-layer-and-control-over-what-agents-can-do/" target="_blank">Astrix Security RSAC 2026</a> &middot; <a href="https://www.helpnetsecurity.com/2026/03/23/astrix-security-ai-agent-security-platform-expansion/" target="_blank">Help Net Security</a></p>
+
+<p>What makes this practically relevant for the organisations IR works with -- NGOs, health charities, arms-length public bodies -- is the shadow adoption dynamic. These are environments where staff regularly connect personal productivity tools to organisational systems without IT oversight. An Admiral Nurse who connects an AI transcription tool to her Microsoft account. A fundraising team member who builds a Zapier automation linking the donor CRM to an OpenAI assistant. A finance officer who installs Cursor on their laptop and connects it to the organisation's GitHub repository. Each of these creates one or more NHIs -- service accounts, OAuth apps, API keys -- that carry real permissions and generate no alert in any monitoring system the organisation has.</p>
+
+<p>The governance gap is structural, not operational. Astrix's new Agent Policies feature -- allowing security teams to define allow, flag, and block rules scoped by user, department, platform, and resource type, evaluated before an agent action executes -- is the right direction. But the prerequisite is discovery: you cannot govern what you cannot see. For most mission-driven organisations, the first question to answer is not "do we have the right controls?" but "do we even know what NHIs exist in our environment?"</p>
+
+<div class="callout red">
+  <strong>OpenClaw: a case study in what this looks like at scale.</strong> OpenClaw, an open-source autonomous agent framework, became one of the fastest-growing GitHub repositories in history -- over 135,000 stars within weeks. Within months, Antiy CERT confirmed 1,184 malicious skills across ClawHub, its marketplace -- approximately one in five packages at peak. CVE-2026-25253 allowed one-click remote code execution via a malicious link. Censys identified over 21,000 publicly exposed instances. The February Moltbook breach illustrated the pivot mechanism: attackers compromised a third-party integration, then moved laterally across client environments through the trusted NHIs that integration held. None of this required a sophisticated attacker. It required an unmanaged NHI with permissions that were never revoked.
+</div>
+<p class="source-line">Source: <a href="https://www.reversinglabs.com/blog/openclaw-ai-agents-black-hole-risks" target="_blank">ReversingLabs</a> &middot; <a href="https://blog.barracuda.com/2026/04/09/openclaw-security-risks-agentic-ai" target="_blank">Barracuda Networks</a> &middot; <a href="https://nhimg.org/community/non-human-identity-management-general-discussions/openclaws-rapid-rise-ai-assistants-security-risks-unveiled/" target="_blank">NHI Management Group</a></p>
+
+<hr class="divider">
+
+<!-- SECTION 2 -->
+<h3>Regulatory</h3>
+<h2>2 August 2026: The EU AI Act Deadline That Most UK Organisations Are Treating as Someone Else's Problem</h2>
+
+<p>The remaining provisions of the EU Artificial Intelligence Act become applicable on 2 August 2026. This is the major milestone: the date from which obligations on high-risk AI systems apply to all operators, including those outside the EU whose systems are used within it. Conformity assessments must be completed, technical documentation finalised, and relevant systems registered in the EU database. For any organisation that has deployed AI in a context touching EU data subjects -- which includes most UK charities and NGOs with European operations, donor bases, or research partnerships -- this is not an abstract compliance matter.</p>
+
+<p>The practical reality for deployer organisations (as distinct from developers or providers) is that the obligations are less about technical certification and more about documentation, governance, and accountability chains. Can you describe what your AI system does and does not do? Can you demonstrate that a human was in the loop for consequential decisions? Do you have a DPIA that reflects the AI-specific risks? Can you show that you evaluated your supplier's system before deployment? These are the questions the Act requires you to be able to answer -- and most mid-size charities and public bodies cannot currently answer them for every AI system they operate.</p>
+
+<div class="callout gold">
+  <strong>UK note.</strong> The UK is not subject to the EU AI Act directly, but the direction of travel is clear. The MHRA's National Commission into the Regulation of AI in Healthcare is expected to publish its framework in 2026. NICE and CQC are both signalling that explainability and human oversight will be requirements for clinical AI, not aspirations. Organisations building AI governance frameworks now -- even voluntarily, even in advance of mandatory requirements -- will be significantly better positioned when UK obligations land. The cost of retro-fitting governance is always higher than building it in from the start.
+</div>
+<p class="source-line">Source: <a href="https://www.kennedyslaw.com/en/thought-leadership/article/2026/the-eu-ai-act-implementation-timeline-understanding-the-next-deadline-for-compliance/" target="_blank">Kennedys Law</a> &middot; <a href="https://www.orrick.com/en/Insights/2025/11/The-EU-AI-Act-6-Steps-to-Take-Before-2-August-2026" target="_blank">Orrick: 6 Steps Before 2 August</a> &middot; <a href="https://www.periculo.co.uk/cyber-security-blog/mhras-ai-medical-device-framework-what-nhs-suppliers-need-to-know-about-cybersecurity-and-compliance" target="_blank">MHRA AI Medical Device Framework</a></p>
+
+<hr class="divider">
+
+<!-- SECTION 3 -->
+<h3>zkML</h3>
+<h2>Giza's LuminAIR and the Slow March Towards Verifiable AI</h2>
+
+<p>Progress in zero-knowledge machine learning continued steadily this quarter, without the headline-grabbing announcements of last year. Giza Technology's LuminAIR framework -- built on StarkWare's STWO prover using Circle STARKs -- has moved into its GPU acceleration phase, with the goal of making zkML proofs fast enough for practical deployment in live systems rather than theoretical demonstrations. The framework allows an AI agent to generate a cryptographic proof that its decision or output genuinely came from a specific, named model -- rather than a modified or substituted version -- without revealing the model weights or input data.</p>
+
+<p>The practical application IR continues to track most closely is audit trail integrity for clinical and regulated AI. Under the EU AI Act's documentation requirements, deployers of high-risk AI systems need to be able to demonstrate that outputs were generated by the declared system. Under NHS clinical safety standards, the "it only suggests, never decides" principle only holds if there is an auditable record of what the system actually produced. zkML offers a path to cryptographically verified audit trails -- not just logs that can be altered, but proofs that cannot be retrospectively falsified. EZKL, the other primary open-source zkML engine, released further GPU performance improvements in Q1 2026, bringing proof generation times for smaller models into the range where pilot deployments become feasible.</p>
+
+<p>The honest caveat remains: for large language models and complex multi-step reasoning chains, the compute cost of zkML proofs is still prohibitive outside well-resourced research and DeFi contexts. The near-term practical value for mission-driven organisations is narrower -- verifying specific high-stakes inference steps (a triage decision, a safeguarding flag, a fundraising targeting output) rather than end-to-end model verification. Worth watching rather than acting on immediately, but the trajectory is towards production viability within the strategy horizon.</p>
+<p class="source-line">Source: <a href="https://starkware.co/blog/giza-x-s-two-powering-verifiable-ml-with-luminair/" target="_blank">StarkWare: Giza x S-two</a> &middot; <a href="https://github.com/zkonduit/ezkl/releases" target="_blank">EZKL releases</a> &middot; <a href="https://blog.icme.io/the-definitive-guide-to-zkml-2025/" target="_blank">Definitive Guide to zkML</a></p>
+
+<hr class="divider">
+
+<!-- SECTION 4 -->
+<h3>Causal Security Analytics</h3>
+<h2>Root Cause vs. Alert Fatigue: The Case for Causal Reasoning in Agentic Security Operations</h2>
+
+<p>The NHI security challenge described above creates a specific forensics problem: when an AI agent takes an unintended action -- exfiltrating data, escalating privileges, making an unauthorised API call -- the traditional security tooling response is to generate an alert. The alert says something happened. It does not say why, or which upstream cause in a chain of agent decisions and delegations led to it. In environments where agents are operating at machine speed across dozens of interconnected systems, alert-based detection produces two failure modes: either alert fatigue from too many low-fidelity signals, or delayed detection because the root cause happened several steps before the observable behaviour.</p>
+
+<p>The causal ML approach -- drawing on work from the Alan Turing Institute, IBM Instana's anomaly detection, and the DoWhy/CausalML library ecosystem -- addresses this by attempting to reason about what change in the environment caused an observed outcome, rather than simply correlating the outcome with nearby events. In an agentic context, this means modelling the causal graph of agent actions: which permission grant led to which downstream capability, which tool invocation triggered which data access, which MCP server connection created which lateral movement opportunity. The output is a root cause chain, not a list of correlated alerts.</p>
+
+<p>This remains an area where the research is ahead of the tooling for most organisations. But the framing matters for procurement and governance decisions being made now. When evaluating AI security tooling -- whether NHI platforms, SIEM integrations, or agentic monitoring solutions -- "does this tell me why something happened or only that it happened?" is a question worth asking. Organisations that build causal reasoning into their security evaluation criteria now will make better decisions about which tools to invest in as the market matures.</p>
+
+<hr class="divider">
+
+<!-- ACTION BOXES -->
+<div class="action-box technical">
+  <div class="action-label">For CISOs and Technical Leaders</div>
+  <p>Run an NHI discovery exercise before the end of Q2. You do not need a platform to start: pull a list of all OAuth applications connected to your Microsoft 365 or Google Workspace tenant, map each to the human who authorised it, and check when each was last used and what permissions it holds. The results will almost certainly surface integrations that nobody remembers authorising, tokens that were never rotated, and service accounts that were never offboarded. That is your NHI attack surface in miniature -- and it is almost certainly larger than you expect. For organisations deploying AI agents, run the same exercise against every agent's authentication credentials before the 2 August EU AI Act deadline forces you to.</p>
+</div>
+
+<div class="action-box executive">
+  <div class="action-label">For Finance Directors and Non-Specialist Leaders</div>
+  <p>The 2 August EU AI Act deadline is 15 weeks away. If your organisation deploys AI systems that affect EU data subjects -- donors, service users, research participants -- and you cannot currently answer "what AI systems do we operate, who approved them, and what governance is in place?", that is a board-level risk item, not an IT matter. Start with a simple inventory: ask your technology lead to list every AI tool the organisation uses or has used in the past 12 months, who authorised it, and whether a DPIA exists. The gap between what that list contains and what your board knows about is likely to be material.</p>
+</div>
+
+<hr class="divider">
+
+<div class="footer">
+  <p><strong>Intelligent Resilience</strong> is an AI security and cyber resilience consultancy specialising in NGOs, arms-length public bodies, and health-adjacent charities.</p>
+  <div class="footer-links">
+    <a href="https://substack.com/@intelligentresilience" target="_blank">Subscribe on Substack</a>
+    <a href="mailto:stuart@intelligent-resilience.com">Get in touch</a>
+    <a href="https://www.linkedin.com/in/stuartkwilson/" target="_blank">LinkedIn</a>
+  </div>
+  <p style="margin-top: 12px; font-size: 12px; color: #9ca3af;">Building systems that get stronger when tested. &copy; 2026 Intelligent Resilience.</p>
+</div>
+
+</body>
+</html>
