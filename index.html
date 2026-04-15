@@ -570,6 +570,40 @@
             text-decoration: underline;
         }
 
+        .newsletter-archive {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .newsletter-archive.visible {
+            display: grid;
+        }
+
+        .newsletter-load-more {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-load-more button {
+            background: transparent;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            padding: 0.6rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .newsletter-load-more button:hover {
+            border-color: #2563EB;
+            color: #e2e8f0;
+        }
+
         .newsletter-substack {
             text-align: center;
         }
@@ -1133,6 +1167,7 @@
             <h2>Insights</h2>
             <p class="newsletter-subtitle">Fortnightly intelligence on AI security, agentic risk, non-human identity threats, and cyber resilience — written for practitioners and the leaders who work with them.</p>
 
+            <!-- Latest 2 editions — always visible -->
             <div class="newsletter-grid">
                 <div class="newsletter-card">
                     <div class="newsletter-card-date">15 April 2026 · Edition 9</div>
@@ -1146,6 +1181,63 @@
                     <h3>Project Glasswing &amp; the Patch Gap Crisis</h3>
                     <p>Anthropic's autonomous zero-day research, what it means for organisations running legacy infrastructure, and why the patch gap is becoming a structural risk.</p>
                     <a href="IR-Newsletter-2026-04-10.html" class="read-link">Read edition →</a>
+                </div>
+            </div>
+
+            <!-- Load more button -->
+            <div class="newsletter-load-more">
+                <button id="loadMoreBtn" onclick="toggleArchive()">Show older editions ↓</button>
+            </div>
+
+            <!-- Older editions — hidden until Load more clicked -->
+            <div class="newsletter-archive" id="newsletterArchive">
+                <div class="newsletter-card">
+                    <div class="newsletter-card-date">3 April 2026 · Edition 7</div>
+                    <h3>Agentic AI in the Wild — and the EU AI Act Deadline</h3>
+                    <p>OWASP's Agentic Top 10 lands, real-world agentic incidents begin to surface, and the EU AI Act compliance clock is running. What organisations need to know now.</p>
+                    <a href="IR-Newsletter-2026-04-03.html" class="read-link">Read edition →</a>
+                </div>
+
+                <div class="newsletter-card">
+                    <div class="newsletter-card-date">20 March 2026 · Edition 6</div>
+                    <h3>Zero-Knowledge Proofs and the Future of AI Audit Trails</h3>
+                    <p>How zkML and EZKL are beginning to address one of the hardest problems in AI governance: proving a model did what it claims, without revealing the model itself.</p>
+                    <a href="#newsletter" class="read-link" style="color:#475569; font-weight:400;">Available on Substack →</a>
+                </div>
+
+                <div class="newsletter-card">
+                    <div class="newsletter-card-date">6 March 2026 · Edition 5</div>
+                    <h3>Root Cause or Red Herring? Causal ML in Security Operations</h3>
+                    <p>Why security AI needs to stop correlating and start reasoning — and what the Alan Turing Institute's work on causal inference means for the SOC.</p>
+                    <a href="#newsletter" class="read-link" style="color:#475569; font-weight:400;">Available on Substack →</a>
+                </div>
+
+                <div class="newsletter-card">
+                    <div class="newsletter-card-date">20 February 2026 · Edition 4</div>
+                    <h3>Supply Chain Risk and the Third-Party Dependency Problem</h3>
+                    <p>65% of large organisations now cite third-party vulnerabilities as their greatest resilience challenge. What that means for organisations that depend on MSPs.</p>
+                    <a href="#newsletter" class="read-link" style="color:#475569; font-weight:400;">Available on Substack →</a>
+                </div>
+
+                <div class="newsletter-card">
+                    <div class="newsletter-card-date">6 February 2026 · Edition 3</div>
+                    <h3>The Governance Gap: Why Most AI Security Frameworks Miss the Point</h3>
+                    <p>NIST, ISO, OWASP — the frameworks exist. The problem is implementation at the operational layer, particularly in under-resourced organisations.</p>
+                    <a href="#newsletter" class="read-link" style="color:#475569; font-weight:400;">Available on Substack →</a>
+                </div>
+
+                <div class="newsletter-card">
+                    <div class="newsletter-card-date">23 January 2026 · Edition 2</div>
+                    <h3>Antifragile Security: Building Systems That Get Stronger Under Pressure</h3>
+                    <p>The case for designing security architecture that improves under disruption — not just survives it. Taleb's framework applied to cyber resilience.</p>
+                    <a href="#newsletter" class="read-link" style="color:#475569; font-weight:400;">Available on Substack →</a>
+                </div>
+
+                <div class="newsletter-card">
+                    <div class="newsletter-card-date">9 January 2026 · Edition 1</div>
+                    <h3>Agentic AI and the Security Leader's Blind Spot</h3>
+                    <p>Why the transition from AI assistants to autonomous agents changes the threat model entirely — and what security leaders need to understand before their organisations deploy.</p>
+                    <a href="#newsletter" class="read-link" style="color:#475569; font-weight:400;">Available on Substack →</a>
                 </div>
             </div>
 
@@ -1280,6 +1372,19 @@
                 }
             });
         });
+
+        function toggleArchive() {
+            const archive = document.getElementById('newsletterArchive');
+            const btn = document.getElementById('loadMoreBtn');
+            const isVisible = archive.classList.contains('visible');
+            if (isVisible) {
+                archive.classList.remove('visible');
+                btn.textContent = 'Show older editions \u2193';
+            } else {
+                archive.classList.add('visible');
+                btn.textContent = 'Hide older editions \u2191';
+            }
+        }
     </script>
 </body>
 </html>
