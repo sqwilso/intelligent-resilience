@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The IR Digest — Edition 10 · Intelligent Resilience</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    max-width: 680px;
+    margin: 48px auto;
+    padding: 0 24px;
+    color: #1a1a1a;
+    line-height: 1.7;
+    background: #ffffff;
+  }
+
+  .masthead {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    border-radius: 0.75rem;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .masthead-mark svg { width: 52px; height: 52px; flex-shrink: 0; }
+  .masthead-text h1 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 3px 0;
+    letter-spacing: -0.5px;
+  }
+  .masthead-text .byline {
+    font-size: 13px;
+    color: #e0e7ff;
+    font-weight: 500;
+    margin: 0 0 6px 0;
+  }
+  .masthead-text .edition {
+    font-size: 12px;
+    color: #93c5fd;
+  }
+  .masthead-text .edition a { color: #93c5fd; text-decoration: none; }
+  .masthead-text .edition a:hover { text-decoration: underline; }
+
+  .intro-box {
+    background: #f9fafb;
+    border-left: 4px solid #2563eb;
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 14px 18px;
+    margin-bottom: 32px;
+    font-size: 15px;
+    color: #374151;
+    font-style: italic;
+  }
+
+  h3 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+    margin-top: 36px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    line-height: 1.35;
+  }
+
+  p { margin: 0 0 14px 0; font-size: 15px; color: #1a1a1a; }
+
+  .callout {
+    background: #f9fafb;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.75rem;
+    padding: 14px 18px;
+    margin: 14px 0 18px 0;
+    font-size: 14.5px;
+    color: #374151;
+  }
+  .callout strong { color: #0f172a; }
+
+  .callout.red { background: #fff5f5; border-color: #fecaca; }
+  .callout.gold { background: #fffbeb; border-color: #fde68a; }
+  .callout.slate { background: #f1f5f9; border-color: #cbd5e1; }
+
+  .source-line {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: -6px;
+    margin-bottom: 20px;
+  }
+  .source-line a { color: #2563eb; text-decoration: none; }
+  .source-line a:hover { text-decoration: underline; }
+
+  .stat-row {
+    display: flex;
+    gap: 12px;
+    margin: 14px 0 20px 0;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: 140px;
+    background: #0f172a;
+    border-radius: 0.5rem;
+    padding: 14px 16px;
+    color: #ffffff;
+    text-align: center;
+  }
+  .stat-box .number { font-size: 26px; font-weight: 800; color: #60a5fa; line-height: 1.1; }
+  .stat-box .label { font-size: 12px; color: #cbd5e1; margin-top: 4px; line-height: 1.4; }
+
+  .code-block {
+    background: #0f172a;
+    border-radius: 0.5rem;
+    padding: 16px 18px;
+    margin: 14px 0 18px 0;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+    font-size: 12.5px;
+    color: #e2e8f0;
+    overflow-x: auto;
+    line-height: 1.6;
+    white-space: pre;
+  }
+  .code-block .comment { color: #64748b; }
+  .code-block .key { color: #93c5fd; }
+  .code-block .value { color: #86efac; }
+  .code-block .string { color: #fde68a; }
+
+  .divider { border: none; border-top: 1px solid #e5e5e5; margin: 32px 0; }
+
+  .action-box {
+    border-radius: 0.75rem;
+    padding: 18px 20px;
+    margin: 16px 0;
+  }
+  .action-box.technical { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .action-box.executive { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .action-box .action-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .action-box.technical .action-label { color: #1d4ed8; }
+  .action-box.executive .action-label { color: #15803d; }
+  .action-box p { font-size: 14px; margin: 0; }
+
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e5e5;
+    font-size: 13px;
+    color: #6b7280;
+    text-align: center;
+  }
+  .footer a { color: #2563eb; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .footer .footer-links { margin: 10px 0; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-mark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="15 45 470 410">
+      <polygon points="40,68 460,68 250,431.73" fill="#2563EB"/>
+      <polygon points="79.26,90.67 420.74,90.67 250,386.40" fill="#0F172A"/>
+      <polygon points="40,68 460,68 418,140.75 82,140.75" fill="#1e3a8a"/>
+      <polygon points="40,68 79.26,90.67 79.26,68" fill="#1e3a8a"/>
+      <polygon points="460,68 420.74,90.67 420.74,68" fill="#1e3a8a"/>
+      <rect x="233" y="140.75" width="34" height="163.68" fill="#ffffff"/>
+      <polygon points="202.67,304.43 297.33,304.43 287.51,321.43 212.49,321.43" fill="#ffffff"/>
+      <polygon points="212.49,321.43 287.51,321.43 250,386.40" fill="#D4A017"/>
+    </svg>
+  </div>
+  <div class="masthead-text">
+    <h1>The IR Digest</h1>
+    <p class="byline">Intelligent Resilience &mdash; AI Security &amp; Cyber Resilience</p>
+    <p class="edition">Edition 10 &middot; 19 April 2026 &middot; <a href="https://substack.com/@intelligentresilience">Subscribe on Substack</a></p>
+  </div>
+</div>
+
+<div class="intro-box">
+  This edition focuses on the governance gap hiding in plain sight: every AI connector your staff adds to their workflow creates a non-human identity that your security tooling cannot see. We cover Keeper Security's RSAC findings on NHI governance failures, the minimum-useful-access principle as a practical countermeasure, the emerging MCP security threat surface, and a brief update on EU AI Act readiness as August approaches.
+</div>
+
+<!-- SECTION 1 -->
+<h3>Agentic AI Security</h3>
+<h2>The Connector Budget: Why Every Tool You Add to an AI Workflow Is Also an Identity You Have to Govern</h2>
+
+<p>Most organisations thinking about AI security are focused on the AI itself — the model, the outputs, the hallucination risk. The governance gap that is actually widening fastest is not in the model layer. It is in the connections surrounding it.</p>
+
+<p>Every time a staff member connects an AI assistant to an external service — a calendar, a CRM, a document store, a communication platform — that connection is authenticated through an OAuth token, a service account, or an API key. The connection persists after the task is complete. The token is rarely rotated. The permissions are rarely scoped to the minimum required. And the whole arrangement creates a Non-Human Identity: a machine credential that carries real access rights and generates no alert in any privileged access management system the organisation has invested in.</p>
+
+<p>This is not a theoretical risk. It is what the ClawHavoc supply chain attack demonstrated at scale last month — malicious packages exploiting the trusted NHIs that AI agent frameworks hold. It is what the Moltbook breach illustrated: a third-party integration compromised, then used to pivot laterally through every environment the integration had legitimate access to. The attack surface is not the AI. It is the web of identities the AI operates through.</p>
+
+<!-- CONNECTOR BUDGET DIAGRAM -->
+<!--
+  Layout: single-column stacked, viewBox 400×580
+  Top panel (y 0–260):   UNGOVERNED — agent at (200,140), 6 nodes on a radius-90 ring
+  Divider + VS label:     y 262–298
+  Bottom panel (y 300–560): GOVERNED — agent at (200,430), 3 approved + 2 blocked nodes
+  All nodes kept inside x 10–390, y 10–560 — safe at any width
+  Node box: width 68, height 28, so half-width=34, half-height=14
+  Agent circle r=28
+-->
+<div style="margin: 20px 0 8px 0; border-radius: 0.75rem; overflow: hidden; background: #0f172a; padding: 16px 12px 12px 12px;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 580" width="100%" style="display:block; max-width:480px; margin:0 auto;">
+  <defs>
+    <marker id="cb-arr-red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0.5 L0,6.5 L6,3.5 z" fill="#f87171"/>
+    </marker>
+    <marker id="cb-arr-amber" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0.5 L0,6.5 L6,3.5 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="cb-arr-green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0.5 L0,6.5 L6,3.5 z" fill="#4ade80"/>
+    </marker>
+  </defs>
+
+  <!-- ══════════════════════════════════════
+       PANEL 1 — UNGOVERNED
+       Agent centre: (200, 140)
+       6 nodes placed on r=95 ring at angles:
+         0°=right, 60°, 120°, 180°, 240°, 300°
+       Node half-size: 34w × 14h
+       Line endpoints stop 5px short of node edge
+  ══════════════════════════════════════ -->
+
+  <!-- Panel title -->
+  <text x="200" y="18" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#f87171" letter-spacing="1">UNGOVERNED</text>
+  <text x="200" y="33" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">Every connection is an unmanaged Non-Human Identity</text>
+
+  <!--
+    Node positions (centre of each box):
+      Email    0°   (295, 140)   line stop at x=261, y=140
+      CRM     60°   (248, 57)    line stop at x=236, y=70
+      Calendar 120° (105, 57)    line stop at x=137, y=70
+      Files   180°  (105, 140)   line stop at x=139, y=140
+      HR      240°  (152, 223)   line stop at x=165, y=211
+      Finance  300° (248, 223)   line stop at x=233, y=211
+  -->
+
+  <!-- Lines — drawn first -->
+  <!-- To Email (right) -->
+  <line x1="228" y1="140" x2="257" y2="140" stroke="#f87171" stroke-width="1.8" stroke-opacity="0.8" marker-end="url(#cb-arr-red)"/>
+  <!-- To CRM (upper-right) -->
+  <line x1="219" y1="115" x2="236" y2="77" stroke="#f87171" stroke-width="1.8" stroke-opacity="0.8" marker-end="url(#cb-arr-red)"/>
+  <!-- To Calendar (upper-left) -->
+  <line x1="181" y1="115" x2="160" y2="75" stroke="#f87171" stroke-width="1.8" stroke-opacity="0.8" marker-end="url(#cb-arr-red)"/>
+  <!-- To Files (left) -->
+  <line x1="172" y1="140" x2="143" y2="140" stroke="#f87171" stroke-width="1.8" stroke-opacity="0.8" marker-end="url(#cb-arr-red)"/>
+  <!-- To HR (lower-left) -->
+  <line x1="181" y1="165" x2="162" y2="206" stroke="#fbbf24" stroke-width="1.8" stroke-opacity="0.8" marker-end="url(#cb-arr-amber)"/>
+  <!-- To Finance (lower-right) -->
+  <line x1="219" y1="165" x2="234" y2="206" stroke="#fbbf24" stroke-width="1.8" stroke-opacity="0.8" marker-end="url(#cb-arr-amber)"/>
+
+  <!-- Agent node -->
+  <circle cx="200" cy="140" r="28" fill="#1e3a8a" stroke="#2563eb" stroke-width="2"/>
+  <text x="200" y="137" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#ffffff">AI</text>
+  <text x="200" y="150" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#ffffff">AGENT</text>
+
+  <!-- Service nodes (no permission labels — ungoverned) -->
+  <!-- Email (right) -->
+  <rect x="261" y="126" width="68" height="28" rx="5" fill="#1e293b" stroke="#f87171" stroke-width="1.2"/>
+  <text x="295" y="144" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#e2e8f0">Email</text>
+
+  <!-- CRM (upper-right) -->
+  <rect x="214" y="43" width="68" height="28" rx="5" fill="#1e293b" stroke="#f87171" stroke-width="1.2"/>
+  <text x="248" y="61" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#e2e8f0">CRM</text>
+
+  <!-- Calendar (upper-left) -->
+  <rect x="71" y="43" width="76" height="28" rx="5" fill="#1e293b" stroke="#f87171" stroke-width="1.2"/>
+  <text x="109" y="61" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#e2e8f0">Calendar</text>
+
+  <!-- Files (left) -->
+  <rect x="61" y="126" width="68" height="28" rx="5" fill="#1e293b" stroke="#f87171" stroke-width="1.2"/>
+  <text x="95" y="144" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#e2e8f0">Files</text>
+
+  <!-- HR (lower-left) -->
+  <rect x="114" y="209" width="68" height="28" rx="5" fill="#1e293b" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="148" y="227" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#fbbf24">HR</text>
+
+  <!-- Finance (lower-right) -->
+  <rect x="214" y="209" width="68" height="28" rx="5" fill="#1e293b" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="248" y="227" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#fbbf24">Finance</text>
+
+  <!-- Warning labels — below all nodes, clear of Finance/HR boxes (bottom edge y=237) -->
+  <text x="200" y="254" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" fill="#f87171">⚠ No owner assigned  ·  ⚠ Permissions never scoped  ·  ⚠ Tokens never rotated</text>
+
+  <!-- ══════════════════════════════════════
+       DIVIDER + VS LABEL  y=262 to 298
+  ══════════════════════════════════════ -->
+  <line x1="20" y1="272" x2="168" y2="272" stroke="#1e3a8a" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="170" y="261" width="60" height="22" rx="11" fill="#1e3a8a"/>
+  <text x="200" y="276" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#93c5fd">vs</text>
+  <line x1="232" y1="272" x2="380" y2="272" stroke="#1e3a8a" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- ══════════════════════════════════════
+       PANEL 2 — GOVERNED
+       Agent centre: (200, 430)
+       Approved nodes: CRM upper-right (55°), Email right (0°)
+       Blocked nodes:  HR lower-left (230°), Finance lower-right (310°)
+       Owner badge: upper-left area, clear of lines
+  ══════════════════════════════════════ -->
+
+  <!-- Panel title -->
+  <text x="200" y="308" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#4ade80" letter-spacing="1">GOVERNED</text>
+  <text x="200" y="323" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#64748b">Minimum useful access · named owner · scheduled review</text>
+
+  <!--
+    Approved node positions (centre):
+      CRM     55°  r=95  → (200+95cos55, 430−95sin55) = (254, 352)   box x=220, y=338
+      Email    0°  r=95  → (295, 430)                                  box x=261, y=416
+    Blocked node positions (centre):
+      Finance 310° r=95  → (200+95cos310, 430−95sin310) = (261, 503)  box x=227, y=489
+      HR      230° r=95  → (200+95cos230, 430−95sin230) = (139, 503)  box x=105, y=489
+    Owner badge: top-left, x=18, y=338, width=140, height=40
+    Lines stop 5px from node edge (box half-w=34, half-h=14 for standard; CRM box w=68→half=34)
+  -->
+
+  <!-- Approved lines -->
+  <!-- To CRM (upper-right ~55°) -->
+  <line x1="219" y1="407" x2="228" y2="359" stroke="#4ade80" stroke-width="2" stroke-opacity="0.9" marker-end="url(#cb-arr-green)"/>
+  <!-- To Email (right) -->
+  <line x1="228" y1="430" x2="257" y2="430" stroke="#4ade80" stroke-width="2" stroke-opacity="0.9" marker-end="url(#cb-arr-green)"/>
+
+  <!-- Blocked lines (dashed, dark) -->
+  <!-- To Finance (lower-right) -->
+  <line x1="219" y1="453" x2="240" y2="482" stroke="#374151" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <!-- To HR (lower-left) -->
+  <line x1="181" y1="453" x2="162" y2="482" stroke="#374151" stroke-width="1.2" stroke-dasharray="4,3"/>
+
+  <!-- Agent node -->
+  <circle cx="200" cy="430" r="28" fill="#1e3a8a" stroke="#2563eb" stroke-width="2"/>
+  <text x="200" y="427" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#ffffff">AI</text>
+  <text x="200" y="440" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#ffffff">AGENT</text>
+
+  <!-- CRM — approved -->
+  <rect x="220" y="338" width="68" height="34" rx="5" fill="#052e16" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="254" y="353" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#4ade80">CRM</text>
+  <text x="254" y="365" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#86efac">read only</text>
+
+  <!-- Email — approved -->
+  <rect x="261" y="416" width="78" height="34" rx="5" fill="#052e16" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="300" y="431" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#4ade80">Email</text>
+  <text x="300" y="443" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="#86efac">send only</text>
+
+  <!-- Finance — blocked -->
+  <rect x="225" y="489" width="72" height="28" rx="5" fill="#1c1917" stroke="#374151" stroke-width="1.2"/>
+  <text x="261" y="500" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" fill="#4b5563">Finance</text>
+  <text x="261" y="512" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#4b5563">blocked</text>
+
+  <!-- HR — blocked -->
+  <rect x="103" y="489" width="72" height="28" rx="5" fill="#1c1917" stroke="#374151" stroke-width="1.2"/>
+  <text x="139" y="500" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" fill="#4b5563">HR</text>
+  <text x="139" y="512" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#4b5563">blocked</text>
+
+  <!-- Owner badge (top-left of governed panel, clear of lines) -->
+  <rect x="14" y="338" width="148" height="44" rx="6" fill="#0c4a6e" stroke="#38bdf8" stroke-width="1"/>
+  <text x="88" y="354" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="#7dd3fc">Owner: Head of Fundraising</text>
+  <text x="88" y="367" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#7dd3fc">Reviewed: 2026-04-01</text>
+  <text x="88" y="378" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#7dd3fc">Next review: 2026-07-01</text>
+
+  <!-- Confirmation ticks -->
+  <text x="200" y="543" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" fill="#4ade80">✓ 2 connectors authorised  ·  ✓ Permissions scoped to task</text>
+  <text x="200" y="557" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" fill="#38bdf8">✓ Owner named  ·  ✓ Review scheduled  ·  ✓ Finance &amp; HR blocked</text>
+
+</svg>
+</div>
+
+<div class="stat-row">
+  <div class="stat-box">
+    <div class="number">76%</div>
+    <div class="label">of organisations with AI tool access do not govern those identities under PAM policies</div>
+  </div>
+  <div class="stat-box">
+    <div class="number">53%</div>
+    <div class="label">cite lack of visibility into AI and machine access as their top NHI risk</div>
+  </div>
+  <div class="stat-box">
+    <div class="number">32%</div>
+    <div class="label">are unsure whether they have already had an NHI security incident</div>
+  </div>
+</div>
+<p class="source-line">Source: <a href="https://www.prnewswire.com/news-releases/keeper-security-research-exposes-critical-gaps-in-securing-ai-agents-machines-and-non-human-identities-302735305.html" target="_blank">Keeper Security RSAC 2026 Survey</a> &middot; <a href="https://www.scworld.com/brief/report-highlights-automation-nhi-security-risks" target="_blank">SC Media</a></p>
+
+<p>The concept IR has been applying to this problem is what some are now calling the <strong>connector budget</strong> — the deliberate, per-workflow discipline of connecting only the tools a given agent genuinely requires for that task, and disconnecting them when the task is complete. It is minimum-useful-access applied to agentic workflows: the same principle that underlies least-privilege in traditional identity governance, adapted for an environment where identities are created and discarded in minutes and are invisible to the tools designed to govern them.</p>
+
+<p>The connector budget framing is practically useful because it gives non-technical leaders a concrete question to ask: "For this AI workflow, which systems does it need to touch, and which systems does it currently have access to?" The gap between those two answers is your unnecessary NHI attack surface. In most organisations that have adopted AI productivity tools in the past 18 months, that gap is significant — and entirely unaudited.</p>
+
+<div class="callout gold">
+  <strong>The governance principle.</strong> Minimum useful access per workflow: connect only what is needed, scope permissions to the task, revoke or rotate after use. This maps directly onto OWASP LLM08 (Excessive Agency) and is the prerequisite for any meaningful NHI governance programme. The tooling to enforce it at scale — Astrix's Agent Policies, Keeper's NHI vaulting, and emerging MCP gateway architectures — is maturing rapidly. But the governance principle does not require a platform to implement. It requires a policy decision and someone accountable for enforcing it.
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 2 -->
+<h3>Agentic AI Security</h3>
+<h2>MCP Security: The Protocol Connecting Your AI to Everything Has Become a Primary Attack Surface</h2>
+
+<p>Model Context Protocol has become the de facto standard for connecting AI agents to external tools and data sources. Anthropic introduced it, and adoption has been rapid — it is now the plumbing behind most enterprise AI agent architectures, including Microsoft Copilot integrations, OpenAI tool use, and a growing catalogue of third-party agents. The problem is that MCP was designed to optimise developer velocity and interoperability, not security enforcement. That design choice is now producing consequences at scale.</p>
+
+<p>The two attack vectors most active in Q1 2026 are tool poisoning and indirect prompt injection via MCP connectors. Tool poisoning exploits the fact that an MCP tool's description — the text the AI model reads to understand what the tool does — is not validated or signed. An attacker who compromises an MCP server, or publishes a malicious MCP tool in a community repository, can embed instructions in the tool description that are invisible to the user but followed by the model. The model calls what it believes is a search function; the function exfiltrates credentials. There is no observable user action because the user never gave one.</p>
+
+<div class="callout red">
+  <strong>The pivot problem.</strong> An MCP server that is poorly authenticated or misconfigured becomes a universal pivot point: an attacker who controls an MCP server can, in principle, control every AI agent connected to it. In enterprise environments where a single MCP deployment serves multiple agents across multiple departments, the blast radius is comparable to a compromised domain controller. The OWASP MCP Top 10, published in early 2026, catalogues the full attack surface — tool poisoning, privilege escalation, supply chain substitution, sampling-based injection, and credential theft via ambient context. For organisations deploying or procuring AI agents, this should be required reading before any production deployment.
+</div>
+<p class="source-line">Source: <a href="https://mcpplaygroundonline.com/blog/mcp-security-tool-poisoning-owasp-top-10-mcp-scan" target="_blank">MCP Security &amp; OWASP MCP Top 10</a> &middot; <a href="https://unit42.paloaltonetworks.com/model-context-protocol-attack-vectors/" target="_blank">Palo Alto Unit 42: MCP Attack Vectors</a> &middot; <a href="https://developer.microsoft.com/blog/protecting-against-indirect-injection-attacks-mcp" target="_blank">Microsoft: Protecting Against Indirect Injection in MCP</a></p>
+
+<p>The practical implication for mission-driven organisations is not that MCP should be avoided — it is that MCP deployments require the same security evaluation as any other privileged integration. Questions to ask before any MCP-connected deployment: Where does this MCP server run, and who controls it? What permissions does the agent hold on each connected system? Has the tool catalogue been reviewed for unsigned or community-sourced entries? Is there a gateway or audit layer between the agent and the tools it can call? For most organisations, these questions have not been asked, because MCP adoption has happened faster than security evaluation cycles can keep pace with.</p>
+
+<p>A useful operational governance artefact for organisations beginning to address this is a connector budget policy — a documented, per-workflow statement of which connectors are authorised, what permissions they hold, who owns them, and when they were last reviewed. Below is a minimal structure that works for most NGO and charity environments:</p>
+
+<div class="code-block"><span class="comment"># IR Connector Budget Policy — Minimal Template</span>
+<span class="comment"># One entry per authorised AI workflow. Review quarterly.</span>
+
+<span class="key">workflows</span>:
+  - <span class="key">name</span>: <span class="string">"Fundraising Supporter Comms Agent"</span>
+    <span class="key">owner</span>: <span class="string">"Head of Fundraising"</span>
+    <span class="key">authorised_connectors</span>:
+      - <span class="string">CRM (read: donor records; write: communication log)"</span>
+      - <span class="string">"Email (send-only; no inbox read)"</span>
+    <span class="key">explicitly_blocked</span>:
+      - <span class="string">"Finance systems"</span>
+      - <span class="string">"HR records"</span>
+      - <span class="string">"External file storage"</span>
+    <span class="key">last_reviewed</span>: <span class="string">"2026-04-01"</span>
+    <span class="key">next_review</span>: <span class="string">"2026-07-01"</span>
+    <span class="key">nhi_credentials</span>:
+      - <span class="key">type</span>: <span class="string">"OAuth app"</span>
+        <span class="key">registered_in</span>: <span class="string">"Microsoft Entra ID"</span>
+        <span class="key">last_rotated</span>: <span class="string">"2026-03-15"</span></div>
+
+<p>The value of this template is not the YAML — it is the discipline of making the inventory visible and assigning ownership. Most security incidents involving AI agents do not exploit novel vulnerabilities. They exploit unmanaged credentials in systems nobody is monitoring, because nobody knew the credentials existed.</p>
+<p class="source-line">Source: <a href="https://adversa.ai/blog/top-mcp-security-resources-april-2026/" target="_blank">Adversa AI: Top MCP Security Resources April 2026</a> &middot; <a href="https://www.sourcingspeak.com/mcp-connectors-mitigating-risks-ai-agents-connected-architecture/" target="_blank">Sourcing Speak: MCP Connectors and Agentic Risk</a></p>
+
+<hr class="divider">
+
+<!-- SECTION 3 -->
+<h3>Regulatory</h3>
+<h2>EU AI Act: 15 Weeks to Go — The AI Register Is Still the Starting Point Most Organisations Are Missing</h2>
+
+<p>The 2 August 2026 deadline for the EU AI Act's high-risk provisions is now 15 weeks away. The compliance conversation in most UK organisations has not moved materially since Q1. The organisations that are ahead are not those with the most sophisticated compliance programmes — they are those that completed one foundational step first: building a current register of every AI system they operate, who authorised it, and what decision it influences.</p>
+
+<p>Everything else in EU AI Act compliance — conformity assessments, DPIAs, technical documentation, human oversight demonstrations — depends on that register existing. You cannot assess whether a system is high-risk if you do not know the system exists. For organisations that have adopted Microsoft Copilot, AI-assisted case management tools, donor analytics platforms, and conversational chatbots in the past 18 months without centralised governance, the register is likely to surface systems that nobody in the leadership team knows about. That is the gap to close in the next 15 weeks, not the documentation of systems you already have under governance.</p>
+
+<div class="callout slate">
+  <strong>For UK organisations.</strong> Direct EU AI Act obligations apply where your systems affect EU data subjects — donors, service users, research participants, or beneficiaries with EU residency. That is a broader category than many UK charities realise. Separately, the MHRA National Commission on AI in Healthcare is expected to publish its framework in 2026, and NICE and CQC are both signalling that explainability and human oversight will be hard requirements for clinical AI. Organisations building governance frameworks now — voluntarily, in advance of mandatory UK requirements — will be significantly better positioned when UK obligations land. Retrofitting governance is always more expensive than building it in at the start.
+</div>
+<p class="source-line">Source: <a href="https://www.kennedyslaw.com/en/thought-leadership/article/2026/the-eu-ai-act-implementation-timeline-understanding-the-next-deadline-for-compliance/" target="_blank">Kennedys Law: EU AI Act Timeline</a> &middot; <a href="https://www.orrick.com/en/Insights/2025/11/The-EU-AI-Act-6-Steps-to-Take-Before-2-August-2026" target="_blank">Orrick: 6 Steps Before 2 August</a></p>
+
+<hr class="divider">
+
+<!-- SECTION 4 -->
+<h3>Horizon Watch</h3>
+<h2>NHI Governance Tooling: What the RSAC 2026 Field Report Tells Us About Where the Market Is Heading</h2>
+
+<p>RSAC 2026 was notable for the volume of vendors now positioning explicitly around NHI governance — a category that barely existed as a named market segment two years ago. The Cremit RSAC field report catalogues the main approaches: dedicated NHI platforms (Astrix, Entro, Clutch, Oasis) competing for position against extensions to existing PAM, IGA, and CSPM tooling from CyberArk, SailPoint, and Wiz respectively. The framing contest matters, because it determines where the budget lands.</p>
+
+<p>The honest assessment for most mid-size NGOs and charities is that purpose-built NHI platforms are ahead of where your organisation currently needs to be. The prerequisite is visibility — and the foundational visibility exercise (OAuth app audit in Microsoft 365 or Google Workspace, service account review, API key inventory) does not require a platform. It requires an afternoon and someone with admin access. The platforms become valuable when you have completed that inventory and found the scale of the problem warrants automated discovery and continuous monitoring. Most organisations will find the inventory exercise alone produces enough actionable findings to occupy their security function for a quarter.</p>
+<p class="source-line">Source: <a href="https://www.cremit.io/reports/rsac-2026-nhi" target="_blank">Cremit: RSAC 2026 NHI Field Report</a> &middot; <a href="https://www.csoonline.com/article/4154086/12-cyber-industry-trends-revealed-at-rsac-2026.html" target="_blank">CSO Online: 12 Trends from RSAC 2026</a></p>
+
+<hr class="divider">
+
+<!-- ACTION BOXES -->
+<div class="action-box technical">
+  <div class="action-label">For CISOs and Technical Leaders</div>
+  <p>Run an OAuth application audit this fortnight. Pull every OAuth app connected to your Microsoft 365 or Google Workspace tenant — your admin portal has this under Enterprise Applications or Connected Apps. For each: who authorised it, when, what permissions it holds, and when it was last used. Filter for apps with write permissions to mail, calendar, files, or SharePoint. Any app that has not been used in 90 days and still holds write permissions is unnecessary NHI attack surface. Revoke it. Then scope the same exercise to any AI agent framework your organisation is running — OpenClaw, Cursor, Copilot Studio, or similar. Map every credential each agent holds to a named human owner. The inventory will take less time than you expect. What you find in it may not.</p>
+</div>
+
+<div class="action-box executive">
+  <div class="action-label">For Finance Directors and Non-Specialist Leaders</div>
+  <p>Ask your technology lead this question: "Can you show me a list of every application and tool that currently has access to our systems through an automated connection — not through a human logging in, but through a background credential?" If they can produce that list quickly, your NHI governance is ahead of most organisations at your scale. If they cannot, or if producing it would take significant effort, that is a material gap in your security posture — and it is the gap that AI-assisted attacks are now most actively exploiting. The 2 August EU AI Act deadline makes closing it both a security priority and a compliance requirement simultaneously.</p>
+</div>
+
+<hr class="divider">
+
+<div class="footer">
+  <p><strong>Intelligent Resilience</strong> is an AI security and cyber resilience consultancy specialising in NGOs, arms-length public bodies, and health-adjacent charities.</p>
+  <div class="footer-links">
+    <a href="https://substack.com/@intelligentresilience" target="_blank">Subscribe on Substack</a>
+    <a href="mailto:stuart@intelligent-resilience.com">Get in touch</a>
+    <a href="https://www.linkedin.com/in/stuartkwilson/" target="_blank">LinkedIn</a>
+  </div>
+  <p style="margin-top: 12px; font-size: 12px; color: #9ca3af;">Building systems that get stronger when tested. &copy; 2026 Intelligent Resilience.</p>
+</div>
+
+</body>
+</html>
