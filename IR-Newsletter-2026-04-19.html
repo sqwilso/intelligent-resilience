@@ -28,6 +28,8 @@
     gap: 20px;
   }
   .masthead-mark svg { width: 52px; height: 52px; flex-shrink: 0; }
+  .masthead-link { text-decoration: none; color: inherit; display: block; }
+  .masthead-link:hover h1 { text-decoration: underline; }
   .masthead-text h1 {
     font-size: 22px;
     font-weight: 800;
@@ -47,6 +49,13 @@
   }
   .masthead-text .edition a { color: #93c5fd; text-decoration: none; }
   .masthead-text .edition a:hover { text-decoration: underline; }
+  .masthead-text .site-link {
+    font-size: 12px;
+    color: #93c5fd;
+    margin: 4px 0 0 0;
+  }
+  .masthead-text .site-link a { color: #bfdbfe; text-decoration: none; font-weight: 600; }
+  .masthead-text .site-link a:hover { text-decoration: underline; }
 
   .intro-box {
     background: #f9fafb;
@@ -188,9 +197,12 @@
     </svg>
   </div>
   <div class="masthead-text">
-    <h1>The IR Digest</h1>
-    <p class="byline">Intelligent Resilience &mdash; AI Security &amp; Cyber Resilience</p>
+    <a class="masthead-link" href="https://intelligent-resilience.com" target="_blank" rel="noopener">
+      <h1>The IR Digest</h1>
+      <p class="byline">Intelligent Resilience &mdash; AI Security &amp; Cyber Resilience</p>
+    </a>
     <p class="edition">Edition 10 &middot; 19 April 2026 &middot; <a href="https://substack.com/@intelligentresilience">Subscribe on Substack</a></p>
+    <p class="site-link"><a href="https://intelligent-resilience.com" target="_blank" rel="noopener">intelligent-resilience.com &rarr;</a></p>
   </div>
 </div>
 
@@ -493,6 +505,7 @@
 <div class="footer">
   <p><strong>Intelligent Resilience</strong> is an AI security and cyber resilience consultancy specialising in NGOs, arms-length public bodies, and health-adjacent charities.</p>
   <div class="footer-links">
+    <a href="https://intelligent-resilience.com" target="_blank" rel="noopener">intelligent-resilience.com</a>
     <a href="https://substack.com/@intelligentresilience" target="_blank">Subscribe on Substack</a>
     <a href="mailto:stuart@intelligent-resilience.com">Get in touch</a>
     <a href="https://www.linkedin.com/in/stuartkwilson/" target="_blank">LinkedIn</a>
