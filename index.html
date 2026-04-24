@@ -205,8 +205,18 @@
         }
 
         .service-icon {
-            font-size: 2.5rem;
+            width: 56px;
+            height: 56px;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-icon svg {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         .service-card h3 {
@@ -968,7 +978,15 @@
 
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">🛡️</div>
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-label="Cyber Resilience Strategy">
+                          <polygon points="250,68 460,431.73 40,431.73" fill="#2563EB"/>
+                          <polygon points="250,113.27 420.74,409.33 79.26,409.33" fill="#ffffff"/>
+                          <polygon points="250,113.27 314,220 186,220" fill="#D4A017"/>
+                          <polygon points="186,220 314,220 334,254 166,254" fill="#0F172A"/>
+                          <rect x="233" y="254" width="34" height="150" fill="#0F172A"/>
+                        </svg>
+                    </div>
                     <h3>Cyber Resilience Strategy</h3>
                     <p>Cyber security roadmaps aligned with NIST, CIS Controls, and Cyber Essentials — built around your risk appetite and board-level obligations, not generic best practice.</p>
                     <ul class="service-features">
@@ -980,7 +998,19 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">🤖</div>
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-label="AI Security and Agentic Risk">
+                          <polygon points="250,68 460,431.73 40,431.73" fill="#2563EB"/>
+                          <polygon points="250,113.27 420.74,409.33 79.26,409.33" fill="#ffffff"/>
+                          <line x1="250" y1="290" x2="250" y2="200" stroke="#0F172A" stroke-width="12" stroke-linecap="round"/>
+                          <line x1="250" y1="290" x2="172" y2="335" stroke="#0F172A" stroke-width="12" stroke-linecap="round"/>
+                          <line x1="250" y1="290" x2="328" y2="335" stroke="#0F172A" stroke-width="12" stroke-linecap="round"/>
+                          <circle cx="250" cy="200" r="14" fill="#0F172A"/>
+                          <circle cx="172" cy="335" r="14" fill="#0F172A"/>
+                          <circle cx="328" cy="335" r="14" fill="#0F172A"/>
+                          <circle cx="250" cy="290" r="26" fill="#D4A017"/>
+                        </svg>
+                    </div>
                     <h3>AI Security &amp; Agentic Risk</h3>
                     <p>Governance and oversight for AI systems in production — including agentic AI, autonomous decision-making, and the emerging risks that most organisations haven't yet planned for.</p>
                     <ul class="service-features">
@@ -992,7 +1022,16 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">📊</div>
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-label="Digital Resilience Assessment">
+                          <polygon points="250,68 460,431.73 40,431.73" fill="#2563EB"/>
+                          <polygon points="250,113.27 420.74,409.33 79.26,409.33" fill="#ffffff"/>
+                          <polygon points="230,180 270,180 250,215" fill="#D4A017"/>
+                          <rect x="210" y="235" width="80" height="22" rx="4" fill="#0F172A"/>
+                          <rect x="185" y="285" width="130" height="22" rx="4" fill="#0F172A"/>
+                          <rect x="155" y="335" width="190" height="22" rx="4" fill="#0F172A"/>
+                        </svg>
+                    </div>
                     <h3>Digital Resilience Assessment</h3>
                     <p>Evaluate your current cyber posture against recognised frameworks. Identify the gaps that matter most, prioritise investment, and build a practical path forward.</p>
                     <ul class="service-features">
@@ -1004,7 +1043,15 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon">🔒</div>
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-label="Autonomous Security Operations">
+                          <polygon points="250,68 460,431.73 40,431.73" fill="#2563EB"/>
+                          <polygon points="250,113.27 420.74,409.33 79.26,409.33" fill="#ffffff"/>
+                          <polygon points="250,170 370,378 130,378" fill="none" stroke="#0F172A" stroke-width="14" stroke-linejoin="round"/>
+                          <polygon points="250,220 328,355 172,355" fill="none" stroke="#0F172A" stroke-width="12" stroke-linejoin="round"/>
+                          <polygon points="250,275 290,344 210,344" fill="#D4A017"/>
+                        </svg>
+                    </div>
                     <h3><a href="agent-security.html" style="color: inherit; text-decoration: none;">Autonomous Security Operations</a></h3>
                     <p>Design and governance of AI-driven detection, investigation, and response. Reduce dependency on round-the-clock human monitoring while maintaining accountability and audit capability.</p>
                     <ul class="service-features">
@@ -1329,7 +1376,8 @@
                 <a href="https://www.linkedin.com/in/stuartkwilson/" target="_blank">LinkedIn</a>
                 <a href="https://substack.com/@intelligentresilience" target="_blank">Substack</a>
             </div>
-            <p style="margin-top: 2rem; font-size: 0.85rem; color: #64748B;">© 2026 Intelligent Resilience. All rights reserved.</p>
+            <p style="margin-top: 2rem; font-size: 0.8rem; color: #64748B; line-height: 1.6;">Intelligent Resilience is a trading name of Resilient Intelligence Ltd, a company registered in England and Wales.<br>Company number 17170985. Registered office: Flat 10, Caxton House, 18 Ham Road, Shoreham-by-Sea, West Sussex.</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; color: #64748B;">© 2026 Resilient Intelligence Ltd. All rights reserved.</p>
         </div>
     </footer>
 
