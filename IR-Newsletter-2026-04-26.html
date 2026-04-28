@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The IR Digest, Edition 11 · Intelligent Resilience</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    max-width: 680px;
+    margin: 48px auto;
+    padding: 0 24px;
+    color: #1a1a1a;
+    line-height: 1.7;
+    background: #ffffff;
+  }
+
+  .masthead {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    border-radius: 0.75rem;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .masthead-mark svg { width: 52px; height: 52px; flex-shrink: 0; }
+  .masthead-link { text-decoration: none; color: inherit; display: block; }
+  .masthead-link:hover h1 { text-decoration: underline; }
+  .masthead-text h1 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 3px 0;
+    letter-spacing: -0.5px;
+  }
+  .masthead-text .byline {
+    font-size: 13px;
+    color: #e0e7ff;
+    font-weight: 500;
+    margin: 0 0 6px 0;
+  }
+  .masthead-text .edition {
+    font-size: 12px;
+    color: #93c5fd;
+  }
+  .masthead-text .edition a { color: #93c5fd; text-decoration: none; }
+  .masthead-text .edition a:hover { text-decoration: underline; }
+  .masthead-text .site-link {
+    font-size: 12px;
+    color: #93c5fd;
+    margin: 4px 0 0 0;
+  }
+  .masthead-text .site-link a { color: #bfdbfe; text-decoration: none; font-weight: 600; }
+  .masthead-text .site-link a:hover { text-decoration: underline; }
+
+  .intro-box {
+    background: #f9fafb;
+    border-left: 4px solid #2563eb;
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 14px 18px;
+    margin-bottom: 32px;
+    font-size: 15px;
+    color: #374151;
+    font-style: italic;
+  }
+
+  h3 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+    margin-top: 36px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    line-height: 1.35;
+  }
+
+  p { margin: 0 0 14px 0; font-size: 15px; color: #1a1a1a; }
+
+  .callout {
+    background: #f9fafb;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.75rem;
+    padding: 14px 18px;
+    margin: 14px 0 18px 0;
+    font-size: 14.5px;
+    color: #374151;
+  }
+  .callout strong { color: #0f172a; }
+
+  .callout.red { background: #fff5f5; border-color: #fecaca; }
+  .callout.gold { background: #fffbeb; border-color: #fde68a; }
+  .callout.slate { background: #f1f5f9; border-color: #cbd5e1; }
+
+  .source-line {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: -6px;
+    margin-bottom: 20px;
+  }
+  .source-line a { color: #2563eb; text-decoration: none; }
+  .source-line a:hover { text-decoration: underline; }
+
+  .stat-row {
+    display: flex;
+    gap: 12px;
+    margin: 14px 0 20px 0;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: 140px;
+    background: #0f172a;
+    border-radius: 0.5rem;
+    padding: 14px 16px;
+    color: #ffffff;
+    text-align: center;
+  }
+  .stat-box .number { font-size: 26px; font-weight: 800; color: #60a5fa; line-height: 1.1; }
+  .stat-box .label { font-size: 12px; color: #cbd5e1; margin-top: 4px; line-height: 1.4; }
+
+  .divider { border: none; border-top: 1px solid #e5e5e5; margin: 32px 0; }
+
+  .action-box {
+    border-radius: 0.75rem;
+    padding: 18px 20px;
+    margin: 16px 0;
+  }
+  .action-box.technical { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .action-box.grc { background: #faf5ff; border: 1px solid #e9d5ff; }
+  .action-box.executive { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .action-box .action-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .action-box.technical .action-label { color: #1d4ed8; }
+  .action-box.grc .action-label { color: #7c3aed; }
+  .action-box.executive .action-label { color: #15803d; }
+  .action-box p { font-size: 14px; margin: 0; }
+
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e5e5;
+    font-size: 13px;
+    color: #6b7280;
+    text-align: center;
+  }
+  .footer a { color: #2563eb; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .footer .footer-links { margin: 10px 0; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-mark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="15 45 470 410">
+      <polygon points="40,68 460,68 250,431.73" fill="#2563EB"/>
+      <polygon points="79.26,90.67 420.74,90.67 250,386.40" fill="#0F172A"/>
+      <polygon points="40,68 460,68 418,140.75 82,140.75" fill="#1e3a8a"/>
+      <polygon points="40,68 79.26,90.67 79.26,68" fill="#1e3a8a"/>
+      <polygon points="460,68 420.74,90.67 420.74,68" fill="#1e3a8a"/>
+      <rect x="233" y="140.75" width="34" height="163.68" fill="#ffffff"/>
+      <polygon points="202.67,304.43 297.33,304.43 287.51,321.43 212.49,321.43" fill="#ffffff"/>
+      <polygon points="212.49,321.43 287.51,321.43 250,386.40" fill="#D4A017"/>
+    </svg>
+  </div>
+  <div class="masthead-text">
+    <a class="masthead-link" href="https://intelligent-resilience.com" target="_blank" rel="noopener">
+      <h1>The IR Digest</h1>
+      <p class="byline">Intelligent Resilience: AI Security and Cyber Resilience</p>
+    </a>
+    <p class="edition">Edition 11 &middot; 26 April 2026 &middot; <a href="https://substack.com/@intelligentresilience">Subscribe on Substack</a></p>
+    <p class="site-link"><a href="https://intelligent-resilience.com" target="_blank" rel="noopener">intelligent-resilience.com &rarr;</a></p>
+  </div>
+</div>
+
+<div class="intro-box">
+  Anthropic's Project Glasswing launched on 7 April. Buried in the announcement is a date no one is talking about, a partner list with a quiet omission, and a ninety-day clock that started running the moment the press release went live. This edition lays out the facts, surfaces what the rest of the coverage has missed, and gives technical, governance, and finance leaders one short page each on what to do about it.
+</div>
+
+<!-- SECTION 1 -->
+<h3>Deep Dive: Project Glasswing</h3>
+<h2>The Announcement, and the Timetable Hidden Inside It</h2>
+
+<p>On 7 April 2026, Anthropic announced two things on the same morning. The first was a model called Claude Mythos Preview, withheld from public release. The second was Project Glasswing, a private programme through which Mythos Preview is being run against the source code of selected critical software. The eleven founding partners, alongside Anthropic itself, are AWS, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorgan Chase, the Linux Foundation, Microsoft, Nvidia, and Palo Alto Networks. Approximately forty further open-source and infrastructure projects sit behind them. The cash and credit attached to the programme comes to one hundred and four million dollars.</p>
+
+<p>Buried in the launch material is a date. Anthropic has committed to publish a first report on findings ninety days after launch. Ninety days after 7 April is 6 July. That date should be in the diary of anyone responsible for patching estate.</p>
+
+<p>The pre-launch testing is what gives the announcement its weight. Mythos Preview, run against critical software in the weeks before launch, returned several thousand previously unknown high-severity vulnerabilities. Three are worth naming. A denial-of-service flaw in OpenBSD's TCP SACK code, present in the source for twenty-seven years. A defect in FFmpeg's H.264 codec, present for sixteen. CVE-2026-4747, a remote code execution vulnerability in FreeBSD's NFS implementation, allowing an unauthenticated attacker to take a server, present for seventeen. At the point of disclosure, more than ninety-nine percent of the model's findings were unpatched. Some of these bugs are older than the engineers who will be asked to patch them.</p>
+
+<div class="stat-row">
+  <div class="stat-box">
+    <div class="number">6 July</div>
+    <div class="label">first 90-day Glasswing report due (90 days from 7 April launch)</div>
+  </div>
+  <div class="stat-box">
+    <div class="number">99%+</div>
+    <div class="label">of pre-launch findings unpatched at the point of initial disclosure</div>
+  </div>
+  <div class="stat-box">
+    <div class="number">$104m</div>
+    <div class="label">total cash and credit committed to the programme</div>
+  </div>
+</div>
+<p class="source-line">Source: <a href="https://www.anthropic.com/glasswing" target="_blank">Anthropic: Project Glasswing</a> &middot; <a href="https://red.anthropic.com/2026/mythos-preview/" target="_blank">Anthropic Red Team: Claude Mythos Preview</a> &middot; <a href="https://www.schneier.com/blog/archives/2026/04/on-anthropics-mythos-preview-and-project-glasswing.html" target="_blank">Schneier on Security</a></p>
+
+<p>The argument Anthropic puts forward is that frontier-grade automated vulnerability discovery has moved from research to engineering, and that equivalent capability will shortly be available to attackers. Glasswing is, on that reading, a defensive head start: a coordinated effort to find and fix the most dangerous bugs in critical software before an attacker with an equivalent model arrives at them. Whether one accepts that framing or not, the public commitment to disclose findings on a ninety-day cadence creates a calendar-bound event that every organisation running the affected software has to plan for.</p>
+
+<hr class="divider">
+
+<!-- SECTION 2 -->
+<h3>What It Means for Those Running the Software</h3>
+<h2>If You Are Not a Partner, You Are Still Affected</h2>
+
+<p>A common reading of Glasswing is that it is a problem for the partners and a story for everyone else. That reading is the wrong way round. The partners are auditing the operating systems, browsers, cloud platforms, and infrastructure components that everyone else's systems are built on. When a finding is published, the patch is issued once, by the vendor, and the obligation to apply it falls on every organisation running the affected software. The partner had months of advance notice. The downstream organisation will have, on average, the same morning as the rest of the world.</p>
+
+<p>Public guidance is already moving. The Cloud Security Alliance, SANS Institute, the OWASP GenAI Security Project, and [un]prompted issued joint emergency guidance in mid-April warning that AI-driven discovery is compressing the interval between disclosure and working exploit "from weeks to hours". CISA's Known Exploited Vulnerabilities directive already requires patching of catalogued items within fifteen days. The arithmetic is uncomfortable. A typical mid-size charity or arms-length body has a patching cadence sized for the disclosure volumes of 2024 and 2025. The 2026 volumes, if the CSA's modelling is right, will arrive at three to five times that rate, and they will arrive in clusters.</p>
+
+<div class="callout gold">
+  <strong>The omission no one is naming.</strong> Look again at the founding partner list. Of the eleven external partners, one is a bank (American). Eight are American technology companies. One is the Linux Foundation. One is a security vendor whose customer base is largely American government and large enterprise. There is no European partner. There is no UK partner. There is no representative of the public sector outside the United States. None of this is sinister. It is, however, a fact about whose systems are being audited first, and on whose timetable. The press releases have not said so. The partner list says so by itself.
+</div>
+
+<p>The practical question for any organisation outside the partner list comes in three parts. First, patching pace: the working assumption for the rest of 2026 is that critical advisories will arrive more often, and stay critical for less time, than in 2025. Second, supplier behaviour: it is not useful to ask a supplier whether they are a Glasswing partner, because almost none of them are. The useful question is what their disclosure and patching commitment is when AI-assisted research surfaces a finding in their product. Third, contract language: this year's renewals are the right moment to add specific clauses on AI-assisted vulnerability research. Both directions. What the supplier will tell you, and when. What you will and will not consent to having the supplier's tooling do against your data.</p>
+<p class="source-line">Source: <a href="https://www.sans.org/press/announcements/emergency-strategy-briefing-ai-driven-vulnerability-discovery-compresses-exploit-timelines" target="_blank">SANS / CSA / OWASP / [un]prompted joint briefing</a> &middot; <a href="https://cloudsecurityalliance.org/blog/2026/04/08/anthropic-s-mythos-is-here-defending-from-the-vulnpocalypse" target="_blank">CSA: Mythos and the Vulnpocalypse</a> &middot; <a href="https://thehackernews.com/2026/04/project-glasswing-proved-ai-can-find.html" target="_blank">The Hacker News</a></p>
+
+<hr class="divider">
+
+<!-- SECTION 3 -->
+<h3>Governance &amp; Assurance</h3>
+<h2>The Question the Audit Committee Should Be Asking</h2>
+
+<p>Glasswing is the first event of its kind that is concrete enough, public enough, and dated enough to belong on a board agenda. It is also a useful test of whether existing cyber resilience governance is doing what it is meant to do. The question worth putting to a committee is not whether the organisation is "under threat from AI". The question is whether the organisation can absorb a predictable wave of critical patches without disruption to services, to the people it serves, or to its regulatory standing.</p>
+
+<p>Two timetables are colliding in the same quarter. The first is the Glasswing ninety-day report, due 6 July. The second is the EU AI Act high-risk deadline, 2 August. Committees that try to address each as a separate workstream will find their governance time spread thin and their reporting lines duplicated. A single heading covering both, with one named executive owner and one reporting rhythm, is the more economical arrangement. The CSA's recommendation to stand up a permanent Vulnerability Operations function within twelve months, with explicit responsibility for AI-assisted discovery workflows, is the right direction even for organisations that cannot resource it in full this year.</p>
+
+<div class="callout slate">
+  <strong>The diagnostic question.</strong> Put this to the executive team in writing, before the next committee. <em>If Anthropic publishes its 90-day Glasswing report in early July and the report names a vulnerability in a product we operate, what is the maximum elapsed time, in hours, between that publication and the patch being applied in our live systems? And whose name is against that number?</em> If either half of the answer is unclear, the gap is not in the technical posture. It is in the accountability structure. That is a governance finding, and one that can be closed in a single committee cycle.
+</div>
+<p class="source-line">Source: <a href="https://labs.cloudsecurityalliance.org/wp-content/uploads/2026/04/mythosreadyv92.pdf" target="_blank">CSA: Building a Mythos-Ready Security Programme</a> &middot; <a href="https://www.itbrew.com/stories/2026/04/20/with-project-glasswing-csa-warns-it-pros-to-prepare-for-flood-of-vulnerabilities" target="_blank">IT Brew: CSA on the flood of vulnerabilities</a></p>
+
+<hr class="divider">
+
+<!-- SECTION 4 -->
+<h3>Horizon Watch</h3>
+<h2>Who Is in the Room</h2>
+
+<p>ProMarket published a piece on 22 April raising antitrust concerns about the partner arrangement. The piece refers to the group, not entirely without affection, as the "AI Avengers". The argument runs as follows. A small number of organisations have been granted privileged early access to a capability no one else has. They hold advance knowledge of vulnerabilities in critical infrastructure used by everyone. The disclosure timing is coordinated through private channels and controlled by that same small group. None of this is illegal. None of it is, in any individual partner's conduct, improper. It is the structural position of the group as a whole that the piece takes issue with.</p>
+
+<p>For organisations outside the partnership the immediate operational risk is small. The question is what this arrangement implies if it becomes the template. Open disclosure norms have, until now, been a default of the security industry rather than a rule. The default rests on the assumption that vulnerability research is mostly done in public, by people with no commercial reason to delay disclosure. AI-grade research changes that assumption. If the next four or five comparable initiatives follow the Glasswing model, the implicit promise of equal access to security information across a supplier base will quietly weaken. The practical response, today, is to note the trend and to put more weight on a supplier's transparency commitments in due diligence than would have been proportionate six months ago.</p>
+<p class="source-line">Source: <a href="https://www.promarket.org/2026/04/22/the-antitrust-risks-of-anthropics-project-glasswing-and-the-ai-avengers/" target="_blank">ProMarket: Antitrust risks of Project Glasswing</a> &middot; <a href="https://www.forrester.com/blogs/project-glasswing-the-10-consequences-nobodys-writing-about-yet/" target="_blank">Forrester: 10 consequences nobody is writing about yet</a></p>
+
+<hr class="divider">
+
+<!-- ACTION BOXES -->
+<div class="action-box technical">
+  <div class="action-label">For CISOs and Technical Leaders</div>
+  <p>Build a Glasswing response plan in the next two weeks. Three parts only. A named individual responsible for monitoring advisories from the partner list, plus OpenBSD, FreeBSD, and FFmpeg where those are present. A documented emergency patching pathway with a fifteen-day target for critical severity, aligned to CISA KEV, including out-of-hours approval authority by name. A fresh software bill of materials check against partner advisories as they are published. If the SBOM is weak, fix that first. Everything that follows depends on knowing what you run.</p>
+</div>
+
+<div class="action-box grc">
+  <div class="action-label">For Heads of Governance, Risk and Compliance</div>
+  <p>Three additions to the next risk committee pack. A Glasswing entry on the cyber risk register with a named executive owner and a documented patching commitment, scored against expected 2026 volumes rather than 2025 baselines. An evidence requirement: capture the decisions, exceptions, and timing from the first Glasswing-driven advisory the organisation responds to, so the committee has a worked example to audit against. A review of third-party contracts due for renewal in 2026, flagging those without AI-assisted vulnerability research clauses. Coordinate the work with the 2 August EU AI Act deadline. One workstream, not two.</p>
+</div>
+
+<div class="action-box executive">
+  <div class="action-label">For Finance Directors and Non-Specialist Leaders</div>
+  <p>Put one question to the technology lead at the next leadership meeting. <em>If a critical security patch is published tomorrow for a product we rely on, how long will it take to reach live service, and is that time likely to get harder or easier to meet over the next six months?</em> The honest answer will tell you whether the organisation is ready for the pace of disclosure Glasswing is about to make normal. If the number is not known, or is longer than two weeks for critical severity, the case for additional patching capacity, or for support from a managed service provider, is plain on its face. The next two quarters are the right window in which to make it.</p>
+</div>
+
+<hr class="divider">
+
+<div class="footer">
+  <p><strong>Intelligent Resilience</strong> is an AI security and cyber resilience consultancy specialising in NGOs, arms-length public bodies, and health-adjacent charities.</p>
+  <div class="footer-links">
+    <a href="https://intelligent-resilience.com" target="_blank" rel="noopener">intelligent-resilience.com</a>
+    <a href="https://substack.com/@intelligentresilience" target="_blank">Subscribe on Substack</a>
+    <a href="mailto:stuart@intelligent-resilience.com">Get in touch</a>
+    <a href="https://www.linkedin.com/in/stuartkwilson/" target="_blank">LinkedIn</a>
+  </div>
+  <p style="margin-top: 12px; font-size: 12px; color: #9ca3af;">Building systems that get stronger when tested. &copy; 2026 Intelligent Resilience.</p>
+</div>
+
+</body>
+</html>
