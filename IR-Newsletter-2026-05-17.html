@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The IR Digest, Edition 12 · Intelligent Resilience</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    max-width: 680px;
+    margin: 48px auto;
+    padding: 0 24px;
+    color: #1a1a1a;
+    line-height: 1.7;
+    background: #ffffff;
+  }
+
+  .masthead {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    border-radius: 0.75rem;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .masthead-mark svg { width: 52px; height: 52px; flex-shrink: 0; }
+  .masthead-link { text-decoration: none; color: inherit; display: block; }
+  .masthead-link:hover h1 { text-decoration: underline; }
+  .masthead-text h1 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 3px 0;
+    letter-spacing: -0.5px;
+  }
+  .masthead-text .byline {
+    font-size: 13px;
+    color: #e0e7ff;
+    font-weight: 500;
+    margin: 0 0 6px 0;
+  }
+  .masthead-text .edition {
+    font-size: 12px;
+    color: #93c5fd;
+  }
+  .masthead-text .edition a { color: #93c5fd; text-decoration: none; }
+  .masthead-text .edition a:hover { text-decoration: underline; }
+  .masthead-text .site-link {
+    font-size: 12px;
+    color: #93c5fd;
+    margin: 4px 0 0 0;
+  }
+  .masthead-text .site-link a { color: #bfdbfe; text-decoration: none; font-weight: 600; }
+  .masthead-text .site-link a:hover { text-decoration: underline; }
+
+  .intro-box {
+    background: #f9fafb;
+    border-left: 4px solid #2563eb;
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 14px 18px;
+    margin-bottom: 32px;
+    font-size: 15px;
+    color: #374151;
+    font-style: italic;
+  }
+
+  h3 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+    margin-top: 36px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    line-height: 1.35;
+  }
+
+  p { margin: 0 0 14px 0; font-size: 15px; color: #1a1a1a; }
+
+  .callout {
+    background: #f9fafb;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.75rem;
+    padding: 14px 18px;
+    margin: 14px 0 18px 0;
+    font-size: 14.5px;
+    color: #374151;
+  }
+  .callout strong { color: #0f172a; }
+
+  .callout.red { background: #fff5f5; border-color: #fecaca; }
+  .callout.gold { background: #fffbeb; border-color: #fde68a; }
+  .callout.slate { background: #f1f5f9; border-color: #cbd5e1; }
+
+  .source-line {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: -6px;
+    margin-bottom: 20px;
+  }
+  .source-line a { color: #2563eb; text-decoration: none; }
+  .source-line a:hover { text-decoration: underline; }
+
+  .stat-row {
+    display: flex;
+    gap: 12px;
+    margin: 14px 0 20px 0;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: 140px;
+    background: #0f172a;
+    border-radius: 0.5rem;
+    padding: 14px 16px;
+    color: #ffffff;
+    text-align: center;
+  }
+  .stat-box .number { font-size: 26px; font-weight: 800; color: #60a5fa; line-height: 1.1; }
+  .stat-box .label { font-size: 12px; color: #cbd5e1; margin-top: 4px; line-height: 1.4; }
+
+  .divider { border: none; border-top: 1px solid #e5e5e5; margin: 32px 0; }
+
+  .action-box {
+    border-radius: 0.75rem;
+    padding: 18px 20px;
+    margin: 16px 0;
+  }
+  .action-box.technical { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .action-box.grc { background: #faf5ff; border: 1px solid #e9d5ff; }
+  .action-box.executive { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .action-box .action-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .action-box.technical .action-label { color: #1d4ed8; }
+  .action-box.grc .action-label { color: #7c3aed; }
+  .action-box.executive .action-label { color: #15803d; }
+  .action-box p { font-size: 14px; margin: 0; }
+
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e5e5;
+    font-size: 13px;
+    color: #6b7280;
+    text-align: center;
+  }
+  .footer a { color: #2563eb; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .footer .footer-links { margin: 10px 0; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-mark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="15 45 470 410">
+      <polygon points="40,68 460,68 250,431.73" fill="#2563EB"/>
+      <polygon points="79.26,90.67 420.74,90.67 250,386.40" fill="#0F172A"/>
+      <polygon points="40,68 460,68 418,140.75 82,140.75" fill="#1e3a8a"/>
+      <polygon points="40,68 79.26,90.67 79.26,68" fill="#1e3a8a"/>
+      <polygon points="460,68 420.74,90.67 420.74,68" fill="#1e3a8a"/>
+      <rect x="233" y="140.75" width="34" height="163.68" fill="#ffffff"/>
+      <polygon points="202.67,304.43 297.33,304.43 287.51,321.43 212.49,321.43" fill="#ffffff"/>
+      <polygon points="212.49,321.43 287.51,321.43 250,386.40" fill="#D4A017"/>
+    </svg>
+  </div>
+  <div class="masthead-text">
+    <a class="masthead-link" href="https://intelligent-resilience.com" target="_blank" rel="noopener">
+      <h1>The IR Digest</h1>
+      <p class="byline">Intelligent Resilience: AI Security and Cyber Resilience</p>
+    </a>
+    <p class="edition">Edition 12 &middot; 17 May 2026 &middot; <a href="https://substack.com/@intelligentresilience">Subscribe on Substack</a></p>
+    <p class="site-link"><a href="https://intelligent-resilience.com" target="_blank" rel="noopener">intelligent-resilience.com &rarr;</a></p>
+  </div>
+</div>
+
+<div class="intro-box">
+  On 29 April, an Amsterdam developer published the local AI setup he had built to replace his Claude Max subscription. On 2 May, The Register published a guide to doing the same. On 8 May, Coder shipped a self-hosted agent runtime designed to keep prompts inside the customer's network. None of these events is individually decisive. Together, they are a reason to look again at the assumptions underneath most current AI procurement specifications.
+</div>
+
+<!-- SECTION 1 -->
+<h3>Deep Dive: Local-First Agent Stacks</h3>
+<h2>An Amsterdam Developer Cancels His Claude Max Subscription</h2>
+
+<p>Willem van den Ende is an independent consultant in Amsterdam who has worked as a software developer for more than twenty years. On 28 April 2026 he posted on LinkedIn that he had cancelled his Claude Max subscription, which was costing him one hundred US dollars a month. The next day he published a piece on his own website setting out the local setup that had replaced it. The hardware is a refurbished MacBook Pro M3 Max with 64 gigabytes of RAM. The models are open weights, served by llama.cpp through a script that rebuilds against current releases. The coding harness is Pi.dev. Routine chat and brainstorming run through GPTEL inside Emacs.</p>
+
+<p>His reason for switching is set out plainly. Over the month before he wrote, the open-weights models he uses had become roughly twice as fast on the same hardware, with capability he judged sufficient for the work he uses them for. The hosted subscription, on his account, was no longer doing enough that local could not do to justify the monthly cost.</p>
+
+<div class="stat-row">
+  <div class="stat-box">
+    <div class="number">29 Apr</div>
+    <div class="label">van den Ende publishes his local-first setup, cancels Claude Max</div>
+  </div>
+  <div class="stat-box">
+    <div class="number">2 May</div>
+    <div class="label">The Register publishes a guide to running local AI coding agents</div>
+  </div>
+  <div class="stat-box">
+    <div class="number">8 May</div>
+    <div class="label">Coder Agents enters beta as a self-hosted, in-network runtime</div>
+  </div>
+</div>
+<p class="source-line">Source: <a href="https://willemvandenende.com/blog/engineering/my-local-agentic-dev-setup-today" target="_blank">Willem van den Ende: My local agentic dev setup today</a> &middot; <a href="https://www.theregister.com/software/2026/05/02/how-to-roll-your-own-local-ai-coding-agents/5230018" target="_blank">The Register: How to roll your own local AI coding agents</a> &middot; <a href="https://sdtimes.com/ai/may-8-2026-ai-updates-from-the-past-week-coder-agents-launch-snyk-claude-partnership-opsera-cursor-partnership-and-more/" target="_blank">SD Times: Coder Agents launch</a></p>
+
+<p>Three further events in the past fortnight are worth holding against the van den Ende piece. On 2 May, The Register, the UK's principal mainstream technology publication for working IT professionals, ran a guide to setting up local AI coding agents. On 6 May, in a live blog from Anthropic's Code w/ Claude conference, Simon Willison reported that managed multi-agent orchestration and persistent Claude Code routines were being released as first-party Anthropic features. On 8 May, the developer-environment company Coder launched Coder Agents in beta, a self-hosted runtime designed to keep both source code and prompts inside the customer's network perimeter. The van den Ende piece, the Register guide, and the Coder launch are points along the same line. The Anthropic announcement is at the other end of it. Both ends of the spectrum gained credible new options in the same fortnight, while the hosted-plus-vendor-orchestration middle, where most procurement specifications are currently written, did not.</p>
+
+<hr class="divider">
+
+<!-- SECTION 2 -->
+<h3>What This Means for Procurement</h3>
+<h2>Three Arguments Worth Re-examining</h2>
+
+<p>For most of the last two years, the procurement question for AI tooling has been which hosted vendor to choose. The choice between hosted and self-hosted was not, in practice, a live one. Three arguments did most of the work in keeping it that way.</p>
+
+<div class="callout gold">
+  <strong>The three arguments.</strong> First, that local open-weights models were not good enough to support production work. This was correct in 2024 and defensible through most of 2025. For coding, drafting, and retrieval-augmented tasks, it has become difficult to maintain in mid-2026 without specific evidence to the contrary. Second, that running models locally was operationally beyond the reach of most internal teams. This remains true for many organisations, but the existence of products such as Coder Agents and Pi.dev means the claim now needs to be tested against current options rather than assumed. Third, that the cost of self-hosting exceeded the data-residency benefit. The hosted-versus-local cost ratio was an order of magnitude apart in 2024. For many workloads it is now closer to two to one, and continues to narrow.
+</div>
+
+<p>None of this is an argument for moving to a local-first posture. For most organisations the hosted default will remain the right choice for some time. The argument is for refreshing the working that supports the current decision. A procurement choice that was right in late 2024 may still be right in May 2026, but the comparison should be on current numbers and on file. For organisations subject to public-sector procurement scrutiny, charity-funder requirements, or sector-specific data-residency rules, an out-of-date comparison is itself becoming an audit finding.</p>
+
+<p>The supplier-side conversation is harder to evidence in public, but the pattern is starting to show. In recent client work, Intelligent Resilience has seen three vendors that previously offered only hosted AI features add self-hosted or hybrid options to their roadmaps in the past month. The reasons are not in any press release. The trigger appears to be procurement conversations with European public-sector and regulated-industry buyers. Renewal discussions in 2026 are a reasonable point at which to ask suppliers whether self-hosted options exist or are planned. The answer is useful regardless of whether the option is taken up.</p>
+
+<hr class="divider">
+
+<!-- SECTION 3 -->
+<h3>Governance &amp; Assurance</h3>
+<h2>What This Means for the Risk Register</h2>
+
+<p>In most of the risk registers Intelligent Resilience has reviewed in 2026, generative AI sits as a single line, with a single owner and a single risk score. That treatment was defensible while the architectural choices behind every AI workflow in the organisation were broadly the same. It is becoming less so. Three architectural patterns are now in regular use, and each carries a different data-residency, audit, and blast-radius profile.</p>
+
+<p>The first is the fully managed pattern: a hosted frontier model, vendor-supplied orchestration, with prompts and outputs traversing the vendor's infrastructure. The second is the self-hosted pattern: an open-weights model running on infrastructure the organisation controls, with orchestration on the same network. The third, and currently the most common in practice, is the hybrid pattern: a hosted model accessed through self-hosted scaffolding, with routing to different models depending on the sensitivity of the input. A single risk-register line cannot honestly describe three different architectures with different control profiles, and trying to do so makes the register harder to defend in an audit.</p>
+
+<div class="callout slate">
+  <strong>A diagnostic question for the executive team, in writing, before the next risk committee.</strong> For each material AI workflow the organisation operates today, can the responsible executive name the model, the hosting jurisdiction, the orchestration layer, and the individual accountable for the workflow's behaviour? If the workflow were moved between the three patterns above, who would have to approve the change? Where the answers are not readily available, the issue is not weakness in the controls. It is that the architecture has not been made legible to the people who are formally accountable for it. That is a question of governance documentation, and it can be closed within a single committee cycle.
+</div>
+
+<p>The EU AI Act high-risk deadline of 2 August, set out in Edition 11, is a useful forcing date for closing this gap. The Act's obligations on data governance, technical documentation, and human oversight are easier to discharge against a documented architecture than against an undocumented one. Documenting the architecture in May, while the work is not under deadline pressure, is likely to produce a better result than documenting it in late July, when it will be.</p>
+<p class="source-line">Source: <a href="https://artificialintelligenceact.eu/" target="_blank">EU AI Act high-risk obligations: implementation timeline</a></p>
+
+<hr class="divider">
+
+<!-- SECTION 4 -->
+<h3>Horizon Watch</h3>
+<h2>Three Competing Definitions of the Agent Stack</h2>
+
+<p>Three publications in the past fortnight have proposed layered models of the modern AI agent stack. Aishwarya Naresh Reganti's <em>The AI Agent Stack in 2026</em> in The Nuanced Perspective; the Glean engineering blog's <em>emerging agent architecture</em>; and MindStudio's <em>six layers every AI builder needs to understand</em>. The three models overlap in places but do not coincide. None of them maps directly onto the eight-layer taxonomy that Intelligent Resilience uses for its own assessments. This is normal at this stage of a field. Public taxonomies in a fast-moving area tend to proliferate before they consolidate, and engineering-led taxonomies typically settle first.</p>
+
+<p>The IR taxonomy is governance-oriented. The public ones are largely engineering-oriented. The two will need to be reconciled eventually in contracts, specifications, and audit reports, and the side whose definitions are written down at the time of the conversation will have the easier argument to make. For organisations drafting AI-related procurement language in 2026, the practical recommendation is to attach a short internal glossary of the terms used in the specification, agreed within the organisation before it is sent to suppliers. The cost of doing so is small. The cost of working from incompatible definitions of <em>agent</em>, <em>orchestration</em>, or <em>credentials</em> in a 2027 contractual dispute is not.</p>
+<p class="source-line">Source: <a href="https://thenuancedperspective.substack.com/p/the-ai-agent-stack-in-2026" target="_blank">Reganti: The AI Agent Stack in 2026</a> &middot; <a href="https://www.glean.com/blog/emerging-agent-stack-2026" target="_blank">Glean: The emerging agent architecture</a> &middot; <a href="https://www.mindstudio.ai/blog/agent-infrastructure-stack-six-layers-explained" target="_blank">MindStudio: The six layers of agent infrastructure</a></p>
+
+<hr class="divider">
+
+<!-- ACTION BOXES -->
+<div class="action-box technical">
+  <div class="action-label">For CISOs and Technical Leaders</div>
+  <p>Commission a current one-page comparison of the hosted, self-hosted, and hybrid patterns for the two or three AI workflows the organisation depends on today. Three columns: cost over twelve months, data-residency posture, and operational complexity scored against the team you actually have. The aim of the exercise is not to switch patterns. It is to have current working on file, so that when procurement, audit, or a funder asks why the organisation is on the pattern it is on, the answer can be produced quickly and with evidence. If the most recent version of that working is more than nine months old, treat it as out of date.</p>
+</div>
+
+<div class="action-box grc">
+  <div class="action-label">For Heads of Governance, Risk and Compliance</div>
+  <p>Split the single generative-AI line on the risk register into three entries, one per architectural pattern in current use, each with its own owner, residency description, and risk score. Where a workflow does not fit one of the three cleanly, document the hybrid explicitly. Add to the next risk-committee pack a short table mapping each material AI workflow to its model, hosting jurisdiction, orchestration layer, and named owner. The same table will form the first page of the EU AI Act 2 August submission, so producing it once in May is less work than producing it again in late July under deadline.</p>
+</div>
+
+<div class="action-box executive">
+  <div class="action-label">For Finance Directors and Non-Specialist Leaders</div>
+  <p>Put one question to the technology lead at the next leadership meeting. For each AI tool the organisation is paying for today, where does the data physically go when it is processed, and is a self-hosted version of the tool available if the data-residency picture changes? The answer does not need to lead to a change of supplier. It needs to be known, written down, and dated. If the supplier offers no self-hosted option and has no plans for one, that is information worth carrying into the next renewal. If a self-hosted option exists, whether to use it is a separate decision, taken on its own merits.</p>
+</div>
+
+<hr class="divider">
+
+<div class="footer">
+  <p><strong>Intelligent Resilience</strong> is an AI security and cyber resilience consultancy specialising in NGOs, arms-length public bodies, and health-adjacent charities.</p>
+  <div class="footer-links">
+    <a href="https://intelligent-resilience.com" target="_blank" rel="noopener">intelligent-resilience.com</a>
+    <a href="https://substack.com/@intelligentresilience" target="_blank">Subscribe on Substack</a>
+    <a href="mailto:stuart@intelligent-resilience.com">Get in touch</a>
+    <a href="https://www.linkedin.com/in/stuartkwilson/" target="_blank">LinkedIn</a>
+  </div>
+  <p style="margin-top: 12px; font-size: 12px; color: #9ca3af;">Building systems that get stronger when tested. &copy; 2026 Intelligent Resilience.</p>
+</div>
+
+</body>
+</html>
